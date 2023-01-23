@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Projet_7.src;
-
+namespace Projet_7.src
 {
     public class main
     {
