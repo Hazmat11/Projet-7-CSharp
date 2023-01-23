@@ -25,7 +25,7 @@ namespace Projet_7
 
         public void PrintTab()
         {         
-            tab[2, 0] = 'x';
+            tab[7,4] = 'x';
 
             for (var l = 0; l < tab.GetLength(0); l++)
             {

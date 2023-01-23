@@ -10,11 +10,12 @@ namespace Projet_7.src
     {
         static void Main(string[] args)
         {
-            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            Console.SetWindowSize(Console.WindowWidth, Console.WindowHeight);
             MapInit mi = new MapInit();
             Player player = new Player(1,100,100,10,40,10,0);
             mi.InitTab();
             mi.PrintTab();
+            player.Move();
         }
     }
 }
