@@ -72,8 +72,8 @@ namespace Projet_7.src
                 {
                     if (mi.tab[y, x] == '&')
                     {
-                        X = x;
-                        Y = y;
+                        _X = x;
+                        _Y = y;
                     }
                 }
             }
@@ -101,8 +101,8 @@ namespace Projet_7.src
                         break;
                     case ConsoleKey.D or ConsoleKey.RightArrow:
                         //PlayerPosition = new Point(PlayerPosition.X + 1, PlayerPosition.Y);
-                        mi.tab[Y,X] = '~';
-                        mi.tab[Y, X += 1] = '&';
+/*                        mi.tab[Y,X] = '~';
+                        mi.tab[Y, X += 1] = '&';*/
                         Console.WriteLine("right");
                         /*mi.WriteTab();*/
                         break;
