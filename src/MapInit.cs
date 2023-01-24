@@ -91,7 +91,7 @@ namespace Projet_7
             try
             {
                 tab[1, 1] = '&';
-                Console.Clear();
+                //Console.Clear();
                 for (y = 0; y < tab.GetLength(0); y++)
                 {
                     for (x = 0; x < tab.GetLength(1); x++)

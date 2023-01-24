@@ -10,6 +10,7 @@ namespace Projet_7.src
 {
     public class Player
     {
+        MapInit mi = new MapInit();
         public int _LVL { get; set; }
         public int _HP { get; set; }
         public int _MP { get; set; }
@@ -63,21 +64,26 @@ namespace Projet_7.src
         }
 
         public void Move()
-        {
-            MapInit mi = new MapInit();
-
+        {       
             for (int y = 0; y < mi.tab.GetLength(0); y++)
             {
                 for (int x = 0; x < mi.tab.GetLength(1); x++)
                 {
+                    Console.Write(mi.tab[y, x]);
                     if (mi.tab[y, x] == '&')
                     {
+                        Console.Write(mi.tab[y, x]);
                         _X = x;
                         _Y = y;
                     }
                 }
+                Console.WriteLine();
             }
+            detectKey();
+        }
 
+        public void detectKey()
+        {
             ConsoleKey key = ConsoleKey.Enter;
             while (key != ConsoleKey.Escape)
             {
@@ -101,10 +107,10 @@ namespace Projet_7.src
                         break;
                     case ConsoleKey.D or ConsoleKey.RightArrow:
                         //PlayerPosition = new Point(PlayerPosition.X + 1, PlayerPosition.Y);
-/*                        mi.tab[Y,X] = '~';
-                        mi.tab[Y, X += 1] = '&';*/
+                        /*                        mi.tab[Y,X] = '~';
+                                                mi.tab[Y, X += 1] = '&';*/
                         Console.WriteLine("right");
-                        /*mi.WriteTab();*/
+                        mi.WriteTab();
                         break;
                 }
             }
