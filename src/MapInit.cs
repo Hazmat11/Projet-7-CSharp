@@ -5,11 +5,17 @@ namespace Projet_7
 {
     internal class MapInit
     {
-        public char[,] tab = new char[9, 9];
+        public char[,] tab = new char[49,191];
         String linetxt;
         String line;
         String linewrite;
+        char letters;
+        StreamReader sr;
         string[] path;
+        int numberLine = 0;
+
+        public int y = 0;
+        public int x = 0;
 
         public void Reset()
         {
@@ -24,7 +30,7 @@ namespace Projet_7
                 path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
 
                 //Pass the file path and file name to the StreamReader constructor
-                StreamReader sr = new StreamReader(path[ReturnRandomInt()]);
+                sr = new StreamReader("1.txt");
 
                 //Read the first line of text
                 line = sr.ReadLine();
@@ -33,48 +39,12 @@ namespace Projet_7
                 {
                     for (int i = 0; i < line.Length; i++)
                     {
-
-                        char letters = line[i];
-                        switch (letters)
-                        {
-                            case '#':
-                                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                Console.BackgroundColor = ConsoleColor.Black;
-                                break;
-                            case '~':
-                                Console.ForegroundColor = ConsoleColor.DarkBlue;
-                                Console.BackgroundColor = ConsoleColor.Black;
-                                break;
-                            case '-':
-                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.BackgroundColor = ConsoleColor.Black;
-                                break;
-                            case ',':
-                                Console.ForegroundColor = ConsoleColor.White;
-                                Console.BackgroundColor = ConsoleColor.DarkGray;
-                                break;
-                            case '/' or '_' or '|' or '\u005c':
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Console.BackgroundColor = ConsoleColor.Black;
-                                break;
-                            case 'X':
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.BackgroundColor = ConsoleColor.DarkRed;
-                                break;
-                            case '.':
-                                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                                Console.BackgroundColor = ConsoleColor.Black;
-                                break;
-                            case 'p':
-                                Console.ForegroundColor = ConsoleColor.DarkRed;
-                                Console.BackgroundColor = ConsoleColor.DarkGray;
-                                break;
-                            default:
-                                Reset();
-                                break;
-                        }
+                        letters = line[i];
+                        tab[numberLine, i] = letters;
+                        Recolor();
                         Console.Write(line[i]);
                     }
+                    numberLine++;
                     //write the line to console window
 
                     //Read the next line
@@ -85,7 +55,8 @@ namespace Projet_7
                 DialogText();
 
                 //close the file
-                sr.Close();                
+                sr.Close();
+                WriteTab();
             }
             catch (Exception e)
             {
@@ -94,7 +65,6 @@ namespace Projet_7
             finally
             {
                 /*Console.WriteLine("Executing finally block.");*/
-                WriteTab();
             }
         }
 
@@ -120,9 +90,18 @@ namespace Projet_7
         {
             try
             {
-                path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
-                StreamWriter sw = new StreamWriter(path[ReturnRandomInt()]);
-                sw.Write("test");
+                tab[1, 1] = '&';
+                Console.Clear();
+                for (y = 0; y < tab.GetLength(0); y++)
+                {
+                    for (x = 0; x < tab.GetLength(1); x++)
+                    {
+                        letters = tab[y,x];
+                        Recolor();
+                        Console.Write(tab[y, x]);
+                    }
+                    Console.WriteLine();
+                }
             }
             catch (Exception e)
             {
@@ -139,6 +118,49 @@ namespace Projet_7
             Random rnd = new Random();
             int num = rnd.Next(0, 5);
             return num;
+        }
+
+        public void Recolor()
+        {
+            switch (letters)
+            {
+                case '#':
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    break;
+                case '~':
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    break;
+                case '-':
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    break;
+                case ',':
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
+                    break;
+                case '/' or '_' or '|' or '\u005c':
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    break;
+                case 'X':
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    break;
+                case '.':
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    break;
+                case 'p':
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
+                    break;
+                default:
+                    Reset();
+                    break;
+            }
+
         }
     }
 }
