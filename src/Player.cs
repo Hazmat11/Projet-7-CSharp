@@ -9,28 +9,58 @@ namespace Projet_7.src
 {
     public class Player
     {
-        public int LVL { get; set; }
-        public int HP { get; set; }
-        public int MP { get; set; }
-        public int ATT { get; set; }
-        public int ACC { get; set; }
-        public int SPEED { get; set; }
-        public int DEF { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int _LVL { get; set; }
+        public int _HP { get; set; }
+        public int _MP { get; set; }
+        public int _ATT { get; set; }
+        public int _ACC { get; set; }
+        public int _SPEED { get; set; }
+        public int _DEF { get; set; }
+        public int _X { get; set; }
+        public int _Y { get; set; }
 
         public Player(int lvlBase, int hpBase, int mpBase, int attBase, int accBase, int speedBase, int defBase)
         {
-            LVL = lvlBase;
-            HP = hpBase;
-            MP = mpBase;
-            ATT = attBase;
-            ACC = accBase;
-            SPEED = speedBase;
-            DEF = defBase;
-            X = 0;
-            Y = 0;
+            _LVL = lvlBase;
+            _HP = hpBase;
+            _MP = mpBase;
+            _ATT = attBase;
+            _ACC = accBase;
+            _SPEED = speedBase;
+            _DEF = defBase;
+            _X = 0;
+            _Y = 0;
         }
+
+        public void LVLUp()
+        {
+            _LVL++;
+            _ATT = _ATT + (_ATT * _LVL) / 100;
+            _ACC = _ACC + (_ACC * _LVL) / 100;
+            _SPEED = _SPEED + (_SPEED * _LVL/2) / 100;
+            _DEF = _DEF + (_DEF * _LVL) / 100;
+        }
+
+        public void TakeDamage(int value)
+        {
+            _HP = _HP - value;
+        }
+
+        public void Heal(int value)
+        {
+            _HP = _HP + value;
+        }
+
+        public void UseMP(int value)
+        {
+            _MP = _MP - value;
+        }
+
+        public void RegenMP(int value)
+        {
+            _MP++;
+        }
+
         public void Move()
         {
             ConsoleKey key = ConsoleKey.Enter;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Projet_7.src;
 namespace Projet_7.src
 {
-    public class main
+    static class main
     {
         [DllImport("kernel32.dll", ExactSpelling = true)]
         private static extern IntPtr GetConsoleWindow();
