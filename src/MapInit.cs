@@ -9,6 +9,7 @@ namespace Projet_7
         String linetxt;
         String line;
         String linewrite;
+        string[] path;
 
         public void Reset()
         {
@@ -20,14 +21,10 @@ namespace Projet_7
         {                     
             try
             {
-                Random rnd = new Random();
-                int num = rnd.Next(0, 5);
-
-                string[] path;
                 path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
 
                 //Pass the file path and file name to the StreamReader constructor
-                StreamReader sr = new StreamReader(path[num]);
+                StreamReader sr = new StreamReader(path[ReturnRandomInt()]);
 
                 //Read the first line of text
                 line = sr.ReadLine();
@@ -98,6 +95,7 @@ namespace Projet_7
             finally
             {
                 /*Console.WriteLine("Executing finally block.");*/
+                WriteTab();
             }
         }
 
@@ -119,12 +117,13 @@ namespace Projet_7
             srText.Close();
         }
 
-       /* public void WriteTab()
+        public void WriteTab()
         {
             try
             {
-                StreamWriter sw = new StreamWriter("1.txt");
-                sw.WriteLine("test");
+                path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
+                StreamWriter sw = new StreamWriter(path[ReturnRandomInt()]);
+                sw.Write("test");
             }
             catch (Exception e)
             {
@@ -132,8 +131,15 @@ namespace Projet_7
             }
             finally
             {
-                *//*Console.WriteLine("Executing finally block.");*//*
+                /*Console.WriteLine("Executing finally block.");*/
             }
-        }*/
+        }
+
+        public int ReturnRandomInt()
+        {
+            Random rnd = new Random();
+            int num = rnd.Next(0, 5);
+            return num;
+        }
     }
 }
