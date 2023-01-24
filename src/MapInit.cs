@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.IO;
 
 namespace Projet_7
 {
@@ -14,33 +15,46 @@ namespace Projet_7
 
         public void InitTab()
         {
-            for (var i = 0; i < tab.GetLength(0); i++)
+            String line;
+            try
             {
-                for (var a = 0; a < tab.GetLength(1); a++)
+                //Pass the file path and file name to the StreamReader constructor
+                StreamReader sr = new StreamReader("../ressources/ascii-art.txt");
+                //Read the first line of text
+                line = sr.ReadLine();
+                //Continue to read until you reach end of file
+                while (line != null)
                 {
-                    tab[i, a] = 'o';
-                }
-            }
-        }
-
-        public void PrintTab()
-        {         
-            tab[7,4] = 'x';
-
-            for (var l = 0; l < tab.GetLength(0); l++)
-            {
-                for (var c = 0; c < tab.GetLength(1); c++)
-                {
-                    if (tab[l, c] == 'x')
+                    foreach (char letters in line)
                     {
-                        Console.BackgroundColor = ConsoleColor.Green;
-                        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                        if (letters == ',')
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.BackgroundColor = ConsoleColor.Magenta;
+                        }
+                        else
+                        {
+                            Reset();
+                        }
                     }
-                    Console.Write(tab[l, c]);
-                    Reset();
+
+                    //write the line to console window
+                    Console.WriteLine(line);
+                    //Read the next line
+                    line = sr.ReadLine();                  
                 }
-                Console.WriteLine("t");
+                //close the file
+                sr.Close();
+                Console.ReadLine();
             }
-        }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Executing finally block.");
+            }
+        }     
     }
 }
