@@ -28,7 +28,6 @@ namespace Projet_7
 
                 //Read the first line of text
                 line = sr.ReadLine();
-
                 //Continue to read until you reach end of file
                 while (line != null)
                 {
