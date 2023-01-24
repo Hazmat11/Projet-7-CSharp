@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Projet_7.src;
 
 namespace Projet_7.src
 {
@@ -63,12 +64,27 @@ namespace Projet_7.src
 
         public void Move()
         {
+            MapInit mi = new MapInit();
+
+            for (int y = 0; y < mi.tab.GetLength(0); y++)
+            {
+                for (int x = 0; x < mi.tab.GetLength(1); x++)
+                {
+                    if (mi.tab[y, x] == '&')
+                    {
+                        X = x;
+                        Y = y;
+                    }
+                }
+            }
+
             ConsoleKey key = ConsoleKey.Enter;
             while (key != ConsoleKey.Escape)
             {
                 //map[PlayerPosition.Y,PlayerPosition.X] = DefaultTile;
                 ConsoleKeyInfo input = Console.ReadKey();
-                //Console.Clear();
+                //Console.Clear();             
+
                 switch (input.Key)
                 {
                     case ConsoleKey.Z or ConsoleKey.UpArrow:
@@ -85,7 +101,10 @@ namespace Projet_7.src
                         break;
                     case ConsoleKey.D or ConsoleKey.RightArrow:
                         //PlayerPosition = new Point(PlayerPosition.X + 1, PlayerPosition.Y);
+                        mi.tab[Y,X] = '~';
+                        mi.tab[Y, X += 1] = '&';
                         Console.WriteLine("right");
+                        /*mi.WriteTab();*/
                         break;
                 }
             }
