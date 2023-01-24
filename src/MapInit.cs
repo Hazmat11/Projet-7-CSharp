@@ -6,7 +6,9 @@ namespace Projet_7
     internal class MapInit
     {
         public char[,] tab = new char[9, 9];
-        int u = 0;
+        String linetxt;
+        String line;
+        String linewrite;
 
         public void Reset()
         {
@@ -15,9 +17,7 @@ namespace Projet_7
         }
 
         public void InitTab()
-        {
-            String line;
-            String linetxt;
+        {                     
             try
             {
                 Random rnd = new Random();
@@ -28,8 +28,10 @@ namespace Projet_7
 
                 //Pass the file path and file name to the StreamReader constructor
                 StreamReader sr = new StreamReader(path[num]);
+
                 //Read the first line of text
                 line = sr.ReadLine();
+
                 //Continue to read until you reach end of file
                 while (line != null)
                 {
@@ -84,23 +86,10 @@ namespace Projet_7
                     Console.WriteLine();
                 }
 
-                //Pass the file path and file name to the StreamReader constructor
-                StreamReader srText = new StreamReader("dialog.txt");
-                //Read the first line of text
-                linetxt = srText.ReadLine();
-                //Continue to read until you reach end of file
-                while (linetxt != null)
-                {
-                    //write the line to console window
-                    Console.WriteLine(linetxt);
-
-                    //Read the next line
-                    linetxt = srText.ReadLine();
-                }
+                DialogText();
 
                 //close the file
-                sr.Close();
-                srText.Close();
+                sr.Close();                
             }
             catch (Exception e)
             {
@@ -111,5 +100,40 @@ namespace Projet_7
                 /*Console.WriteLine("Executing finally block.");*/
             }
         }
+
+        public void DialogText()
+        {
+            //Pass the file path and file name to the StreamReader constructor
+            StreamReader srText = new StreamReader("dialog.txt");
+            //Read the first line of text
+            linetxt = srText.ReadLine();
+            //Continue to read until you reach end of file
+            while (linetxt != null)
+            {
+                //write the line to console window
+                Console.WriteLine(linetxt);
+
+                //Read the next line
+                linetxt = srText.ReadLine();
+            }
+            srText.Close();
+        }
+
+       /* public void WriteTab()
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter("1.txt");
+                sw.WriteLine("test");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+            finally
+            {
+                *//*Console.WriteLine("Executing finally block.");*//*
+            }
+        }*/
     }
 }
