@@ -19,29 +19,44 @@ namespace Projet_7
             try
             {
                 //Pass the file path and file name to the StreamReader constructor
-                StreamReader sr = new StreamReader("ascii-art.txt");
+                StreamReader sr = new StreamReader("3.txt");
                 //Read the first line of text
                 line = sr.ReadLine();
                 //Continue to read until you reach end of file
                 while (line != null)
                 {
-                    foreach (char letters in line)
+                    for (int i = 0; i < line.Length; i++)
                     {
-                        if (letters == ',')
+                        char letters = line[i];
+                        switch (letters)
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.BackgroundColor = ConsoleColor.Magenta;
+                            case '#': 
+                                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                break;
+                            case '~':
+                                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                break;
+                            case '-':
+                                Console.ForegroundColor= ConsoleColor.Yellow;
+                                break;
+                            case '/' or '_' or '|' or '\u005c':
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                break;
+                            case '.':
+                                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                break;                           
+                            default:
+                                Reset();
+                                break;                            
                         }
-                        else
-                        {
-                            Reset();
-                        }
+                        Console.Write(line[i]);
                     }
 
                     //write the line to console window
-                    Console.WriteLine(line);
+                    
                     //Read the next line
-                    line = sr.ReadLine();                  
+                    line = sr.ReadLine();
+                    Console.WriteLine();
                 }
                 //close the file
                 sr.Close();
