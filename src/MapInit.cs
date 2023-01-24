@@ -19,7 +19,7 @@ namespace Projet_7
             try
             {
                 //Pass the file path and file name to the StreamReader constructor
-                StreamReader sr = new StreamReader("3.txt");
+                StreamReader sr = new StreamReader("1.txt");
                 //Read the first line of text
                 line = sr.ReadLine();
                 //Continue to read until you reach end of file
