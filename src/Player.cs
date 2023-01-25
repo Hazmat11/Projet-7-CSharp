@@ -21,6 +21,8 @@ namespace Projet_7.src
         public int _X { get; set; }
         public int _Y { get; set; }
 
+        public int keyValue = 0;
+
         public Player(int lvlBase, int hpBase, int mpBase, int attBase, int accBase, int speedBase, int defBase)
         {
             _LVL = lvlBase;
@@ -39,7 +41,7 @@ namespace Projet_7.src
             _LVL++;
             _ATT = _ATT + (_ATT * _LVL) / 100;
             _ACC = _ACC + (_ACC * _LVL) / 100;
-            _SPEED = _SPEED + (_SPEED * _LVL/2) / 100;
+            _SPEED = _SPEED + (_SPEED * _LVL / 2) / 100;
             _DEF = _DEF + (_DEF * _LVL) / 100;
         }
 
@@ -63,56 +65,36 @@ namespace Projet_7.src
             _MP++;
         }
 
-        public void Move()
-        {       
-            for (int y = 0; y < mi.tab.GetLength(0); y++)
-            {
-                for (int x = 0; x < mi.tab.GetLength(1); x++)
-                {
-                    Console.Write(mi.tab[y, x]);
-                    if (mi.tab[y, x] == '&')
-                    {
-                        Console.Write(mi.tab[y, x]);
-                        _X = x;
-                        _Y = y;
-                    }
-                }
-                Console.WriteLine();
-            }
-            detectKey();
-        }
-
         public void detectKey()
         {
-            ConsoleKey key = ConsoleKey.Enter;
-            while (key != ConsoleKey.Escape)
-            {
-                //map[PlayerPosition.Y,PlayerPosition.X] = DefaultTile;
-                ConsoleKeyInfo input = Console.ReadKey();
-                //Console.Clear();             
+            ConsoleKey key = ConsoleKey.Enter;                //map[PlayerPosition.Y,PlayerPosition.X] = DefaultTile;
+            ConsoleKeyInfo input = Console.ReadKey();
+            //Console.Clear();             
 
-                switch (input.Key)
-                {
-                    case ConsoleKey.Z or ConsoleKey.UpArrow:
-                        //PlayerPosition = new Point(PlayerPosition.X, PlayerPosition.Y - 1);
-                        Console.WriteLine("up");
-                        break;
-                    case ConsoleKey.Q or ConsoleKey.LeftArrow:
-                        //PlayerPosition = new Point(PlayerPosition.X - 1, PlayerPosition.Y);
-                        Console.WriteLine("left");
-                        break;
-                    case ConsoleKey.S or ConsoleKey.DownArrow:
-                        //PlayerPosition = new Point(PlayerPosition.X, PlayerPosition.Y + 1);
-                        Console.WriteLine("down");
-                        break;
-                    case ConsoleKey.D or ConsoleKey.RightArrow:
-                        //PlayerPosition = new Point(PlayerPosition.X + 1, PlayerPosition.Y);
-                        /*                        mi.tab[Y,X] = '~';
-                                                mi.tab[Y, X += 1] = '&';*/
-                        Console.WriteLine("right");
-                        mi.WriteTab();
-                        break;
-                }
+            switch (input.Key)
+            {
+                case ConsoleKey.Z or ConsoleKey.UpArrow:
+                    //PlayerPosition = new Point(PlayerPosition.X, PlayerPosition.Y - 1);
+                    Console.WriteLine("up");
+                    keyValue = 1;
+                    break;
+                case ConsoleKey.Q or ConsoleKey.LeftArrow:
+                    //PlayerPosition = new Point(PlayerPosition.X - 1, PlayerPosition.Y);
+                    Console.WriteLine("left");
+                    keyValue = 2;
+                    break;
+                case ConsoleKey.S or ConsoleKey.DownArrow:
+                    //PlayerPosition = new Point(PlayerPosition.X, PlayerPosition.Y + 1);
+                    Console.WriteLine("down");
+                    keyValue = 3;
+                    break;
+                case ConsoleKey.D or ConsoleKey.RightArrow:
+                    //PlayerPosition = new Point(PlayerPosition.X + 1, PlayerPosition.Y);
+                    Console.WriteLine("right");
+                    keyValue = 4;
+                    break;
+                default:
+                    break;
             }
         }
     }

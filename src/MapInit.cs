@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using System.IO;
+using Projet_7.src;
 
 namespace Projet_7
 {
@@ -16,6 +17,9 @@ namespace Projet_7
 
         public int y = 0;
         public int x = 0;
+
+        public int playerX = 0;
+        public int playerY = 0;
 
         public void Reset()
         {
@@ -40,16 +44,13 @@ namespace Projet_7
                     for (int i = 0; i < line.Length; i++)
                     {
                         letters = line[i];
-                        tab[numberLine, i] = letters;
-                        Recolor();
-                        Console.Write(line[i]);
+                        tab[numberLine, i] = letters;                      
                     }
                     numberLine++;
                     //write the line to console window
 
                     //Read the next line
-                    line = sr.ReadLine();
-                    Console.WriteLine();
+                    line = sr.ReadLine();                  
                 }
 
                 DialogText();
@@ -90,13 +91,17 @@ namespace Projet_7
         {
             try
             {
-                tab[1, 1] = '&';
-                //Console.Clear();
+                Console.Clear();
                 for (y = 0; y < tab.GetLength(0); y++)
                 {
                     for (x = 0; x < tab.GetLength(1); x++)
                     {
                         letters = tab[y,x];
+                        if (tab[y,x] == '&') 
+                        {
+                            playerX= x;
+                            playerY= y;
+                        }
                         Recolor();
                         Console.Write(tab[y, x]);
                     }
@@ -112,7 +117,7 @@ namespace Projet_7
                 /*Console.WriteLine("Executing finally block.");*/
             }
         }
-
+    
         public int ReturnRandomInt()
         {
             Random rnd = new Random();
@@ -160,7 +165,41 @@ namespace Projet_7
                     Reset();
                     break;
             }
+        }
 
+        public void movePlayer(Player player)
+        {
+            while (true)
+            {
+                player.detectKey();
+
+                Console.WriteLine(player.keyValue);
+                switch (player.keyValue)
+                {
+                    case 1:
+                        tab[playerY, playerX] = '.';
+                        tab[playerY -= 1, playerX] = '&';
+                        WriteTab();
+                        break;
+                    case 2:
+                        tab[playerY, playerX] = '.';
+                        tab[playerY, playerX -= 1] = '&';
+                        WriteTab();
+                        break;
+                    case 3:
+                        tab[playerY, playerX] = '.';
+                        tab[playerY += 1, playerX] = '&';
+                        WriteTab();
+                        break;
+                    case 4:
+                        tab[playerY, playerX] = '.';
+                        tab[playerY, playerX += 1] = '&';
+                        WriteTab();
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }

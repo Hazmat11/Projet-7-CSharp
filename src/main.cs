@@ -23,7 +23,7 @@ namespace Projet_7.src
             MapInit mi = new MapInit();
             Player player = new Player(1,100,100,10,40,10,0);
             mi.InitTab();
-            player.Move();
+            mi.movePlayer(player);
         }
     }
 }
