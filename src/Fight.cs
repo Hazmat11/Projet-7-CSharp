@@ -12,6 +12,7 @@ namespace Projet_7.src
     {
         public Fight(Player player, Enemy enemy)
         {
+            MenuManager menu = new MenuManager();
             int Turn = 0;
             bool PlayerTurn;
             if (isPlayerFaster(player, enemy))

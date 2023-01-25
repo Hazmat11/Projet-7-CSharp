@@ -21,21 +21,21 @@ namespace Projet_7.src
         {
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             ShowWindow(ThisConsole, MAXIMIZE);
+            Console.Clear();
+            EnemyManager manager = new EnemyManager();
+            MenuManager mainMenu= new MenuManager();
+            Player player = new Player(50, 100, 100, 30, 3, 8, 3);
+            player.LVLUp();
+            mainMenu.MainMenu();
 
-            //MapInit mi = new MapInit();
-            //mi.InitTab();
             //player.Move();
 
-            EnemyManager manager = new EnemyManager();
-            Player player = new Player(50,100,100,30,3,8,3);
+
+/*            EnemyManager manager = new EnemyManager();
+            Player player = new Player(50, 100, 100, 30, 3, 8, 3);
             player.LVLUp();
 
-            Fight fight = new Fight(player, manager.CreateEnemy());
-
-            string prompt = "Welcome to your menu";
-            string[] Options = {"Team","Objects","Options" };
-            Menu menu = new Menu(prompt, Options);
-            int Index = menu.Run();
+            Fight fight = new Fight(player, manager.CreateEnemy());*/
         }
     }
 }

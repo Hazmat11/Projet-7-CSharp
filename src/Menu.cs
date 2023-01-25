@@ -6,8 +6,6 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-using static System.Console;
-
 namespace Projet_7.src
 {
     class Menu
@@ -27,7 +25,7 @@ namespace Projet_7.src
 
         private void Display()
         {
-            WriteLine(Prompt);
+            Console.WriteLine(Prompt);
             Console.WriteLine("");
             for (int i = 0; i < Options.Length; i++) 
             {
@@ -37,26 +35,26 @@ namespace Projet_7.src
                 if (i == Index)
                 {
                     Choice = "*";
-                    ForegroundColor= ConsoleColor.Black;
-                    BackgroundColor= ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.BackgroundColor = ConsoleColor.White;
                 }
                 else
                 {
                     Choice = " ";
-                    ForegroundColor = ConsoleColor.White;
-                    BackgroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.Black;
                 }
 
-                WriteLine($"<< {Option} >>");
+                Console.WriteLine($"<< {Option} >>");
             }
-            ResetColor();
+            Console.ResetColor();
         }
         public int Run()
         {
             ConsoleKey keyPressed;
             do
             {
-                Clear();
+                Console.Clear();
                 Display();
 
                 ConsoleKeyInfo keyInfo= Console.ReadKey(true);
@@ -83,6 +81,5 @@ namespace Projet_7.src
 
             return Index;
         }
-   
     }
 }
