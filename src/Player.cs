@@ -69,23 +69,18 @@ namespace Projet_7.src
         {
             ConsoleKey key = ConsoleKey.Enter;       
             ConsoleKeyInfo input = Console.ReadKey();
-
             switch (input.Key)
             {
                 case ConsoleKey.Z or ConsoleKey.UpArrow:
-                    Console.WriteLine("up");
                     keyValue = 1;
                     break;
                 case ConsoleKey.Q or ConsoleKey.LeftArrow:
-                    Console.WriteLine("left");
                     keyValue = 2;
                     break;
                 case ConsoleKey.S or ConsoleKey.DownArrow:
-                    Console.WriteLine("down");
                     keyValue = 3;
                     break;
                 case ConsoleKey.D or ConsoleKey.RightArrow:
-                    Console.WriteLine("right");
                     keyValue = 4;
                     break;
                 default:

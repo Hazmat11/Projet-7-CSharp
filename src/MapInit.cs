@@ -7,7 +7,7 @@ namespace Projet_7
 {
     internal class MapInit
     {
-        public char[,] tab = new char[49,191];
+        public char[,] tab = new char[49, 191];
         String linetxt;
         String line;
         char letters;
@@ -26,6 +26,9 @@ namespace Projet_7
         public int pnjPosX = 0;
         public int pnjPosY = 0;
 
+        public int lastPosX = 0;
+        public int lastPosY = 0;
+
         public void Reset()
         {
             Console.ForegroundColor = ConsoleColor.Gray;
@@ -33,7 +36,7 @@ namespace Projet_7
         }
 
         public void InitTab()
-        {                     
+        {
             try
             {
                 path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
@@ -49,13 +52,13 @@ namespace Projet_7
                     for (int i = 0; i < line.Length; i++)
                     {
                         letters = line[i];
-                        tab[numberLine, i] = letters;                      
+                        tab[numberLine, i] = letters;
                     }
                     numberLine++;
                     //write the line to console window
 
                     //Read the next line
-                    line = sr.ReadLine();                  
+                    line = sr.ReadLine();
                 }
                 //close the file
                 sr.Close();
@@ -93,7 +96,6 @@ namespace Projet_7
         {
             try
             {
-                Console.Clear();
                 for (y = 0; y < tab.GetLength(0); y++)
                 {
                     for (x = 0; x < tab.GetLength(1); x++)
@@ -123,10 +125,11 @@ namespace Projet_7
             }
             finally
             {
+                Console.SetCursorPosition(playerX, playerY);
                 /*Console.WriteLine("Executing finally block.");*/
             }
         }
-    
+
         public int ReturnRandomInt()
         {
             Random rnd = new Random();
@@ -171,7 +174,7 @@ namespace Projet_7
                     Console.BackgroundColor = ConsoleColor.DarkGray;
                     break;
                 case '&':
-                    Console.ForegroundColor= ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.BackgroundColor = ConsoleColor.DarkRed;
                     break;
                 default:
@@ -192,47 +195,57 @@ namespace Projet_7
                         if (nextChar != '~')
                         {
                             tab[playerY, playerX] = nextChar;
+                            lastPosX = playerX;
+                            lastPosY = playerY;
+
                         }
                         nextChar = tab[playerY - 1, playerX];
-                        if (nextChar != '~') {
+                        if (nextChar != '~')
+                        {
                             tab[playerY -= 1, playerX] = '&';
-                            WriteTab();
-                        }                                             
+                            shortMap();
+                        }
                         break;
                     case 2:
                         if (nextChar != '~')
                         {
                             tab[playerY, playerX] = nextChar;
+                            lastPosX = playerX;
+                            lastPosY = playerY;
                         }
                         nextChar = tab[playerY, playerX - 1];
                         if (nextChar != '~')
                         {
                             tab[playerY, playerX -= 1] = '&';
-                            WriteTab();
+                            shortMap();
                         }
                         break;
                     case 3:
                         if (nextChar != '~')
                         {
                             tab[playerY, playerX] = nextChar;
+                            lastPosX = playerX;
+                            lastPosY = playerY;
                         }
                         nextChar = tab[playerY + 1, playerX];
                         if (nextChar != '~')
                         {
                             tab[playerY += 1, playerX] = '&';
-                            WriteTab();
+                            shortMap();
                         }
                         break;
                     case 4:
                         if (nextChar != '~')
                         {
                             tab[playerY, playerX] = nextChar;
+                            lastPosX = playerX;
+                            lastPosY = playerY;
                         }
                         nextChar = tab[playerY, playerX + 1];
                         if (nextChar != '~')
                         {
                             tab[playerY, playerX += 1] = '&';
-                            WriteTab();
+                            shortMap();
                         }
                         break;
                     default:
@@ -248,15 +261,22 @@ namespace Projet_7
             {
                 Console.Write("ta gueule");
             }
-            else if(playerY == pnjPos[2] && playerX == pnjPos[3])
+            else if (playerY == pnjPos[2] && playerX == pnjPos[3])
             {
                 Console.Write("ta grosse gueule");
             }
         }
 
-        public void waterVerification ()
+        public void shortMap()
         {
-
+            Console.SetCursorPosition(playerX, playerY);
+            Console.CursorVisible = true;
+            Recolor();
+            Console.Write(tab[playerY, playerX]);
+            tab[lastPosY, lastPosX] = nextChar;
+            Console.Write(tab[lastPosY, lastPosX]);
+            Console.SetCursorPosition(playerX, playerY);
+            Recolor();
         }
     }
 }
