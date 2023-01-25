@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -20,6 +21,20 @@ namespace Projet_7.src
         {
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             ShowWindow(ThisConsole, MAXIMIZE);
+
+
+
+            //MapInit mi = new MapInit();
+            //Player player = new Player(1,100,100,10,40,10,0);
+            //mi.InitTab();
+            //player.Move();
+/*
+            ConsoleKey keyPressed;*/
+
+            string prompt = "Welcome to your menu";
+            string[] Options = {"Team","Objects","Options" };
+            Menu menu = new Menu(prompt, Options);
+            int Index = menu.Run();
             MapInit mi = new MapInit();
             Player player = new Player(1,100,100,10,40,10,0);
             mi.InitTab();
