@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using System.IO;
 using Projet_7.src;
+using System;
 
 namespace Projet_7
 {
@@ -9,17 +10,21 @@ namespace Projet_7
         public char[,] tab = new char[49,191];
         String linetxt;
         String line;
-        String linewrite;
         char letters;
         StreamReader sr;
         string[] path;
+        List<int> pnjPos = new List<int>();
         int numberLine = 0;
+        char nextChar = '.';
 
         public int y = 0;
         public int x = 0;
 
         public int playerX = 0;
         public int playerY = 0;
+
+        public int pnjPosX = 0;
+        public int pnjPosY = 0;
 
         public void Reset()
         {
@@ -52,9 +57,6 @@ namespace Projet_7
                     //Read the next line
                     line = sr.ReadLine();                  
                 }
-
-                DialogText();
-
                 //close the file
                 sr.Close();
                 WriteTab();
@@ -96,11 +98,18 @@ namespace Projet_7
                 {
                     for (x = 0; x < tab.GetLength(1); x++)
                     {
-                        letters = tab[y,x];
-                        if (tab[y,x] == '&') 
+                        letters = tab[y, x];
+                        if (tab[y, x] == '&')
                         {
-                            playerX= x;
-                            playerY= y;
+                            playerX = x;
+                            playerY = y;
+                        }
+                        if (tab[y, x] == 'p')
+                        {
+                            pnjPosX = x;
+                            pnjPosY = y;
+                            pnjPos.Add(pnjPosY);
+                            pnjPos.Add(pnjPosX);
                         }
                         Recolor();
                         Console.Write(tab[y, x]);
@@ -161,6 +170,10 @@ namespace Projet_7
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.BackgroundColor = ConsoleColor.DarkGray;
                     break;
+                case '&':
+                    Console.ForegroundColor= ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    break;
                 default:
                     Reset();
                     break;
@@ -173,33 +186,50 @@ namespace Projet_7
             {
                 player.detectKey();
 
-                Console.WriteLine(player.keyValue);
                 switch (player.keyValue)
                 {
                     case 1:
-                        tab[playerY, playerX] = '.';
+                        tab[playerY, playerX] = nextChar;
+                        nextChar = tab[playerY - 1, playerX];
                         tab[playerY -= 1, playerX] = '&';
                         WriteTab();
                         break;
                     case 2:
-                        tab[playerY, playerX] = '.';
+                        tab[playerY, playerX] = nextChar;
+                        nextChar = tab[playerY, playerX - 1];
                         tab[playerY, playerX -= 1] = '&';
                         WriteTab();
                         break;
                     case 3:
-                        tab[playerY, playerX] = '.';
+                        tab[playerY, playerX] = nextChar;
+                        nextChar = tab[playerY + 1, playerX];
                         tab[playerY += 1, playerX] = '&';
                         WriteTab();
                         break;
                     case 4:
-                        tab[playerY, playerX] = '.';
+                        tab[playerY, playerX] = nextChar;
+                        nextChar = tab[playerY, playerX + 1];
                         tab[playerY, playerX += 1] = '&';
                         WriteTab();
                         break;
                     default:
                         break;
                 }
+                PNJ();
             }
+        }
+
+        public void PNJ()
+        {
+            if (playerY == pnjPos[0] && playerX == pnjPos[1])
+            {
+                Console.Write("ta gueule");
+            }
+            else if(playerY == pnjPos[2] && playerX == pnjPos[3])
+            {
+                Console.Write("ta grosse gueule");
+            }
+            Thread.Sleep(1000);
         }
     }
 }

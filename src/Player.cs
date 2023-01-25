@@ -67,29 +67,24 @@ namespace Projet_7.src
 
         public void detectKey()
         {
-            ConsoleKey key = ConsoleKey.Enter;                //map[PlayerPosition.Y,PlayerPosition.X] = DefaultTile;
+            ConsoleKey key = ConsoleKey.Enter;       
             ConsoleKeyInfo input = Console.ReadKey();
-            //Console.Clear();             
 
             switch (input.Key)
             {
                 case ConsoleKey.Z or ConsoleKey.UpArrow:
-                    //PlayerPosition = new Point(PlayerPosition.X, PlayerPosition.Y - 1);
                     Console.WriteLine("up");
                     keyValue = 1;
                     break;
                 case ConsoleKey.Q or ConsoleKey.LeftArrow:
-                    //PlayerPosition = new Point(PlayerPosition.X - 1, PlayerPosition.Y);
                     Console.WriteLine("left");
                     keyValue = 2;
                     break;
                 case ConsoleKey.S or ConsoleKey.DownArrow:
-                    //PlayerPosition = new Point(PlayerPosition.X, PlayerPosition.Y + 1);
                     Console.WriteLine("down");
                     keyValue = 3;
                     break;
                 case ConsoleKey.D or ConsoleKey.RightArrow:
-                    //PlayerPosition = new Point(PlayerPosition.X + 1, PlayerPosition.Y);
                     Console.WriteLine("right");
                     keyValue = 4;
                     break;
