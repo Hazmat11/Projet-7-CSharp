@@ -1,21 +1,33 @@
 ﻿using System.Numerics;
 using System.IO;
+using Projet_7.src;
+using System;
 
 namespace Projet_7
 {
     internal class MapInit
     {
-        public char[,] tab = new char[49,191];
+        public char[,] tab = new char[49, 191];
         String linetxt;
         String line;
-        String linewrite;
         char letters;
         StreamReader sr;
         string[] path;
+        List<int> pnjPos = new List<int>();
         int numberLine = 0;
+        char nextChar = '.';
 
         public int y = 0;
         public int x = 0;
+
+        public int playerX = 0;
+        public int playerY = 0;
+
+        public int pnjPosX = 0;
+        public int pnjPosY = 0;
+
+        public int lastPosX = 0;
+        public int lastPosY = 0;
 
         public void Reset()
         {
@@ -24,7 +36,7 @@ namespace Projet_7
         }
 
         public void InitTab()
-        {                     
+        {
             try
             {
                 path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
@@ -41,19 +53,13 @@ namespace Projet_7
                     {
                         letters = line[i];
                         tab[numberLine, i] = letters;
-                        Recolor();
-                        Console.Write(line[i]);
                     }
                     numberLine++;
                     //write the line to console window
 
                     //Read the next line
                     line = sr.ReadLine();
-                    Console.WriteLine();
                 }
-
-                DialogText();
-
                 //close the file
                 sr.Close();
                 WriteTab();
@@ -90,13 +96,23 @@ namespace Projet_7
         {
             try
             {
-                tab[1, 1] = '&';
-                //Console.Clear();
                 for (y = 0; y < tab.GetLength(0); y++)
                 {
                     for (x = 0; x < tab.GetLength(1); x++)
                     {
-                        letters = tab[y,x];
+                        letters = tab[y, x];
+                        if (tab[y, x] == '&')
+                        {
+                            playerX = x;
+                            playerY = y;
+                        }
+                        if (tab[y, x] == 'p')
+                        {
+                            pnjPosX = x;
+                            pnjPosY = y;
+                            pnjPos.Add(pnjPosY);
+                            pnjPos.Add(pnjPosX);
+                        }
                         Recolor();
                         Console.Write(tab[y, x]);
                     }
@@ -109,6 +125,7 @@ namespace Projet_7
             }
             finally
             {
+                Console.SetCursorPosition(playerX, playerY);
                 /*Console.WriteLine("Executing finally block.");*/
             }
         }
@@ -156,11 +173,110 @@ namespace Projet_7
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.BackgroundColor = ConsoleColor.DarkGray;
                     break;
+                case '&':
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    break;
                 default:
                     Reset();
                     break;
             }
+        }
 
+        public void movePlayer(Player player)
+        {
+            while (true)
+            {
+                player.detectKey();
+
+                switch (player.keyValue)
+                {
+                    case 1:
+                        if (nextChar != '~')
+                        {
+                            tab[playerY, playerX] = nextChar;
+                            lastPosX = playerX;
+                            lastPosY = playerY;
+
+                        }
+                        nextChar = tab[playerY - 1, playerX];
+                        if (nextChar != '~')
+                        {
+                            tab[playerY -= 1, playerX] = '&';
+                            shortMap();
+                        }
+                        break;
+                    case 2:
+                        if (nextChar != '~')
+                        {
+                            tab[playerY, playerX] = nextChar;
+                            lastPosX = playerX;
+                            lastPosY = playerY;
+                        }
+                        nextChar = tab[playerY, playerX - 1];
+                        if (nextChar != '~')
+                        {
+                            tab[playerY, playerX -= 1] = '&';
+                            shortMap();
+                        }
+                        break;
+                    case 3:
+                        if (nextChar != '~')
+                        {
+                            tab[playerY, playerX] = nextChar;
+                            lastPosX = playerX;
+                            lastPosY = playerY;
+                        }
+                        nextChar = tab[playerY + 1, playerX];
+                        if (nextChar != '~')
+                        {
+                            tab[playerY += 1, playerX] = '&';
+                            shortMap();
+                        }
+                        break;
+                    case 4:
+                        if (nextChar != '~')
+                        {
+                            tab[playerY, playerX] = nextChar;
+                            lastPosX = playerX;
+                            lastPosY = playerY;
+                        }
+                        nextChar = tab[playerY, playerX + 1];
+                        if (nextChar != '~')
+                        {
+                            tab[playerY, playerX += 1] = '&';
+                            shortMap();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                PNJ();
+            }
+        }
+
+        public void PNJ()
+        {
+            if (playerY == pnjPos[0] && playerX == pnjPos[1])
+            {
+                Console.Write("ta gueule");
+            }
+            else if (playerY == pnjPos[2] && playerX == pnjPos[3])
+            {
+                Console.Write("ta grosse gueule");
+            }
+        }
+
+        public void shortMap()
+        {
+            Console.SetCursorPosition(playerX, playerY);
+            Console.CursorVisible = true;
+            Recolor();
+            Console.Write(tab[playerY, playerX]);
+            tab[lastPosY, lastPosX] = nextChar;
+            Console.Write(tab[lastPosY, lastPosX]);
+            Console.SetCursorPosition(playerX, playerY);
+            Recolor();
         }
     }
 }
