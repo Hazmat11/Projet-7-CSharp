@@ -189,28 +189,51 @@ namespace Projet_7
                 switch (player.keyValue)
                 {
                     case 1:
-                        tab[playerY, playerX] = nextChar;
+                        if (nextChar != '~')
+                        {
+                            tab[playerY, playerX] = nextChar;
+                        }
                         nextChar = tab[playerY - 1, playerX];
-                        tab[playerY -= 1, playerX] = '&';
-                        WriteTab();
+                        if (nextChar != '~') {
+                            tab[playerY -= 1, playerX] = '&';
+                            WriteTab();
+                        }                                             
                         break;
                     case 2:
-                        tab[playerY, playerX] = nextChar;
+                        if (nextChar != '~')
+                        {
+                            tab[playerY, playerX] = nextChar;
+                        }
                         nextChar = tab[playerY, playerX - 1];
-                        tab[playerY, playerX -= 1] = '&';
-                        WriteTab();
+                        if (nextChar != '~')
+                        {
+                            tab[playerY, playerX -= 1] = '&';
+                            WriteTab();
+                        }
                         break;
                     case 3:
-                        tab[playerY, playerX] = nextChar;
+                        if (nextChar != '~')
+                        {
+                            tab[playerY, playerX] = nextChar;
+                        }
                         nextChar = tab[playerY + 1, playerX];
-                        tab[playerY += 1, playerX] = '&';
-                        WriteTab();
+                        if (nextChar != '~')
+                        {
+                            tab[playerY += 1, playerX] = '&';
+                            WriteTab();
+                        }
                         break;
                     case 4:
-                        tab[playerY, playerX] = nextChar;
+                        if (nextChar != '~')
+                        {
+                            tab[playerY, playerX] = nextChar;
+                        }
                         nextChar = tab[playerY, playerX + 1];
-                        tab[playerY, playerX += 1] = '&';
-                        WriteTab();
+                        if (nextChar != '~')
+                        {
+                            tab[playerY, playerX += 1] = '&';
+                            WriteTab();
+                        }
                         break;
                     default:
                         break;
@@ -229,6 +252,11 @@ namespace Projet_7
             {
                 Console.Write("ta grosse gueule");
             }
+        }
+
+        public void waterVerification ()
+        {
+
         }
     }
 }
