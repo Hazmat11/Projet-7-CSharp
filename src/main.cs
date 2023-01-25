@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -21,15 +22,20 @@ namespace Projet_7.src
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             ShowWindow(ThisConsole, MAXIMIZE);
 
-            MapInit mi = new MapInit();
+            //MapInit mi = new MapInit();
+            //mi.InitTab();
+            //player.Move();
+
+            EnemyManager manager = new EnemyManager();
             Player player = new Player(50,100,100,30,3,8,3);
             player.LVLUp();
-            EnemyManager manager = new EnemyManager();
 
             Fight fight = new Fight(player, manager.CreateEnemy());
 
-            mi.InitTab();
-            player.Move();
+            string prompt = "Welcome to your menu";
+            string[] Options = {"Team","Objects","Options" };
+            Menu menu = new Menu(prompt, Options);
+            int Index = menu.Run();
         }
     }
 }
