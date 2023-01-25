@@ -229,7 +229,6 @@ namespace Projet_7
             {
                 Console.Write("ta grosse gueule");
             }
-            Thread.Sleep(1000);
         }
     }
 }
