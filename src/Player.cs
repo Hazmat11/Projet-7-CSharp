@@ -41,6 +41,7 @@ namespace Projet_7.src
             _ACC = _ACC + (_ACC * _LVL) / 100;
             _SPEED = _SPEED + (_SPEED * _LVL/2) / 100;
             _DEF = _DEF + (_DEF * _LVL) / 100;
+            _HP = _HP + (_HP * _LVL) / 100;
         }
 
         public void TakeDamage(int value)

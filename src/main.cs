@@ -20,8 +20,14 @@ namespace Projet_7.src
         {
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             ShowWindow(ThisConsole, MAXIMIZE);
+
             MapInit mi = new MapInit();
-            Player player = new Player(1,100,100,10,40,10,0);
+            Player player = new Player(50,100,100,30,3,8,3);
+            player.LVLUp();
+            EnemyManager manager = new EnemyManager();
+
+            Fight fight = new Fight(player, manager.CreateEnemy());
+
             mi.InitTab();
             player.Move();
         }
