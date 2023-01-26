@@ -5,6 +5,7 @@ using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Projet_7.Managers;
 
 namespace Projet_7.src
 {
@@ -12,6 +13,7 @@ namespace Projet_7.src
     {
         public Fight(Player player, Enemy enemy)
         {
+            Attacks test = new Attacks('p',5,2,'P');
             Waiter wait = new Waiter();
             MenuManager menu = new MenuManager();
             int Turn = 0;
@@ -31,11 +33,13 @@ namespace Projet_7.src
                     Console.WriteLine("=============== Stats ===============");
                     Console.Write("Enemy LVL = ");
                     Console.Write(enemy._LVL);
-                    Console.Write("       Player LVL = ");
+                    Console.SetCursorPosition(21, 1);
+                    Console.Write("Player LVL = ");
                     Console.WriteLine(player._LVL);
                     Console.Write("Enemy Hp = ");
                     Console.Write(enemy._HP);
-                    Console.Write("       Player HP = ");
+                    Console.SetCursorPosition(21, 2);
+                    Console.Write("Player HP = ");
                     Console.WriteLine(player._HP);
                     menu.FightMenu();
                     if (menu._ID == 0)
@@ -48,7 +52,7 @@ namespace Projet_7.src
                         {
                             Console.WriteLine("You give Damage :");
                             Console.Write("-");
-                            Console.Write(GiveDamageToEnemy(player, enemy));
+                            Console.Write(test.usePlayerAttack(player, enemy));
                             Console.WriteLine(" HP");
                             wait.Wait();
                         }
@@ -105,7 +109,7 @@ namespace Projet_7.src
                             Console.WriteLine("");
                             Console.WriteLine("You give Damage :");
                             Console.Write("-");
-                            Console.Write(GiveDamageToEnemy(player, enemy));
+                            Console.Write(test.usePlayerAttack(player, enemy));
                             Console.WriteLine(" HP");
                             wait.Wait();
                         }
@@ -127,8 +131,6 @@ namespace Projet_7.src
                 Console.WriteLine("------------------------------");
             }
         }
-
-        ~Fight(){ }
 
         public bool isPlayerFaster(Player player, Enemy enemy){
             if (player._SPEED >= enemy._SPEED)
@@ -163,7 +165,7 @@ namespace Projet_7.src
             return value;
         }
 
-        public int GiveDamageToEnemy(Player player, Enemy enemy)
+/*        public int GiveDamageToEnemy(Player player, Enemy enemy)
         {
             int value = (player._ATT) - enemy._DEF;
             if (value < 0)
@@ -173,7 +175,7 @@ namespace Projet_7.src
             }
             else enemy.TakeDamage(value);
             return value;
-        }
+        }*/
 
         public bool doPlayerAttackHit(Player player, Enemy enemy)
         {

@@ -49,13 +49,13 @@ namespace Projet_7.src
             }
             Console.ResetColor();
         }
-        public int Run()
+        public int Run(int x,int y)
         {
             ConsoleKey keyPressed;
             do
             {
                 Display();
-
+                Console.SetCursorPosition(x,y);
                 ConsoleKeyInfo keyInfo= Console.ReadKey(true);
                 keyPressed = keyInfo.Key;
 

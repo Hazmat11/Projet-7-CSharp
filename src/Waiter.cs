@@ -17,7 +17,7 @@ namespace Projet_7.src
         {
             do
             {
-                ConsoleKeyInfo input = Console.ReadKey();
+                ConsoleKeyInfo input = Console.ReadKey(true);
                 if (input.Key == ConsoleKey.Enter) break;
             } while (!_isPressed);
         }
