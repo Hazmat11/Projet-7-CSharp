@@ -257,25 +257,39 @@ namespace Projet_7
 
         public void PNJ()
         {
+            Console.WriteLine();
+            Reset();
+            Console.SetCursorPosition(0, 49);
+            for (int i = 0; i < 12; i++)
+            {
+                Console.WriteLine(new String(' ', Console.BufferWidth));
+            }
+            Console.SetCursorPosition(0, 49);
             if (playerY == pnjPos[0] && playerX == pnjPos[1])
             {
+                DialogText();
                 Console.Write("ta gueule");
             }
             else if (playerY == pnjPos[2] && playerX == pnjPos[3])
             {
+                DialogText();
                 Console.Write("ta grosse gueule");
             }
         }
 
         public void shortMap()
         {
+            Console.CursorVisible = false;
             Console.SetCursorPosition(playerX, playerY);
-            Console.CursorVisible = true;
+            letters = tab[playerY, playerX];
             Recolor();
             Console.Write(tab[playerY, playerX]);
-            tab[lastPosY, lastPosX] = nextChar;
-            Console.Write(tab[lastPosY, lastPosX]);
-            Console.SetCursorPosition(playerX, playerY);
+
+            Console.SetCursorPosition(lastPosX, lastPosY);
+            letters = tab[lastPosY, lastPosX];
+            Recolor();
+            Console.Write(tab[lastPosY,lastPosX]);
+
             Recolor();
         }
     }
