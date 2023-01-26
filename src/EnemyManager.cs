@@ -17,19 +17,19 @@ namespace Projet_7.src
             switch (rnd)
             {
                 case 0:
-                    int HazmatLVL = lvlRandom.Next(0, 100);
+                    int HazmatLVL = lvlRandom.Next(0, 10);
                     Enemy Hazmat = new Enemy(HazmatLVL, 100, 100, 15, 2, 5, 6);
                     Hazmat.Init();
                     enemy = Hazmat;
                     break;
                 case 1:
-                    int PandouileLVL = lvlRandom.Next(0, 100);
+                    int PandouileLVL = lvlRandom.Next(0, 10);
                     Enemy Pandouile = new Enemy(PandouileLVL, 100, 100, 25, 5, 8, 3);
                     Pandouile.Init();
                     enemy = Pandouile;
                     break;
                 case 2:
-                    int KyosukeLVL = lvlRandom.Next(0, 100);
+                    int KyosukeLVL = lvlRandom.Next(0, 10);
                     Enemy Kyosuke = new Enemy(KyosukeLVL, 100, 100, 40, 3, 10, 1);
                     Kyosuke.Init();
                     enemy = Kyosuke;

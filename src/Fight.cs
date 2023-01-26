@@ -12,7 +12,8 @@ namespace Projet_7.src
     {
         public Fight(Player player, Enemy enemy)
         {
-            //MenuManager menu = new MenuManager();
+            Waiter wait = new Waiter();
+            MenuManager menu = new MenuManager();
             int Turn = 0;
             bool PlayerTurn;
             if (isPlayerFaster(player, enemy))
@@ -22,20 +23,26 @@ namespace Projet_7.src
 
             while (!isFightEnd(player, enemy))
             {
-                Console.Write("Turn ");
+                Console.Write("Turn");
                 Console.WriteLine(Turn);
                 if (PlayerTurn)
                 {
-                    if (doPlayerAttackHit(player, enemy))
+                    menu.FightMenu();
+                    if (menu._ID == 0)
                     {
-                        Console.WriteLine("");
-                        Console.WriteLine("You give Damage :");
-                        Console.Write("-");
-                        Console.Write(GiveDamageToEnemy(player, enemy));
-                        Console.WriteLine(" HP");
+                        Console.Clear();
+                        if (doPlayerAttackHit(player, enemy))
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("You give Damage :");
+                            Console.Write("-");
+                            Console.Write(GiveDamageToEnemy(player, enemy));
+                            Console.WriteLine(" HP");
+                            wait.Wait();
+                        }
+                        else Console.WriteLine("You Missed");
+                        wait.Wait();
                     }
-                    else Console.WriteLine("Missed");
-
                     if(enemy._HP > 0)
                     {
                         if (doEnemyAttackHit(player, enemy))
@@ -45,8 +52,11 @@ namespace Projet_7.src
                             Console.Write("-");
                             Console.Write(GiveDamageToPlayer(player, enemy));
                             Console.WriteLine(" HP");
+                            wait.Wait();
 
-                        }else Console.Write("You Evade");
+                        }
+                        else Console.Write("You Evade");
+                        wait.Wait();
                     }
                 } 
                 else
@@ -57,9 +67,11 @@ namespace Projet_7.src
                         Console.WriteLine("You take Damage :");
                         Console.Write("-");
                         Console.Write(GiveDamageToPlayer(player, enemy));
-                        Console.WriteLine(" HP");
+                        Console.WriteLine("HP");
+                        wait.Wait();
                     }
                     else Console.Write("You Evade");
+                    wait.Wait();
 
                     if (player._HP > 0)
                     {
@@ -70,7 +82,10 @@ namespace Projet_7.src
                             Console.Write("-");
                             Console.Write(GiveDamageToEnemy(player, enemy));
                             Console.WriteLine(" HP");
-                        } else Console.Write("Missed");
+                            wait.Wait();
+                        }
+                        else Console.Write("You Missed");
+                        wait.Wait();
                     }
                 }
                 Turn++;
