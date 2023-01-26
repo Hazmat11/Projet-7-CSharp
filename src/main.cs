@@ -26,7 +26,7 @@ namespace Projet_7.src
             MenuManager mainMenu= new MenuManager();
             Player player = new Player(50, 100, 100, 30, 3, 8, 3);
             player.LVLUp();
-            mainMenu.MainMenu();
+            mainMenu.MainMenu(player, manager);
 
             //player.Move();
 

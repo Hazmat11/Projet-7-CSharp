@@ -67,8 +67,7 @@ namespace Projet_7.src
         }
 
         public void detectKey()
-        {
-            ConsoleKey key = ConsoleKey.Enter;       
+        {  
             ConsoleKeyInfo input = Console.ReadKey();
             switch (input.Key)
             {
