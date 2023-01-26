@@ -24,27 +24,11 @@ namespace Projet_7.src
             Console.Clear();
             EnemyManager manager = new EnemyManager();
             MenuManager mainMenu= new MenuManager();
-/*            Player player = new Player(50, 100, 100, 30, 3, 8, 3);
+            Player player = new Player(50, 100, 100, 30, 3, 8, 3);
             player.LVLUp();
             mainMenu.MainMenu(player, manager);
 
             //player.Move();
-
-
-            EnemyManager manager = new EnemyManager();
-            Player player = new Player(50, 100, 100, 30, 3, 8, 3);
-            player.LVLUp();
-
-            Fight fight = new Fight(player, manager.CreateEnemy());
-            string prompt = "Welcome to your menu";
-            string[] Options = { "Team", "Objects", "Options" };
-            Menu menu = new Menu(prompt, Options);
-            int Index = menu.Run();*/
-
-            MapInit mi = new MapInit();
-            Player player = new Player(1, 100, 100, 10, 40, 10, 0);
-            mi.InitTab();
-            mi.movePlayer(player);
         }
     }
 }

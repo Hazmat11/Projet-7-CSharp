@@ -27,40 +27,62 @@ namespace Projet_7.src
                 Console.WriteLine(Turn);
                 if (PlayerTurn)
                 {
+                    Console.Clear();
+                    Console.WriteLine("=============== Stats ===============");
+                    Console.Write("Enemy LVL = ");
+                    Console.Write(enemy._LVL);
+                    Console.Write("       Player LVL = ");
+                    Console.WriteLine(player._LVL);
+                    Console.Write("Enemy Hp = ");
+                    Console.Write(enemy._HP);
+                    Console.Write("       Player HP = ");
+                    Console.WriteLine(player._HP);
                     menu.FightMenu();
                     if (menu._ID == 0)
                     {
                         Console.Clear();
+                        Console.WriteLine("");
+                        Console.WriteLine("=== Player Turn ===");
+                        Console.WriteLine("");
                         if (doPlayerAttackHit(player, enemy))
                         {
-                            Console.WriteLine("");
                             Console.WriteLine("You give Damage :");
                             Console.Write("-");
                             Console.Write(GiveDamageToEnemy(player, enemy));
                             Console.WriteLine(" HP");
                             wait.Wait();
                         }
-                        else Console.WriteLine("You Missed");
-                        wait.Wait();
+                        else
+                        {
+                            Console.WriteLine("You Missed");
+                            wait.Wait();
+                        }
                     }
                     if(enemy._HP > 0)
                     {
+                        Console.WriteLine("");
+                        Console.WriteLine("=== Enemy Turn ===");
+                        Console.WriteLine("");
                         if (doEnemyAttackHit(player, enemy))
                         {
-                            Console.WriteLine("");
                             Console.WriteLine("You take Damage :");
                             Console.Write("-");
                             Console.Write(GiveDamageToPlayer(player, enemy));
                             Console.WriteLine(" HP");
                             wait.Wait();
-
                         }
-                        else Console.Write("You Evade");
-                        wait.Wait();
+                        else
+                        {
+                            Console.Write("You Evade");
+                            wait.Wait();
+                        }
                     }
                 } 
                 else
                 {
+                    Console.WriteLine("");
+                    Console.WriteLine("=== Enemy Turn ===");
+                    Console.WriteLine("");
                     if (doEnemyAttackHit(player, enemy))
                     {
                         Console.WriteLine("");
@@ -75,6 +97,9 @@ namespace Projet_7.src
 
                     if (player._HP > 0)
                     {
+                        Console.WriteLine("");
+                        Console.WriteLine("=== Player Turn ===");
+                        Console.WriteLine("");
                         if (doPlayerAttackHit(player, enemy))
                         {
                             Console.WriteLine("");

@@ -36,7 +36,7 @@ namespace Projet_7.src
 
         public void FightMenu()
         {
-            string prompt = "Welcome to your menu";
+            string prompt = "=====================================";
             string[] Options = { "Fight", "Use Item", "Escape"};
             Menu menu = new Menu(prompt, Options);
             int Index = menu.Run();

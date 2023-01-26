@@ -54,7 +54,6 @@ namespace Projet_7.src
             ConsoleKey keyPressed;
             do
             {
-                Console.Clear();
                 Display();
 
                 ConsoleKeyInfo keyInfo= Console.ReadKey(true);

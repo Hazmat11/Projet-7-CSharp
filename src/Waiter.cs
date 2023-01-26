@@ -12,15 +12,13 @@ namespace Projet_7.src
         public Waiter()
         {
             _isPressed = false;
-
         }
         public void Wait()
         {
-
             do
             {
                 ConsoleKeyInfo input = Console.ReadKey();
-                if (input.Key == ConsoleKey.Enter) _isPressed = true;
+                if (input.Key == ConsoleKey.Enter) break;
             } while (!_isPressed);
         }
     }
