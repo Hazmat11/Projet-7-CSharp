@@ -1,9 +1,28 @@
 ﻿using System.IO;
 using Projet_7.src;
 using System;
+using System.Security.Cryptography;
 
 namespace Projet_7
 {
+
+
+    public class RandomNumberGenerator
+    {
+        private static int _randomNumber;
+        private static readonly Random _random = new Random();
+
+        static RandomNumberGenerator()
+        {
+            _randomNumber = _random.Next(0,5);
+        }
+
+        public static int RandomNumber
+        {
+            get { return _randomNumber; }
+        }
+    }
+
     internal class Map
     {
         public char[,] tab = new char[49, 192];
@@ -12,8 +31,6 @@ namespace Projet_7
         StreamReader sr;
         string[] path;
         int numberLine = 0;
-        public int document;
-
 
         public Map()
         {
@@ -22,12 +39,10 @@ namespace Projet_7
 
         public void Write()
         {
-            document = randomNumber();
-
             path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
 
             //Pass the file path and file name to the StreamReader constructor
-            sr = new StreamReader(path[document]);
+            sr = new StreamReader(path[RandomNumberGenerator.RandomNumber]);
 
             //Read the first line of text
             line = sr.ReadLine();
@@ -47,13 +62,6 @@ namespace Projet_7
             }
             //close the file
             sr.Close();
-        }
-
-        public int randomNumber()
-        {
-            Random rnd = new Random();
-            int num = rnd.Next(0, 5);
-            return num;
         }
     }
 }

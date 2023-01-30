@@ -88,10 +88,7 @@ namespace Projet_7.src
                     keyValue = 4;
                     break;
                 case ConsoleKey.Escape:
-                    ingame = false;
-                    MenuManager menu = new MenuManager();
-                    Console.Clear();
-                    menu.PauseMenu(player);
+                    keyValue= 5;
                     break;
                 default:
                     break;
