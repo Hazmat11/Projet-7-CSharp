@@ -6,24 +6,28 @@ namespace Projet_7
 {
     internal class Map
     {
-        public char[,] tab = new char[49, 191];
+        public char[,] tab = new char[49, 192];
         String line;
         char letters;
         StreamReader sr;
         string[] path;
         int numberLine = 0;
+        public int document;
 
 
         public Map()
         {
 
         }
+
         public void Write()
         {
+            document = randomNumber();
+
             path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
 
             //Pass the file path and file name to the StreamReader constructor
-            sr = new StreamReader("1.txt");
+            sr = new StreamReader(path[document]);
 
             //Read the first line of text
             line = sr.ReadLine();
@@ -43,6 +47,13 @@ namespace Projet_7
             }
             //close the file
             sr.Close();
+        }
+
+        public int randomNumber()
+        {
+            Random rnd = new Random();
+            int num = rnd.Next(0, 5);
+            return num;
         }
     }
 }

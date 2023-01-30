@@ -3,20 +3,22 @@ using System.IO;
 using Projet_7.src;
 using System;
 using System.Runtime.Intrinsics.Arm;
+using Projet_7.Managers;
 
 namespace Projet_7
 {
     internal class MapInit : Map
     {
         public char[,] tab = new char[49, 191];
-        String linetxt;
-        String line;
-        char letters;
-        StreamReader sr;
-        string[] path;
-        List<int> pnjPos = new List<int>();
-        int numberLine = 0;
-        char nextChar = '.';
+        public String linetxt;
+        public String line;
+        public char letters;
+        public StreamReader sr;
+        public string[] path;
+        public List<int> pnjPos = new List<int>();
+        public int numberLine = 0;
+        public char nextChar = '.';
+        bool ingame = true;
 
         public int y = 0;
         public int x = 0;
@@ -29,6 +31,7 @@ namespace Projet_7
 
         public int lastPosX = 0;
         public int lastPosY = 0;
+        Map map = new Map();
 
         public void Reset()
         {
@@ -38,7 +41,6 @@ namespace Projet_7
 
         public void InitTab()
         {
-            Map map = new Map();
             map.Write();
             tab = map.tab;
             WriteTab();
@@ -100,13 +102,6 @@ namespace Projet_7
             }
         }
 
-        public int ReturnRandomInt()
-        {
-            Random rnd = new Random();
-            int num = rnd.Next(0, 5);
-            return num;
-        }
-
         public void Recolor()
         {
             switch (letters)
@@ -155,9 +150,9 @@ namespace Projet_7
 
         public void movePlayer(Player player)
         {
-            while (true)
+            while (player.ingame)
             {
-                player.detectKey();
+                player.detectKey(player);
 
                 switch (player.keyValue)
                 {
@@ -222,13 +217,8 @@ namespace Projet_7
                         break;
                 }
                 PNJ();
-
-                ConsoleKeyInfo input = Console.ReadKey(true);
-                if (input.Key == ConsoleKey.A)
-                {
-                    Save(player);
-                }
             }
+            ingame = false;
         }
 
         public void PNJ()
@@ -271,20 +261,23 @@ namespace Projet_7
 
         public void shortMap()
         {
-            randomCombat();
+            if (ingame)
+            {
+                randomCombat();
 
-            Console.CursorVisible = false;
-            Console.SetCursorPosition(playerX, playerY);
-            letters = tab[playerY, playerX];
-            Recolor();
-            Console.Write(tab[playerY, playerX]);
+                Console.CursorVisible = false;
+                Console.SetCursorPosition(playerX, playerY);
+                letters = tab[playerY, playerX];
+                Recolor();
+                Console.Write(tab[playerY, playerX]);
 
-            Console.SetCursorPosition(lastPosX, lastPosY);
-            letters = tab[lastPosY, lastPosX];
-            Recolor();
-            Console.Write(tab[lastPosY,lastPosX]);
+                Console.SetCursorPosition(lastPosX, lastPosY);
+                letters = tab[lastPosY, lastPosX];
+                Recolor();
+                Console.Write(tab[lastPosY, lastPosX]);
 
-            Recolor();
+                Recolor();
+            }
         }
 
         public void Save(Player player)
@@ -302,18 +295,17 @@ namespace Projet_7
             finally
             {
                 Console.SetCursorPosition(0, 0);
-                Console.WriteLine("Executing finally block.");
             }
 
             try
             {
                 path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
-                StreamWriter sw = new StreamWriter("1.txt");
+                StreamWriter sw = new StreamWriter(path[map.document]);
                 for (y = 0; y < tab.GetLength(0); y++)
                 {
                     for (x = 0; x < tab.GetLength(1); x++)
                     {
-                        sw.Write(tab[y,x]);
+                        sw.Write(tab[y, x]);
                     }
                     sw.WriteLine();
                 }
@@ -324,11 +316,10 @@ namespace Projet_7
                 Console.WriteLine("Exception: " + e.Message);
             }
             finally
-            {               
+            {
                 Console.SetCursorPosition(0, 0);
                 /*Console.WriteLine("Executing finally block.");*/
             }
         }
-
     }
 }

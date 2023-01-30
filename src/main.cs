@@ -27,7 +27,6 @@ namespace Projet_7.src
             Player player = new Player(50, 100, 100, 30, 3, 8, 3);
             player.LVLUp();
             mainMenu.MainMenu(player, manager);
-            //player.Move();
         }
     }
 }
