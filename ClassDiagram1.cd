@@ -1,10 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Projet_7.MapInit">
-    <Position X="1.5" Y="1.5" Width="1.5" />
+  <Class Name="Projet_7.src.Attacks" Collapsed="true">
+    <Position X="8" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACIAAAAABAAAAAAAAAAAIAAAAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAEIAAAAAABAAEAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>src\Attacks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.src.Enemy" Collapsed="true">
+    <Position X="9.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAADAAAAACAQACGAAAACBAAACiAAAAAA=</HashCode>
+      <FileName>src\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.src.Fight" Collapsed="true">
+    <Position X="13.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQABAAAIAAAAAAAAAABAAgAAAAA=</HashCode>
+      <FileName>src\Fight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.src.main" Collapsed="true">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAABQBgAAA=</HashCode>
+      <FileName>src\main.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.MapInit" Collapsed="true">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAmAAKDAYAAAFAAEgCICAACAIQAAEgAAAABgAACAAQA=</HashCode>
       <FileName>src\MapInit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.src.Menu" Collapsed="true">
+    <Position X="9.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAASAAAAAAAAAAAAEAAABAAAI=</HashCode>
+      <FileName>src\Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.src.Player" Collapsed="true">
+    <Position X="13.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIIAAQAADAAgAICAQACGQAAACBAAAAiAAAAAA=</HashCode>
+      <FileName>src\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.src.Waiter" Collapsed="true">
+    <Position X="9.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\Waiter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.Managers.EnemyManager" Collapsed="true">
+    <Position X="11.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\EnemyManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.Managers.MenuManager" Collapsed="true">
+    <Position X="11.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Managers\MenuManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.Managers.SaveManager" Collapsed="true">
+    <Position X="8" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\SaveManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.Map" Collapsed="true">
+    <Position X="5.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAACAAAAAAEAAAgAACAAAAAAAAAgAAAAAAAAEAAAA=</HashCode>
+      <FileName>src\Map.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

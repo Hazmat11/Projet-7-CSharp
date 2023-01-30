@@ -27,8 +27,8 @@ namespace Projet_7.Managers
             {
                 Console.Clear();
                 MapInit mi = new MapInit();
-                /*mi.InitTab();*/
-/*                mi.movePlayer(player);*/
+                mi.InitTab();
+                mi.movePlayer(player);
             }
             else if (Index == 2)
             {
