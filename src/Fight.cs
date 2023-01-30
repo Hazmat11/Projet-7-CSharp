@@ -13,6 +13,10 @@ namespace Projet_7.src
     {
         public Fight(Player player, Enemy enemy)
         {
+            AudioManager audioManager = new AudioManager();
+            audioManager.PlayMusic("Fight.wav");
+
+            Attacks test = new Attacks('p',5,2,'P');
             Waiter wait = new Waiter();
             MenuManager menu = new MenuManager();
             int Turn = 0;

@@ -14,7 +14,7 @@ namespace Projet_7.Managers
 
         public SaveManager(Player player)
         {
-            DirectoryInfo[] save = new DirectoryInfo(@"C:\Users\agouveia\Documents\GitHub\Projet - 7 - CSharp\ressources").GetDirectories();
+            DirectoryInfo[] save = new DirectoryInfo(@"C:\Users\agouveia\Documents\GitHub\Projet-7-CSharp\ressources").GetDirectories();
 
             using (StreamWriter sw = new StreamWriter("save.txt"))
             {
@@ -23,14 +23,6 @@ namespace Projet_7.Managers
                     sw.WriteLine(player);
                 }
             }
-
-
-
-
-
-
-
-
 
         }
     }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Projet_7.Managers;
+using System.Xml.Linq;
 using Projet_7.src;
 
 namespace Projet_7.src
@@ -22,6 +24,8 @@ namespace Projet_7.src
         public int _Y { get; set; }
 
         public int keyValue = 0;
+
+        public bool ingame = true;
 
         public Player(int lvlBase, int hpBase, int mpBase, int attBase, int accBase, int speedBase, int defBase)
         {
@@ -66,9 +70,9 @@ namespace Projet_7.src
             _MP++;
         }
 
-        public void detectKey()
+        public void detectKey(Player player)
         {  
-            ConsoleKeyInfo input = Console.ReadKey();
+            ConsoleKeyInfo input = Console.ReadKey(true);
             switch (input.Key)
             {
                 case ConsoleKey.Z or ConsoleKey.UpArrow:
@@ -82,6 +86,12 @@ namespace Projet_7.src
                     break;
                 case ConsoleKey.D or ConsoleKey.RightArrow:
                     keyValue = 4;
+                    break;
+                case ConsoleKey.Escape:
+                    ingame = false;
+                    MenuManager menu = new MenuManager();
+                    Console.Clear();
+                    menu.PauseMenu(player);
                     break;
                 default:
                     break;
