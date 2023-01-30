@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Media;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,9 +23,14 @@ namespace Projet_7.src
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             ShowWindow(ThisConsole, MAXIMIZE);
             Console.Clear();
+
             EnemyManager manager = new EnemyManager();
             MenuManager mainMenu= new MenuManager();
             Player player = new Player(50, 100, 100, 30, 3, 8, 3);
+
+            AudioManager audioManager = new AudioManager();
+            audioManager.PlayMusic("Explore.wav");
+
             player.LVLUp();
             mainMenu.MainMenu(player, manager);
             //player.Move();
