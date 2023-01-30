@@ -20,7 +20,6 @@ namespace Projet_7.src
             Prompt = prompt;
             Options = options;
             Index = 0;
-          
         }
 
         private void Display()
