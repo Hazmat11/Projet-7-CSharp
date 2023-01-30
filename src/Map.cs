@@ -23,7 +23,7 @@ namespace Projet_7
         }
     }
 
-    internal class Map
+    public class Map
     {
         public char[,] tab = new char[49, 192];
         String line;

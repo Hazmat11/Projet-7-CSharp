@@ -14,6 +14,5 @@ namespace Projet_7.Managers
             SoundPlayer soundPlayer = new SoundPlayer(filepath);
             soundPlayer.Play();
         }
-
     }
 }

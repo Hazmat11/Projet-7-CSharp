@@ -34,7 +34,7 @@ namespace Projet_7.Managers
             }
             else if (Index == 2)
             {
-
+                Environment.Exit(0);
             }
         }
 
@@ -48,6 +48,27 @@ namespace Projet_7.Managers
             if (Index == 0) _ID = 0;
             else if (Index == 1) _ID = 1;
             else _ID = 2;
-        }       
+        }  
+        
+        public void PauseMenu()
+        {
+            string prompt = "test";
+            string[] Options = { "1", "2", "3" };
+            Menu menu = new Menu(prompt, Options);
+            int Index = menu.Run(0, 0);
+
+            if (Index == 0)
+            {
+                Console.Write("rien");
+            }
+            else if (Index == 1)
+            {
+                Console.Write("rien");
+            }
+            else if (Index == 2)
+            {
+                Environment.Exit(0);
+            }
+        }
     }
 }

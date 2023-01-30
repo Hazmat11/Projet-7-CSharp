@@ -331,7 +331,7 @@ namespace Projet_7
         public void PauseMenu(Player player)
         {
             Console.SetCursorPosition(0,0);
-            MapInit mi = new MapInit();
+            MenuManager mi = new MenuManager();
             //Pass the file path and file name to the StreamReader constructor
             StreamReader srText = new StreamReader("menu.txt");
             //Read the first line of text
@@ -347,6 +347,7 @@ namespace Projet_7
             };
             Save(player);
             srText.Close();
+            mi.PauseMenu();
         }
     }
 }
