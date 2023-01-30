@@ -13,7 +13,6 @@ namespace Projet_7.src
     {
         public Fight(Player player, Enemy enemy)
         {
-            Attacks test = new Attacks('p',5,2,'P');
             Waiter wait = new Waiter();
             MenuManager menu = new MenuManager();
             int Turn = 0;
@@ -52,7 +51,7 @@ namespace Projet_7.src
                         {
                             Console.WriteLine("You give Damage :");
                             Console.Write("-");
-                            Console.Write(test.usePlayerAttack(player, enemy));
+                            Console.Write(AttacksInit.Dictionary["Punch"].usePlayerAttack(player, enemy));
                             Console.WriteLine(" HP");
                             wait.Wait();
                         }
@@ -109,7 +108,8 @@ namespace Projet_7.src
                             Console.WriteLine("");
                             Console.WriteLine("You give Damage :");
                             Console.Write("-");
-                            Console.Write(test.usePlayerAttack(player, enemy));
+
+                            Console.Write(AttacksInit.Dictionary["Punch"].usePlayerAttack(player, enemy));
                             Console.WriteLine(" HP");
                             wait.Wait();
                         }

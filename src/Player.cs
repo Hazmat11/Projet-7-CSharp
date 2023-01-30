@@ -11,7 +11,6 @@ namespace Projet_7.src
 {
     public class Player
     {
-        MapInit mi = new MapInit();
         public int _LVL { get; set; }
         public int _HP { get; set; }
         public int _MP { get; set; }

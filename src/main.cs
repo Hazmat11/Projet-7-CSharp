@@ -17,11 +17,14 @@ namespace Projet_7.src
         private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
         private const int MAXIMIZE = 3;
 
+
+
         static void Main(string[] args)
         {
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             ShowWindow(ThisConsole, MAXIMIZE);
             Console.Clear();
+            AttacksInit attacksList = new AttacksInit();
             EnemyManager manager = new EnemyManager();
             MenuManager mainMenu= new MenuManager();
             Player player = new Player(50, 100, 100, 30, 3, 8, 3);
