@@ -12,6 +12,7 @@ namespace Projet_7.Managers
     internal class MenuManager
     {
         public int _ID { get; set; }
+        String linetxt;
         public void MainMenu(Player player, EnemyManager manager)
         {
             string prompt = "Welcome to your menu";
@@ -27,8 +28,8 @@ namespace Projet_7.Managers
             {
                 Console.Clear();
                 MapInit mi = new MapInit();
-                /*mi.InitTab();*/
-/*                mi.movePlayer(player);*/
+                mi.InitTab();
+                mi.movePlayer(player);
             }
             else if (Index == 2)
             {
@@ -46,6 +47,26 @@ namespace Projet_7.Managers
             if (Index == 0) _ID = 0;
             else if (Index == 1) _ID = 1;
             else _ID = 2;
+        }
+
+        public void PauseMenu(Player player)
+        {
+            MapInit mi = new MapInit();
+            //Pass the file path and file name to the StreamReader constructor
+            StreamReader srText = new StreamReader("menu.txt");
+            //Read the first line of text
+            linetxt = srText.ReadLine();
+            //Continue to read until you reach end of file
+                while (linetxt != null)
+            {
+                //write the line to console window
+                Console.WriteLine(linetxt);
+
+                //Read the next line
+                linetxt = srText.ReadLine();
+            };
+            mi.Save(player);
+            srText.Close();
         }
     }
 }

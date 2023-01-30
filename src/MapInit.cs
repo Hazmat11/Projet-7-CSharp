@@ -2,20 +2,23 @@
 using System.IO;
 using Projet_7.src;
 using System;
+using System.Runtime.Intrinsics.Arm;
+using Projet_7.Managers;
 
 namespace Projet_7
 {
-    internal class MapInit
+    internal class MapInit : Map
     {
         public char[,] tab = new char[49, 191];
-        String linetxt;
-        String line;
-        char letters;
-        StreamReader sr;
-        string[] path;
-        List<int> pnjPos = new List<int>();
-        int numberLine = 0;
-        char nextChar = '.';
+        public String linetxt;
+        public String line;
+        public char letters;
+        public StreamReader sr;
+        public string[] path;
+        public List<int> pnjPos = new List<int>();
+        public int numberLine = 0;
+        public char nextChar = '.';
+        bool ingame = true;
 
         public int y = 0;
         public int x = 0;
@@ -28,6 +31,7 @@ namespace Projet_7
 
         public int lastPosX = 0;
         public int lastPosY = 0;
+        Map map = new Map();
 
         public void Reset()
         {
@@ -37,41 +41,9 @@ namespace Projet_7
 
         public void InitTab()
         {
-            try
-            {
-                path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
-
-                //Pass the file path and file name to the StreamReader constructor
-                sr = new StreamReader("1.txt");
-
-                //Read the first line of text
-                line = sr.ReadLine();
-                //Continue to read until you reach end of file
-                while (line != null)
-                {
-                    for (int i = 0; i < line.Length; i++)
-                    {
-                        letters = line[i];
-                        tab[numberLine, i] = letters;
-                    }
-                    numberLine++;
-                    //write the line to console window
-
-                    //Read the next line
-                    line = sr.ReadLine();
-                }
-                //close the file
-                sr.Close();
-                WriteTab();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-            finally
-            {
-                /*Console.WriteLine("Executing finally block.");*/
-            }
+            map.Write();
+            tab = map.tab;
+            WriteTab();
         }
 
         public void DialogText()
@@ -130,13 +102,6 @@ namespace Projet_7
             }
         }
 
-        public int ReturnRandomInt()
-        {
-            Random rnd = new Random();
-            int num = rnd.Next(0, 5);
-            return num;
-        }
-
         public void Recolor()
         {
             switch (letters)
@@ -185,9 +150,9 @@ namespace Projet_7
 
         public void movePlayer(Player player)
         {
-            while (true)
+            while (player.ingame)
             {
-                player.detectKey();
+                player.detectKey(player);
 
                 switch (player.keyValue)
                 {
@@ -253,6 +218,7 @@ namespace Projet_7
                 }
                 PNJ();
             }
+            ingame = false;
         }
 
         public void PNJ()
@@ -260,7 +226,7 @@ namespace Projet_7
             Console.WriteLine();
             Reset();
             Console.SetCursorPosition(0, 49);
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 13; i++)
             {
                 Console.WriteLine(new String(' ', Console.BufferWidth));
             }
@@ -268,29 +234,92 @@ namespace Projet_7
             if (playerY == pnjPos[0] && playerX == pnjPos[1])
             {
                 DialogText();
+                Console.SetCursorPosition(30, 54);
                 Console.Write("ta gueule");
             }
             else if (playerY == pnjPos[2] && playerX == pnjPos[3])
             {
                 DialogText();
+                Console.SetCursorPosition(30, 54);
                 Console.Write("ta grosse gueule");
+            }
+        }
+
+        public void randomCombat()
+        {
+            if (nextChar == '.')
+            {
+                Random rnd = new Random();
+                int num = rnd.Next(0, 100);
+                if (num < 5)
+                {
+                    //Combat
+                    Console.WriteLine("ouais");
+                }
             }
         }
 
         public void shortMap()
         {
-            Console.CursorVisible = false;
-            Console.SetCursorPosition(playerX, playerY);
-            letters = tab[playerY, playerX];
-            Recolor();
-            Console.Write(tab[playerY, playerX]);
+            if (ingame)
+            {
+                randomCombat();
 
-            Console.SetCursorPosition(lastPosX, lastPosY);
-            letters = tab[lastPosY, lastPosX];
-            Recolor();
-            Console.Write(tab[lastPosY,lastPosX]);
+                Console.CursorVisible = false;
+                Console.SetCursorPosition(playerX, playerY);
+                letters = tab[playerY, playerX];
+                Recolor();
+                Console.Write(tab[playerY, playerX]);
 
-            Recolor();
+                Console.SetCursorPosition(lastPosX, lastPosY);
+                letters = tab[lastPosY, lastPosX];
+                Recolor();
+                Console.Write(tab[lastPosY, lastPosX]);
+
+                Recolor();
+            }
+        }
+
+        public void Save(Player player)
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter("save.txt");
+                sw.Write(player._LVL);
+                sw.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+            finally
+            {
+                Console.SetCursorPosition(0, 0);
+            }
+
+            try
+            {
+                path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
+                StreamWriter sw = new StreamWriter(path[map.document]);
+                for (y = 0; y < tab.GetLength(0); y++)
+                {
+                    for (x = 0; x < tab.GetLength(1); x++)
+                    {
+                        sw.Write(tab[y, x]);
+                    }
+                    sw.WriteLine();
+                }
+                sw.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+            finally
+            {
+                Console.SetCursorPosition(0, 0);
+                /*Console.WriteLine("Executing finally block.");*/
+            }
         }
     }
 }

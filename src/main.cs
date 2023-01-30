@@ -33,7 +33,6 @@ namespace Projet_7.src
 
             player.LVLUp();
             mainMenu.MainMenu(player, manager);
-            //player.Move();
         }
     }
 }
