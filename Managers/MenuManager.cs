@@ -74,11 +74,11 @@ namespace Projet_7.Managers
 
             if (Index == 0)
             {
-                Inventory();
+                //Inventory();
             }
             else if (Index == 2)
             {
-                map.Save(player);
+                //map.Save(player);
                 Environment.Exit(0);
             }
             else if (Index == 1)
