@@ -13,6 +13,7 @@ namespace Projet_7.src
     {
         public Fight(Player player, Enemy enemy)
         {
+       
             AudioManager audioManager = new AudioManager();
             audioManager.PlayMusic("Fight.wav");
 

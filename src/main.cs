@@ -31,6 +31,7 @@ namespace Projet_7.src
 
             AudioManager audioManager = new AudioManager();
             /*audioManager.PlayMusic("Explore.wav");*/
+            
 
             player.LVLUp();
             mainMenu.MainMenu(player, manager);
