@@ -5,9 +5,9 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using Projet_7.Managers;
 using System.Xml.Linq;
 using Projet_7.src;
+using Projet_7.Managers;
 
 namespace Projet_7.src
 {
@@ -93,6 +93,64 @@ namespace Projet_7.src
                 default:
                     keyValue = 6;
                     break;
+            }
+        }
+        public void SavePlayer(Player player)
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter("save.txt");
+                sw.WriteLine(player._LVL);
+                sw.WriteLine(player._HP);
+                sw.WriteLine(player._MP);
+                sw.WriteLine(player._ATT);
+                sw.WriteLine(player._ACC);
+                sw.WriteLine(player._SPEED);
+                sw.WriteLine(player._DEF);
+
+                sw.Close();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+            finally
+            {
+                Console.SetCursorPosition(0, 0);
+            }
+        }
+        public void LoadPlayer()
+        {
+            if (File.Exists("save.txt"))
+            {
+                FileInfo info = new FileInfo("save.txt");
+
+                Console.WriteLine("Which save ? ( 1 , 2 , 3 )");
+                string input = Console.ReadLine();
+                int i = 1 * int.Parse(input);
+                string[] PlayerData = File.ReadAllLines("save.txt");
+                Player player = new Player(
+                    int.Parse(PlayerData[i]),
+                    int.Parse(PlayerData[i++]),
+                    int.Parse(PlayerData[i++]),
+                    int.Parse(PlayerData[i++]),
+                    int.Parse(PlayerData[i++]),
+                    int.Parse(PlayerData[i++]),
+                    int.Parse(PlayerData[i++]));
+             
+              /*  if (info.Length != 0)
+                {
+                    
+                }
+                else
+                {
+                    Console.WriteLine("Any game saved");
+                }*/
+            }
+            else
+            {
+                Console.WriteLine("Any data file");
             }
         }
     }

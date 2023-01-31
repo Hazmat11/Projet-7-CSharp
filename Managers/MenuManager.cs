@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
 using System.Numerics;
+using System.Runtime.ExceptionServices;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +48,12 @@ namespace Projet_7.Managers
 
         public void FightMenu()
         {
+            for (int i = 0; i < 10; i++)
+            {
+                Console.SetCursorPosition(0, 3+i);
+                Console.Write("                                     ");
+            }
+            Console.SetCursorPosition(0, 3);
             string prompt = "=====================================";
             string[] Options = { "Fight", "Use Item", "Escape" };
             Menu menu = new Menu(prompt, Options);
@@ -80,7 +90,54 @@ namespace Projet_7.Managers
             }
         }
 
-        public void Inventory()
+        public void AttackMenu()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Console.SetCursorPosition(0, 3 + i);
+                Console.Write("                                     ");
+            }
+            Console.SetCursorPosition(0, 3);
+            string prompt = "=====================================";
+            string[] Options = { "Fight", "Defend", "Change Character"};
+            Menu menu = new Menu(prompt, Options);
+            int Index = menu.Run(0, 3);
+
+            if (Index == 0) _ID = 0;
+            else if (Index == 1) _ID = 1;
+            else _ID = 2;
+        }
+
+        public string[] SkillMenu()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Console.SetCursorPosition(0, 3 + i);
+                Console.Write("                                     ");
+            }
+            Console.SetCursorPosition(0, 3);
+
+            string prompt = "=====================================";
+            List<string> OptionsList = new List<string>();
+            string[] Options = { };
+
+            foreach (KeyValuePair<string,Attacks> c in AttacksInit.Dictionary)
+            {
+                if (c.Value._FOR != "Enemy")
+                {
+                    OptionsList.Add(c.Key);
+                }
+                Options = OptionsList.ToArray();
+            }
+
+            Menu menu = new Menu(prompt, Options);
+
+            int Index = menu.Run(0, 3);
+            _ID = Index;
+            return Options;
+        }
+
+        public void PauseMenu(Player player)
         {
             Console.CursorVisible = true;
             Console.SetCursorPosition(80, 3);

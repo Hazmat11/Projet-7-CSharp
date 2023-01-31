@@ -14,7 +14,7 @@ namespace Projet_7.src
         public string _TYPE { get; set; }
         public int _ATT { get; set; }
         public int _MPCOST { get; set; }
-        protected string _FOR { get; set; }
+        public string _FOR { get; set; }
         protected int _ACC { get; set; }
 
 
