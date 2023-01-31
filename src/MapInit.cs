@@ -4,6 +4,8 @@ using Projet_7.src;
 using System;
 using System.Runtime.Intrinsics.Arm;
 using Projet_7.Managers;
+using System.Reflection.Metadata.Ecma335;
+using Windows.UI.Xaml.Controls.Maps;
 
 namespace Projet_7
 {
@@ -32,6 +34,9 @@ namespace Projet_7
         public int lastPosX = 0;
         public int lastPosY = 0;
         Map map = new Map();
+
+        public String GameData;
+
 
         public void Reset()
         {
@@ -288,23 +293,8 @@ namespace Projet_7
             }
         }
 
-        public void Save(Player player)
+        public void SaveMap(Player player)
         {
-            try
-            {
-                StreamWriter sw = new StreamWriter("save.txt");
-                sw.Write(player._LVL);
-                sw.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-            finally
-            {
-                Console.SetCursorPosition(0, 0);
-            }
-
             try
             {
                 path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
@@ -331,6 +321,13 @@ namespace Projet_7
             }
         }
 
+        public void LoadMap(MapInit map)
+        {
+
+        }
+
+
+
         public void PauseMenu(Player player)
         {
             Console.SetCursorPosition(0,0);
@@ -340,7 +337,7 @@ namespace Projet_7
             //Read the first line of text
             linetxt = srText.ReadLine();
             //Continue to read until you reach end of file
-                while (linetxt != null)
+            while (linetxt != null)
             {
                 //write the line to console window
                 Console.WriteLine(linetxt);
@@ -348,7 +345,7 @@ namespace Projet_7
                 //Read the next line
                 linetxt = srText.ReadLine();
             };
-            Save(player);
+
             srText.Close();
             mi.PauseMenu(this,player);
         }
