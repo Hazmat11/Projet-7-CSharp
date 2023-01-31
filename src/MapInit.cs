@@ -300,7 +300,7 @@ namespace Projet_7
                         Console.BackgroundColor = ConsoleColor.Black;
                         Dead();
                         Thread.Sleep(2000);
-                        Console.SetCursorPosition(0, 11);
+                        Console.SetCursorPosition(0, 10);
                         for (int i = 0; i < 50; i++)
                         {                           
                             Console.WriteLine(new String(' ', Console.BufferWidth));
