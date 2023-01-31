@@ -4,6 +4,7 @@ using Projet_7.src;
 using System;
 using System.Runtime.Intrinsics.Arm;
 using Projet_7.Managers;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Projet_7
 {
@@ -16,9 +17,11 @@ namespace Projet_7
         public StreamReader sr;
         public string[] path;
         public List<int> pnjPos = new List<int>();
+        public List<int> documentPos = new List<int>();
         public int numberLine = 0;
         public char nextChar = '.';
         public bool ingame = true;
+        private bool talkedbefore = false;
 
         public int y = 0;
         public int x = 0;
@@ -32,6 +35,7 @@ namespace Projet_7
         public int lastPosX = 0;
         public int lastPosY = 0;
         Map map = new Map();
+        private bool acquisition = false;
 
         public void Reset()
         {
@@ -41,10 +45,11 @@ namespace Projet_7
 
         public void InitTab()
         {
-            Console.ForegroundColor= ConsoleColor.Black;
-           Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.Yellow;
             Console.Write("\r\n      __  ___________  ___________   __        ______    ____  ____   _______       _______   ______   ___            __        __      _______   \r\n     /\"\"\\(\"     _   \")(\"     _   \") /\"\"\\      /    \" \\  (\"  _||_ \" | /\"     \"|     /\"     \"| /\" _  \"\\ |\"  |          /\"\"\\      |\" \\    /\"      \\  \r\n    /    \\)__/  \\\\__/  )__/  \\\\__/ /    \\    // ____  \\ |   (  ) : |(: ______)    (: ______)(: ( \\___)||  |         /    \\     ||  |  |:        | \r\n   /' /\\  \\  \\\\_ /        \\\\_ /   /' /\\  \\  /  /    )  )(:  |  | . ) \\/    |       \\/    |   \\/ \\     |:  |        /' /\\  \\    |:  |  |_____/   ) \r\n  //  __'  \\ |.  |        |.  |  //  __'  \\(: (____/ //  \\\\ \\__/ //  // ___)_      // ___)_  //  \\ _   \\  |___    //  __'  \\   |.  |   //      /  \r\n /   /  \\\\  \\\\:  |        \\:  | /   /  \\\\  \\\\         \\  /\\\\ __ //\\ (:      \"|    (:      \"|(:   _) \\ ( \\_|:  \\  /   /  \\\\  \\  /\\  |\\ |:  __   \\  \r\n(___/    \\___)\\__|         \\__|(___/    \\___)\\\"____/\\__\\(__________) \\_______)     \\_______) \\_______) \\_______)(___/    \\___)(__\\_|_)|__|  \\___) \r\n                                                                                                                                                  \r\n");
-            Thread.Sleep(1000);
+            SoldierPika();
+            Thread.Sleep(2000);
             Reset();
             Console.Clear();
             map.Write();
@@ -90,6 +95,13 @@ namespace Projet_7
                             pnjPosY = y;
                             pnjPos.Add(pnjPosY);
                             pnjPos.Add(pnjPosX);
+                        }
+                        if (tab[y,x] == 'd')
+                        {
+                            int documentPosX = x;
+                            int documentPosY = y;
+                            documentPos.Add(documentPosY);
+                            documentPos.Add(documentPosX);
                         }
                         Recolor();
                         Console.Write(tab[y, x]);
@@ -154,7 +166,7 @@ namespace Projet_7
             }
         }
 
-        public void movePlayer(Player player)
+        public void movePlayer(Player player, EnemyManager enemyManager)
         {
             while (ingame)
             {
@@ -174,7 +186,11 @@ namespace Projet_7
                         if (nextChar != '~')
                         {
                             tab[playerY -= 1, playerX] = '&';
-                            shortMap();
+                            shortMap(player, enemyManager);
+                        }
+                        if (nextChar == 'd')
+                        {
+                            nextChar = '.';
                         }
                         break;
                     case 2:
@@ -188,7 +204,11 @@ namespace Projet_7
                         if (nextChar != '~')
                         {
                             tab[playerY, playerX -= 1] = '&';
-                            shortMap();
+                            shortMap(player, enemyManager);
+                        }
+                        if (nextChar == 'd')
+                        {
+                            nextChar = '.';
                         }
                         break;
                     case 3:
@@ -202,7 +222,11 @@ namespace Projet_7
                         if (nextChar != '~')
                         {
                             tab[playerY += 1, playerX] = '&';
-                            shortMap();
+                            shortMap(player, enemyManager);
+                        }
+                        if (nextChar == 'd')
+                        {
+                            nextChar = '.';
                         }
                         break;
                     case 4:
@@ -216,11 +240,15 @@ namespace Projet_7
                         if (nextChar != '~')
                         {
                             tab[playerY, playerX += 1] = '&';
-                            shortMap();
+                            shortMap(player, enemyManager);
+                        }
+                        if (nextChar == 'd')
+                        {
+                            nextChar = '.';
                         }
                         break;
                     case 5:
-                        PauseMenu(player);
+                        PauseMenu(player, enemyManager);
                         ingame = false;
                         break;
                     default:
@@ -250,11 +278,49 @@ namespace Projet_7
             {
                 DialogText();
                 Console.SetCursorPosition(30, 54);
-                Console.Write("ta grosse gueule");
+                if (acquisition)
+                {
+                    if (talkedbefore)
+                    {
+                        Console.Write("Thanks for finding the ultra secret confidential private classified restricted and sensitive documents that I lost");
+                    }
+                    else if (!talkedbefore)
+                    {
+                        Console.Write("Soldier !!! How the F*CK did you get those ultra secret confidential private classified restricted and sensitive documents ????!");
+                        Console.ReadKey();
+                        Console.SetCursorPosition(40, 55);
+                        Console.Write("Sniper ! Kill him ! He's a spy !");
+                        Console.ReadKey();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Dead();
+                        Thread.Sleep(2000);
+                        Console.SetCursorPosition(0, 11);
+                        for (int i = 0; i < 50; i++)
+                        {                           
+                            Console.WriteLine(new String(' ', Console.BufferWidth));
+                            Thread.Sleep(100);
+                        }
+                        ingame = false;
+                        Reset();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Welcome in living hell Soldier 76, you're here to kill 'em all, so grab your flamethrower and go burn those Lefties and Hobos.");
+                    Console.ReadKey();
+                    Console.SetCursorPosition(23, 55);
+                    Console.WriteLine("By the way, can you go find the ultra secret confidential private classified restricted and sensitive documents that I lost on my way back to the camp ?");
+                    talkedbefore = true;
+                }
+            }
+            if (playerY == documentPos[0] && playerX == documentPos[1])
+            {
+                acquisition  = true;
             }
         }
 
-        public void randomCombat()
+        public void randomCombat(Player player, EnemyManager enemyManager)
         {
             if (nextChar == '.')
             {
@@ -262,16 +328,19 @@ namespace Projet_7
                 int num = rnd.Next(0, 100);
                 if (num < 5)
                 {
-                    //Combat
+                    /*Fight fight = new Fight(player, enemyManager.CreateEnemy());
+                    Console.Clear();
+                    WriteTab();
+                    movePlayer(player, enemyManager);*/
                 }
             }
         }
 
-        public void shortMap()
+        public void shortMap(Player player , EnemyManager enemyManager)
         {
             if (ingame)
             {
-                randomCombat();
+                randomCombat(player, enemyManager);
 
                 Console.CursorVisible = false;
                 Console.SetCursorPosition(playerX, playerY);
@@ -314,7 +383,7 @@ namespace Projet_7
                     for (x = 0; x < tab.GetLength(1); x++)
                     {
                         letters = tab[y, x];
-                        sw.Write(tab[y, x]);
+                        sw.Write(tab[y, x]);                   
                     }
                     sw.WriteLine();
                 }
@@ -331,7 +400,7 @@ namespace Projet_7
             }
         }
 
-        public void PauseMenu(Player player)
+        public void PauseMenu(Player player, EnemyManager enemyManager)
         {
             Console.SetCursorPosition(0,0);
             MenuManager mi = new MenuManager();
@@ -350,7 +419,45 @@ namespace Projet_7
             };
             Save(player);
             srText.Close();
-            mi.PauseMenu(this,player);
+            mi.PauseMenu(this,player, enemyManager);
+        }
+
+        public void SoldierPika()
+        {
+            Console.SetCursorPosition(0, 10);
+            //Pass the file path and file name to the StreamReader constructor
+            StreamReader srText = new StreamReader("soldier.txt");
+            //Read the first line of text
+            linetxt = srText.ReadLine();
+            //Continue to read until you reach end of file
+            while (linetxt != null)
+            {
+                //write the line to console window
+                Console.WriteLine(linetxt);
+
+                //Read the next line
+                linetxt = srText.ReadLine();
+            };
+        }
+
+        public void Dead()
+        {
+            Console.Clear();
+            Console.SetCursorPosition(0, 0);
+            //Pass the file path and file name to the StreamReader constructor
+            StreamReader srText = new StreamReader("dead.txt");
+            //Read the first line of text
+            linetxt = srText.ReadLine();
+            //Continue to read until you reach end of file
+            while (linetxt != null)
+            {
+                //write the line to console window
+                Console.WriteLine(linetxt);
+
+                //Read the next line
+                linetxt = srText.ReadLine();
+            };
+            Console.SetCursorPosition(0, 0);
         }
     }
 }
