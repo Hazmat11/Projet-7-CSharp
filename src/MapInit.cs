@@ -18,7 +18,7 @@ namespace Projet_7
         public List<int> pnjPos = new List<int>();
         public int numberLine = 0;
         public char nextChar = '.';
-        bool ingame = true;
+        public bool ingame = true;
 
         public int y = 0;
         public int x = 0;
@@ -41,8 +41,11 @@ namespace Projet_7
 
         public void InitTab()
         {
+            Console.ForegroundColor= ConsoleColor.Black;
+           Console.BackgroundColor = ConsoleColor.Yellow;
             Console.Write("\r\n      __  ___________  ___________   __        ______    ____  ____   _______       _______   ______   ___            __        __      _______   \r\n     /\"\"\\(\"     _   \")(\"     _   \") /\"\"\\      /    \" \\  (\"  _||_ \" | /\"     \"|     /\"     \"| /\" _  \"\\ |\"  |          /\"\"\\      |\" \\    /\"      \\  \r\n    /    \\)__/  \\\\__/  )__/  \\\\__/ /    \\    // ____  \\ |   (  ) : |(: ______)    (: ______)(: ( \\___)||  |         /    \\     ||  |  |:        | \r\n   /' /\\  \\  \\\\_ /        \\\\_ /   /' /\\  \\  /  /    )  )(:  |  | . ) \\/    |       \\/    |   \\/ \\     |:  |        /' /\\  \\    |:  |  |_____/   ) \r\n  //  __'  \\ |.  |        |.  |  //  __'  \\(: (____/ //  \\\\ \\__/ //  // ___)_      // ___)_  //  \\ _   \\  |___    //  __'  \\   |.  |   //      /  \r\n /   /  \\\\  \\\\:  |        \\:  | /   /  \\\\  \\\\         \\  /\\\\ __ //\\ (:      \"|    (:      \"|(:   _) \\ ( \\_|:  \\  /   /  \\\\  \\  /\\  |\\ |:  __   \\  \r\n(___/    \\___)\\__|         \\__|(___/    \\___)\\\"____/\\__\\(__________) \\_______)     \\_______) \\_______) \\_______)(___/    \\___)(__\\_|_)|__|  \\___) \r\n                                                                                                                                                  \r\n");
             Thread.Sleep(1000);
+            Reset();
             Console.Clear();
             map.Write();
             tab = map.tab;
@@ -347,7 +350,7 @@ namespace Projet_7
             };
             Save(player);
             srText.Close();
-            mi.PauseMenu();
+            mi.PauseMenu(this,player);
         }
     }
 }
