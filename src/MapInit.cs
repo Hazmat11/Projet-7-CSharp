@@ -4,6 +4,8 @@ using Projet_7.src;
 using System;
 using System.Runtime.Intrinsics.Arm;
 using Projet_7.Managers;
+using System.Reflection.Metadata.Ecma335;
+using Windows.UI.Xaml.Controls.Maps;
 
 namespace Projet_7
 {
@@ -18,7 +20,7 @@ namespace Projet_7
         public List<int> pnjPos = new List<int>();
         public int numberLine = 0;
         public char nextChar = '.';
-        bool ingame = true;
+        public bool ingame = true;
 
         public int y = 0;
         public int x = 0;
@@ -33,6 +35,9 @@ namespace Projet_7
         public int lastPosY = 0;
         Map map = new Map();
 
+        public String GameData;
+
+
         public void Reset()
         {
             Console.ForegroundColor = ConsoleColor.Gray;
@@ -41,6 +46,12 @@ namespace Projet_7
 
         public void InitTab()
         {
+            Console.ForegroundColor= ConsoleColor.Black;
+           Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.Write("\r\n      __  ___________  ___________   __        ______    ____  ____   _______       _______   ______   ___            __        __      _______   \r\n     /\"\"\\(\"     _   \")(\"     _   \") /\"\"\\      /    \" \\  (\"  _||_ \" | /\"     \"|     /\"     \"| /\" _  \"\\ |\"  |          /\"\"\\      |\" \\    /\"      \\  \r\n    /    \\)__/  \\\\__/  )__/  \\\\__/ /    \\    // ____  \\ |   (  ) : |(: ______)    (: ______)(: ( \\___)||  |         /    \\     ||  |  |:        | \r\n   /' /\\  \\  \\\\_ /        \\\\_ /   /' /\\  \\  /  /    )  )(:  |  | . ) \\/    |       \\/    |   \\/ \\     |:  |        /' /\\  \\    |:  |  |_____/   ) \r\n  //  __'  \\ |.  |        |.  |  //  __'  \\(: (____/ //  \\\\ \\__/ //  // ___)_      // ___)_  //  \\ _   \\  |___    //  __'  \\   |.  |   //      /  \r\n /   /  \\\\  \\\\:  |        \\:  | /   /  \\\\  \\\\         \\  /\\\\ __ //\\ (:      \"|    (:      \"|(:   _) \\ ( \\_|:  \\  /   /  \\\\  \\  /\\  |\\ |:  __   \\  \r\n(___/    \\___)\\__|         \\__|(___/    \\___)\\\"____/\\__\\(__________) \\_______)     \\_______) \\_______) \\_______)(___/    \\___)(__\\_|_)|__|  \\___) \r\n                                                                                                                                                  \r\n");
+            Thread.Sleep(1000);
+            Reset();
+            Console.Clear();
             map.Write();
             tab = map.tab;
             WriteTab();
@@ -150,7 +161,7 @@ namespace Projet_7
 
         public void movePlayer(Player player)
         {
-            while (player.ingame)
+            while (ingame)
             {
                 player.detectKey(player);
 
@@ -213,12 +224,15 @@ namespace Projet_7
                             shortMap();
                         }
                         break;
+                    case 5:
+                        PauseMenu(player);
+                        ingame = false;
+                        break;
                     default:
                         break;
                 }
                 PNJ();
             }
-            ingame = false;
         }
 
         public void PNJ()
@@ -254,7 +268,6 @@ namespace Projet_7
                 if (num < 5)
                 {
                     //Combat
-                    Console.WriteLine("ouais");
                 }
             }
         }
@@ -280,31 +293,17 @@ namespace Projet_7
             }
         }
 
-        public void Save(Player player)
+        public void SaveMap(Player player)
         {
             try
             {
-                StreamWriter sw = new StreamWriter("save.txt");
-                sw.Write(player._LVL);
-                sw.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-            finally
-            {
-                Console.SetCursorPosition(0, 0);
-            }
-
-            try
-            {
                 path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
-                StreamWriter sw = new StreamWriter(path[map.document]);
+                StreamWriter sw = new StreamWriter(path[RandomNumberGenerator.RandomNumber]);
                 for (y = 0; y < tab.GetLength(0); y++)
                 {
                     for (x = 0; x < tab.GetLength(1); x++)
                     {
+                        letters = tab[y, x];
                         sw.Write(tab[y, x]);
                     }
                     sw.WriteLine();
@@ -320,6 +319,35 @@ namespace Projet_7
                 Console.SetCursorPosition(0, 0);
                 /*Console.WriteLine("Executing finally block.");*/
             }
+        }
+
+        public void LoadMap(MapInit map)
+        {
+
+        }
+
+
+
+        public void PauseMenu(Player player)
+        {
+            Console.SetCursorPosition(0,0);
+            MenuManager mi = new MenuManager();
+            //Pass the file path and file name to the StreamReader constructor
+            StreamReader srText = new StreamReader("menu.txt");
+            //Read the first line of text
+            linetxt = srText.ReadLine();
+            //Continue to read until you reach end of file
+            while (linetxt != null)
+            {
+                //write the line to console window
+                Console.WriteLine(linetxt);
+
+                //Read the next line
+                linetxt = srText.ReadLine();
+            };
+
+            srText.Close();
+            mi.PauseMenu(this,player);
         }
     }
 }
