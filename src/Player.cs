@@ -5,9 +5,9 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using Projet_7.Managers;
 using System.Xml.Linq;
 using Projet_7.src;
+using Projet_7.Managers;
 
 namespace Projet_7.src
 {
