@@ -14,6 +14,7 @@ namespace Projet_7.Managers
     {
         public int _ID { get; set; }
         String linetxt;
+        public static bool optionMenu = false;
         public void MainMenu(Player player, EnemyManager manager)
         {
             string prompt = "Welcome to your menu";
@@ -50,25 +51,37 @@ namespace Projet_7.Managers
             else _ID = 2;
         }  
         
-        public void PauseMenu()
+        public void PauseMenu(MapInit map, Player player)
         {
-            string prompt = "test";
-            string[] Options = { "1", "2", "3" };
+            string prompt = "\r\n  __  __                  \r\n |  \\/  |                 \r\n | \\  / | ___ _ __  _   _ \r\n | |\\/| |/ _ \\ '_ \\| | | |\r\n | |  | |  __/ | | | |_| |\r\n |_|  |_|\\___|_| |_|\\__,_|\r\n                          \r\n                          \r\n";
+            string[] Options = { "Inventaire", "Resume", "Save and Quit" };
             Menu menu = new Menu(prompt, Options);
+            optionMenu = true;
             int Index = menu.Run(0, 0);
 
             if (Index == 0)
             {
-                Console.Write("rien");
-            }
-            else if (Index == 1)
-            {
-                Console.Write("rien");
+                Inventory();
             }
             else if (Index == 2)
             {
+                map.Save(player);
                 Environment.Exit(0);
             }
+            else if (Index == 1)
+            {               
+                map.ingame = true;
+                Console.Clear();
+                map.WriteTab();
+                map.movePlayer(player);
+            }
+        }
+
+        public void Inventory()
+        {
+            Console.CursorVisible = true;
+            Console.SetCursorPosition(50, 0);
+            Console.Write("\r\n  _____                                           \r\n |_   _|                                          \r\n   | |  _ ____   _____ _ __  _ __ ___  _ __ _   _ \r\n   | | | '_ \\ \\ / / _ \\ '_ \\| '__/ _ \\| '__| | | |\r\n  _| |_| | | \\ V /  __/ | | | | | (_) | |  | |_| |\r\n |_____|_| |_|\\_/ \\___|_| |_|_|  \\___/|_|   \\__, |\r\n                                             __/ |\r\n                                            |___/ \r\n");
         }
     }
 }
