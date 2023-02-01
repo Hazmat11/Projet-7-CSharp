@@ -24,25 +24,31 @@ namespace Projet_7.src
 
         public static void Main()
         {
-            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
-            ShowWindow(ThisConsole, MAXIMIZE);
-            Console.Clear();
-            EnemyManager manager = new EnemyManager();
-            MenuManager mainMenu= new MenuManager();
-            //Player player = new Player(50, 100, 100, 30, 3, 8, 3, "Fire");
+            while (true)
+            {
+                Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+                ShowWindow(ThisConsole, MAXIMIZE);
+                Console.Clear();
+                EnemyManager manager = new EnemyManager();
+                MenuManager mainMenu = new MenuManager();
+                //Player player = new Player(50, 100, 100, 30, 3, 8, 3, "Fire");
 
-            AudioManager audioManager = new AudioManager();
-            /*audioManager.PlayMusic("Explore.wav");*/
+                AudioManager audioManager = new AudioManager();
+                /*audioManager.PlayMusic("Explore.wav");*/
 
-            /*
-            player.SavePlayer(player);
-            player.LoadPlayer();*/
+                /*
+                player.SavePlayer(player);
+                player.LoadPlayer();*/
 
-            //mainMenu.MainMenu(player, manager);
-            //player.SavePlayer(player);
+                //mainMenu.MainMenu(player, manager);
+                //player.SavePlayer(player);
 
-            PlayerInit.PlayerList["player1"].LVLUp();
-            mainMenu.MainMenu(PlayerInit.PlayerList["player1"], manager);
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.BackgroundColor = ConsoleColor.Black;
+
+                PlayerInit.PlayerList["player1"].LVLUp();
+                mainMenu.MainMenu(PlayerInit.PlayerList["player1"], manager);
+            }
         }
     }
 }

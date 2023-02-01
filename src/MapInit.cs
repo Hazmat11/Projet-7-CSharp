@@ -7,6 +7,8 @@ using Projet_7.Managers;
 using System.Reflection.Metadata.Ecma335;
 using Windows.UI.Xaml.Controls.Maps;
 using static System.Net.Mime.MediaTypeNames;
+using Windows.Foundation;
+using Windows.UI.Xaml.Documents;
 
 namespace Projet_7
 {
@@ -20,6 +22,7 @@ namespace Projet_7
         public string[] path;
         public List<int> pnjPos = new List<int>();
         public List<int> documentPos = new List<int>();
+        public List<int> chestPos = new List<int>();
         public int numberLine = 0;
         public char nextChar = '.';
         public bool ingame = true;
@@ -107,6 +110,13 @@ namespace Projet_7
                             int documentPosY = y;
                             documentPos.Add(documentPosY);
                             documentPos.Add(documentPosX);
+                        }
+                        if (tab[y,x] == '¤')
+                        {
+                            int chestPosX = x;
+                            int chestPosY = y;
+                            chestPos.Add(chestPosY);
+                            chestPos.Add(chestPosX);
                         }
                         Recolor();
                         Console.Write(tab[y, x]);
@@ -197,6 +207,10 @@ namespace Projet_7
                         {
                             nextChar = '.';
                         }
+                        if (nextChar == '¤')
+                        {
+                            nextChar = '.';
+                        }
                         break;
                     case 2:
                         if (nextChar != '~')
@@ -212,6 +226,10 @@ namespace Projet_7
                             shortMap(player, enemyManager);
                         }
                         if (nextChar == 'd')
+                        {
+                            nextChar = '.';
+                        }
+                        if (nextChar == '¤')
                         {
                             nextChar = '.';
                         }
@@ -233,6 +251,10 @@ namespace Projet_7
                         {
                             nextChar = '.';
                         }
+                        if (nextChar == '¤')
+                        {
+                            nextChar = '.';
+                        }
                         break;
                     case 4:
                         if (nextChar != '~')
@@ -248,6 +270,10 @@ namespace Projet_7
                             shortMap(player, enemyManager);
                         }
                         if (nextChar == 'd')
+                        {
+                            nextChar = '.';
+                        }
+                        if (nextChar == '¤')
                         {
                             nextChar = '.';
                         }
@@ -313,7 +339,6 @@ namespace Projet_7
                             Thread.Sleep(100);
                         }
                         ingame = false;
-                        Reset();
                     }
                 }
                 else
@@ -329,6 +354,27 @@ namespace Projet_7
             {
                 acquisition  = true;
             }
+            if (playerY == chestPos[0] && playerX == chestPos[1])
+            {
+                Random random = new Random();
+                for (int a = 0; a != 10; a++)
+                {                   
+                    int result2 = random.Next(0, ObjectInit.Dictionary.Count);
+                    switch (result2)
+                    {
+                        case 0:
+                            ObjectInit.Dictionary["HealP"]._QUANTITY += 1;
+                            break;
+                        case 1:
+                            ObjectInit.Dictionary["MPP"]._QUANTITY += 1;
+                            break;
+                        case 2:
+                            ObjectInit.Dictionary["CureP"]._QUANTITY += 1;
+                            break;
+                        default: break;
+                    }
+                }
+            }
         }
 
         public void randomCombat(Player player, EnemyManager enemyManager)
@@ -342,29 +388,33 @@ namespace Projet_7
                     Fight fight = new Fight(player, enemyManager.CreateEnemy());
                     Console.Clear();
                     WriteTab();
-                    movePlayer(player, enemyManager);
                 }
             }
         }
 
         public void shortMap(Player player , EnemyManager enemyManager)
         {
-            if (ingame)
+            if (ingame == true)
             {
                 randomCombat(player, enemyManager);
 
-                Console.CursorVisible = false;
-                Console.SetCursorPosition(playerX, playerY);
-                letters = tab[playerY, playerX];
-                Recolor();
-                Console.Write(tab[playerY, playerX]);
+                if (ingame)
+                {
+                    Console.CursorVisible = false;
+                    Console.SetCursorPosition(playerX, playerY);
+                    letters = tab[playerY, playerX];
+                    Recolor();
+                    Console.Write(tab[playerY, playerX]);
 
-                Console.SetCursorPosition(lastPosX, lastPosY);
-                letters = tab[lastPosY, lastPosX];
-                Recolor();
-                Console.Write(tab[lastPosY, lastPosX]);
+                    Console.SetCursorPosition(lastPosX, lastPosY);
+                    letters = tab[lastPosY, lastPosX];
+                    Recolor();
+                    Console.Write(tab[lastPosY, lastPosX]);
 
-                Recolor();
+                    Recolor();
+                }
+            }
+            else if (ingame == false) {
             }
         }
 
@@ -408,6 +458,7 @@ namespace Projet_7
             while (linetxt != null)
             {
                 //write the line to console window
+                Console.ForegroundColor= ConsoleColor.Green;
                 Console.WriteLine(linetxt);
 
                 //Read the next line
@@ -415,6 +466,7 @@ namespace Projet_7
             };
 
             srText.Close();
+            Reset();
             mi.PauseMenu(this,player, enemyManager);
         }
 

@@ -254,6 +254,7 @@ namespace Projet_7.src
                 if (doPlayerDefend) player._DEF -= 5;
                 Turn++;
             }
+            GiveItem();
         }
 
         public void DisplayStats(Player player, Enemy enemy)
@@ -300,6 +301,34 @@ namespace Projet_7.src
             } else 
             {
                 return false;
+            }
+        }
+
+        public void GiveItem()
+        {
+            Random random = new Random();
+            int result = random.Next(0, 100);
+            if (result >= 1)
+            {
+                result = random.Next(1, 3);
+                for (int a = 0; a != result; a++)
+                {
+                    int result2 = random.Next(1, ObjectInit.Dictionary.Count);
+                    switch (result2)
+                    {
+                        case 1:
+                            ObjectInit.Dictionary["HealP"]._QUANTITY += 1;
+                            break;
+                        case 2:
+                            ObjectInit.Dictionary["MPP"]._QUANTITY += 1;
+                            break;
+                        case 3:
+                            ObjectInit.Dictionary["CureP"]._QUANTITY += 1;
+                            break;
+                        default: break;
+                    }
+                   
+                }
             }
         }
 

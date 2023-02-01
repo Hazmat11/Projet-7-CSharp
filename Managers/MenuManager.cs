@@ -125,6 +125,42 @@ namespace Projet_7.Managers
             }
         }
 
+        public void ChooseItem()
+        {
+            string prompt = "";
+            string[] Options = { ObjectInit.Dictionary["HealP"]._NAME, ObjectInit.Dictionary["MPP"]._NAME, ObjectInit.Dictionary["CureP"]._NAME };
+            Menu menu = new Menu(prompt, Options);
+            optionMenu = true;
+            menuPos = true;
+
+            int Index = menu.Run(0, 0);
+
+            if (Index == 0)
+            {
+                if (ObjectInit.Dictionary["HealP"]._QUANTITY > 0)
+                {
+                    ObjectInit.Dictionary["HealP"]._QUANTITY -= 1;
+                    menuPos = false;
+                }
+            }
+            else if (Index == 1)
+            {
+                if (ObjectInit.Dictionary["MPP"]._QUANTITY > 0)
+                {
+                    ObjectInit.Dictionary["MPP"]._QUANTITY -= 1;
+                    menuPos = false;
+                }
+            }
+            else if (Index == 2)
+            {
+                if (ObjectInit.Dictionary["CureP"]._QUANTITY > 0)
+                {
+                    ObjectInit.Dictionary["CureP"]._QUANTITY -= 1;
+                    menuPos = false;
+                }
+            }
+        }
+
         public void AttackMenu()
         {
             for (int i = 0; i < 10; i++)
@@ -185,6 +221,8 @@ namespace Projet_7.Managers
             Console.SetCursorPosition(90,7); Console.WriteLine("                                            __/ |");
             Console.SetCursorPosition(90,8); Console.WriteLine("                                           |___/ ");
             Console.SetCursorPosition(90,9); Console.WriteLine("");
+            ItemList();
+            ChooseItem();
         }
 
         public void Equipment(Player player)
@@ -205,7 +243,7 @@ namespace Projet_7.Managers
 
         public void playerStats(Player player)
         {
-            ClearMenu(30, 190);
+            ClearMenu(8, 54);
 
             Console.SetCursorPosition(90, 15);
             Console.Write("Level: ");
@@ -244,15 +282,42 @@ namespace Projet_7.Managers
 
             Console.ReadKey();
             menuPos = false;
-            ClearMenu(47,190);
+            ClearMenu(30,54);
+        }
+
+        public void ItemList()
+        {
+            ClearMenu(0, 54);
+
+            Console.SetCursorPosition(90, 15);
+            Console.Write(ObjectInit.Dictionary["HealP"]._NAME);
+            Console.Write(": ");
+            Console.SetCursorPosition(100, 15);
+            Console.WriteLine(ObjectInit.Dictionary["HealP"]._QUANTITY);
+
+            Console.SetCursorPosition(90, 16);
+            Console.Write(ObjectInit.Dictionary["MPP"]._NAME);
+            Console.Write(": ");
+            Console.SetCursorPosition(100, 16);
+            Console.WriteLine(ObjectInit.Dictionary["MPP"]._QUANTITY);
+
+            Console.SetCursorPosition(90, 17);
+            Console.Write(ObjectInit.Dictionary["CureP"]._NAME);
+            Console.Write(": ");
+            Console.SetCursorPosition(100, 17);
+            Console.WriteLine(ObjectInit.Dictionary["CureP"]._QUANTITY);
+
+            Console.ReadKey();
+            menuPos = false;
+            ClearMenu(0, 54);
         }
 
         public void ClearMenu(int j, int p)
         {
             Console.CursorVisible= false;
-            for (int i = 1; i < j; i++)
+            for (int i = 45; i != j; i--)
             {
-                for (int a = 54; a < p; a++)
+                for (int a = 190; a != p; a--)
                 {
                     Console.SetCursorPosition(a,i);
                     Console.Write(' ');
