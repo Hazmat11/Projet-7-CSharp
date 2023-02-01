@@ -98,30 +98,18 @@ namespace Projet_7.src
                     break;
             }
         }
-        public void SavePlayer(Player player)
+        public void SavePlayer()
         {
-            try
-            {
-                StreamWriter sw = new StreamWriter("save.txt");
-                sw.WriteLine(player._LVL);
-                sw.WriteLine(player._HP);
-                sw.WriteLine(player._MP);
-                sw.WriteLine(player._ATT);
-                sw.WriteLine(player._ACC);
-                sw.WriteLine(player._SPEED);
-                sw.WriteLine(player._DEF);
-
-                sw.Close();
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-            finally
-            {
-                Console.SetCursorPosition(0, 0);
-            }
+            StreamWriter sw = new StreamWriter("save.txt");
+            sw.WriteLine(_LVL);
+            sw.WriteLine(_HP);
+            sw.WriteLine(_MP);
+            sw.WriteLine(_ATT);
+            sw.WriteLine(_ACC);
+            sw.WriteLine(_SPEED);
+            sw.WriteLine(_DEF);
+            sw.WriteLine(Map.choosenFile);
+            sw.Close();
         }
         public void LoadPlayer()
         {

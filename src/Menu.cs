@@ -27,13 +27,17 @@ namespace Projet_7.src
         {
             int origWidth = Console.WindowWidth;
             int origHeight = Console.WindowHeight;
-            if (MenuManager.optionMenu)
+            if (MenuManager.optionMenu && MenuManager.menuPos)
+            {
+                Console.SetCursorPosition(100, 0);
+            }
+            else if (MenuManager.optionMenu)
             {
                 Console.SetCursorPosition(20, 0);
             }
             Console.WriteLine(Prompt);
             Console.WriteLine("");
-            for (int i = 0; i < Options.Length; i++) 
+            for (int i = 0; i < Options.Length; i++)
             {
                 string Option = Options[i];
 
@@ -47,10 +51,15 @@ namespace Projet_7.src
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.BackgroundColor = ConsoleColor.Black;
                 }
-                if (MenuManager.optionMenu)
+                if (MenuManager.optionMenu && MenuManager.menuPos)
+                {
+                    Console.SetCursorPosition(90, 5 * i + 10);
+                }
+                else if (MenuManager.optionMenu)
                 {
                     Console.SetCursorPosition(10, 5 * i + 10);
                 }
+
                 Console.WriteLine($"<< {Option} >>");
             }
             Console.ResetColor();

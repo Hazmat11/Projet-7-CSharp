@@ -35,8 +35,8 @@ namespace Projet_7.src
             /*audioManager.PlayMusic("Explore.wav");*/
 
 
-            PlayerInit.PlayerList["player"].LVLUp();
-            mainMenu.MainMenu(PlayerInit.PlayerList["player"], manager);
+            PlayerInit.PlayerList["player1"].LVLUp();
+            mainMenu.MainMenu(PlayerInit.PlayerList["player1"], manager);
         }
     }
 }

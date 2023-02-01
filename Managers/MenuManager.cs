@@ -19,6 +19,7 @@ namespace Projet_7.Managers
         public int _ID { get; set; }
         String linetxt;
         public static bool optionMenu = false;
+        public static bool menuPos = false;
         private bool inventoryLoop = true;
         public void MainMenu(Player player, EnemyManager manager)
         {
@@ -39,7 +40,9 @@ namespace Projet_7.Managers
                 Console.Clear();
                 Option();
                 Console.ReadKey();
+                Console.Clear();
                 Index = 0;
+                MainMenu(player, manager);
             }
             else if (Index == 2)
             {
@@ -93,9 +96,32 @@ namespace Projet_7.Managers
                 }
                 else if (Index == 3)
                 {
-                    //map.Save(player);
+                    player.SavePlayer();
                     Environment.Exit(0);
                 }
+            }
+        }
+        public void choosePlayer()
+        {
+            string prompt = "";
+            string[] Options = { "Hazmat", "Mastrum", "Pandouille" };
+            Menu menu = new Menu(prompt, Options);
+            optionMenu = true;
+            menuPos = true;
+
+            int Index = menu.Run(0, 0);
+
+            if (Index == 0)
+            {
+                playerStats(PlayerInit.PlayerList["player1"]);
+            }
+            else if (Index == 1)
+            {
+                playerStats(PlayerInit.PlayerList["player2"]);
+            }
+            else if (Index == 2)
+            {
+                playerStats(PlayerInit.PlayerList["player3"]);
             }
         }
 
@@ -174,11 +200,13 @@ namespace Projet_7.Managers
             Console.SetCursorPosition(90, 7); Console.WriteLine("           | |       | |                             ");
             Console.SetCursorPosition(90, 8); Console.WriteLine("           |_|       |_|                             ");
             Console.SetCursorPosition(90, 9); Console.WriteLine("");
-            playerStats(player);
+            choosePlayer();
         }
 
         public void playerStats(Player player)
         {
+            ClearMenu(30, 190);
+
             Console.SetCursorPosition(90, 15);
             Console.Write("Level: ");
             Console.SetCursorPosition(100, 15);
@@ -213,6 +241,23 @@ namespace Projet_7.Managers
             Console.Write("Defense: ");
             Console.SetCursorPosition(100,21);
             Console.WriteLine(player._DEF);
+
+            Console.ReadKey();
+            menuPos = false;
+            ClearMenu(47,190);
+        }
+
+        public void ClearMenu(int j, int p)
+        {
+            Console.CursorVisible= false;
+            for (int i = 1; i < j; i++)
+            {
+                for (int a = 54; a < p; a++)
+                {
+                    Console.SetCursorPosition(a,i);
+                    Console.Write(' ');
+                }
+            }
         }
 
         public void Option()
