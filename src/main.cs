@@ -27,7 +27,9 @@ namespace Projet_7.src
             Console.Clear();
             EnemyManager manager = new EnemyManager();
             MenuManager mainMenu= new MenuManager();
+
             Player player = new Player(50, 100, 100, 30, 3, 8, 3);
+            //player.SavePlayer(player);
 
             AudioManager audioManager = new AudioManager();
             /*audioManager.PlayMusic("Explore.wav");*/

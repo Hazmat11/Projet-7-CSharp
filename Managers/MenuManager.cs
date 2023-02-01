@@ -65,7 +65,7 @@ namespace Projet_7.Managers
             }
             else if (Index == 2)
             {
-                map.Save(player);
+                player.SavePlayer(player);
                 Environment.Exit(0);
             }
             else if (Index == 1)
