@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls.Maps;
 
 namespace Projet_7.src
 {
@@ -31,47 +32,78 @@ namespace Projet_7.src
 
         public int usePlayerAttack(Player user, Enemy target)
         {
+            Random rdm = new Random();
+            int ardm = rdm.Next(-_ACC, _ACC);
+            int value = 0;
             if ( _FOR != "Enemy")
             {
-                user.UseMP(_MPCOST);
-                Random rdm = new Random();
-                int ardm = rdm.Next(-_ACC, _ACC);
-                int value = (user._ATT) - target._DEF + ardm;
-                if (value < 0)
+                int mult = 2;
+                if (_TYPE == "Plant" && target._TYPE == "Fire" || _TYPE == "Fire" && target._TYPE == "Water" || _TYPE == "Water" && target._TYPE == "Plant")
                 {
-                    value = 0;
-                    target.TakeDamage(value);
+                    value = ((user._ATT) - target._DEF + ardm) * mult;
                 }
-                else target.TakeDamage(value);
+                else if (_TYPE == "Plant" && target._TYPE == "Water" || _TYPE == "Fire" && target._TYPE == "Plant" || _TYPE == "Water" && target._TYPE == "Fire")
+                {
+                    value = ((user._ATT) - target._DEF + ardm) / mult;
+                }
+                if (user._MP < _MPCOST)
+                {
+                    Console.WriteLine("You don't have enought Stamina");
+                }
+                else
+                {
+                    user.UseMP(_MPCOST);
+                    if (value < 0)
+                    {
+                        value = 0;
+                        target.TakeDamage(value);
+                    } else target.TakeDamage(value);
                 return value;
+                }                                     
             } else
             {
                 Console.WriteLine("You can't une this Attack");
-                return 0;
             }
+            return 0;
         }
 
         public int useEnemyAttack(Enemy user, Player target)
         {
+            Random rdm = new Random();
+            int ardm = rdm.Next(-_ACC, _ACC);
+            int value = 0;
             if (_FOR != "Player")
             {
-                user.UseMP(_MPCOST);
-                Random rdm = new Random();
-                int ardm = rdm.Next(-_ACC, _ACC);
-                int value = (user._ATT) - target._DEF + ardm;
-                if (value < 0)
+                int mult = 2;
+                if (_TYPE == "Plant" && target._TYPE == "Fire" || _TYPE == "Fire" && target._TYPE == "Water" || _TYPE == "Water" && target._TYPE == "Plant")
                 {
-                    value = 0;
-                    target.TakeDamage(value);
+                    value = ((user._ATT) - target._DEF + ardm) * mult;
                 }
-                else target.TakeDamage(value);
+                else if (_TYPE == "Plant" && target._TYPE == "Water" || _TYPE == "Fire" && target._TYPE == "Plant" || _TYPE == "Water" && target._TYPE == "Fire")
+                {
+                    value = ((user._ATT) - target._DEF + ardm) / mult;
+                }
+                if (user._MP < _MPCOST)
+                {
+                    Console.WriteLine("Enemy try to Attack but he is out of Stamina");
+                }
+                else
+                {
+                    user.UseMP(_MPCOST);
+                    if (value < 0)
+                    {
+                        value = 0;
+                        target.TakeDamage(value);
+                    }
+                    else target.TakeDamage(value);
                 return value;
+                }
             }
             else
             {
                 Console.WriteLine("The Enemy try to use something that he don't know");
-                return 0;
             }
+            return 0;
         }
 
     }
