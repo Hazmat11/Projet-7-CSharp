@@ -17,9 +17,10 @@ namespace Projet_7.src
         public int _MPCOST { get; set; }
         public string _FOR { get; set; }
         protected int _ACC { get; set; }
+        public Effects _EFCT { get; set; }
 
 
-        public Attacks(string name, string type, int att, int cost, string user, int acc)
+        public Attacks(string name, string type, int att, int cost, string user, int acc, Effects efct)
         {
             _NAME = name;
             _TYPE = type;
@@ -27,6 +28,7 @@ namespace Projet_7.src
             _MPCOST = cost;
             _FOR = user;
             _ACC = acc;
+            _EFCT = efct;
         }
 
 
@@ -62,7 +64,7 @@ namespace Projet_7.src
                 }                                     
             } else
             {
-                Console.WriteLine("You can't une this Attack");
+                Console.WriteLine("You can't use this Attack");
             }
             return 0;
         }
