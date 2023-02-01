@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projet_7.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace Projet_7.src
         public int _SPEED { get; set; }
         public int _DEF { get; set; }
         public string _TYPE { get; set; }
-
+        public Effects _EFCT { get; set; }
 
         public Enemy(int lvlBase, int hpBase, int mpBase, int attBase, int accBase, int speedBase, int defBase, string type)
         {
@@ -28,11 +29,7 @@ namespace Projet_7.src
             _SPEED = speedBase;
             _DEF = defBase;
             _TYPE = type;
-        }
-
-        ~Enemy()
-        {
-
+            _EFCT = EffectInit.Dictionary["None"];
         }
 
         public void Init()

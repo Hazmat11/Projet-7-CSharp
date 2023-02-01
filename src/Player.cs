@@ -20,6 +20,7 @@ namespace Projet_7.src
         public int _ACC { get; set; }
         public int _SPEED { get; set; }
         public int _DEF { get; set; }
+        public Effects _EFCT { get; set; }
         public int _X { get; set; }
         public int _Y { get; set; }
         public string _TYPE { get; set; }
@@ -38,6 +39,7 @@ namespace Projet_7.src
             _SPEED = speedBase;
             _DEF = defBase;
             _TYPE = type;
+            _EFCT = EffectInit.Dictionary["None"];
             _X = 0;
             _Y = 0;
 
@@ -100,6 +102,54 @@ namespace Projet_7.src
         }
         public void SavePlayer()
         {
+            try
+            {
+                StreamWriter sw = new StreamWriter("save.txt");
+                string[] lines = File.ReadAllLines("save.txt");
+
+                List<int> saves = new List<int>();
+                saves.Add(0);
+                saves.Add(21);
+                saves.Add(42);
+
+                Console.WriteLine("Which save do you save? ( 1 , 2 , 3 )");
+                string input = Console.ReadLine();
+
+                int data = 0;
+
+                if (int.Parse(input) == 0) 
+                {
+                    data = PlayerInit.PlayerList["Player1"]._LVL;
+                    data = int.Parse(lines[saves[0]]);
+                    File.WriteAllLines("save.txt", lines);
+                }
+                else if (int.Parse(input) == 1)
+                {
+                    data = int.Parse(lines[saves[1]]);
+                }
+                else 
+                {
+                    data = int.Parse(lines[saves[2]]);
+                }
+
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._LVL);
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._HP);
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._MP);
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._ATT);
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._ACC);
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._SPEED);
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._DEF);
+
+                sw.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+            finally
+            {
+                Console.SetCursorPosition(0, 0);
+            }
             StreamWriter sw = new StreamWriter("save.txt");
             sw.WriteLine(_LVL);
             sw.WriteLine(_HP);
@@ -117,10 +167,16 @@ namespace Projet_7.src
             {
                 FileInfo info = new FileInfo("save.txt");
 
-                Console.WriteLine("Which save ? ( 1 , 2 , 3 )");
+                Console.WriteLine("Which save do you load? ( 1 , 2 , 3 )");
                 string input = Console.ReadLine();
-                int i = 1 * int.Parse(input);
-                string[] PlayerData = File.ReadAllLines("save.txt");
+                int i = 1;
+                if (int.Parse(input) == 0)
+                    i = 0;
+                else
+                    i = i * int.Parse(input);
+
+                //int i = 7 * int.Parse(input);
+                /*string[] PlayerData = File.ReadAllLines("save.txt");
                 Player player = new Player(
                     int.Parse(PlayerData[i]),
                     int.Parse(PlayerData[i++]),
@@ -128,8 +184,13 @@ namespace Projet_7.src
                     int.Parse(PlayerData[i++]),
                     int.Parse(PlayerData[i++]),
                     int.Parse(PlayerData[i++]),
+                    int.Parse(PlayerData[i++]));
+                for (int j = 0; j < 7; j++)
+                {
+                    Console.WriteLine(PlayerData[j]);
+                }
                     int.Parse(PlayerData[i++]),
-                    "");
+                    "");*/
 
                 /*  if (info.Length != 0)
                   {

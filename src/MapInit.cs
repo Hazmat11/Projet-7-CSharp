@@ -339,10 +339,10 @@ namespace Projet_7
                 int num = rnd.Next(0, 100);
                 if (num < 5)
                 {
-                    /*Fight fight = new Fight(player, enemyManager.CreateEnemy());
+                    Fight fight = new Fight(player, enemyManager.CreateEnemy());
                     Console.Clear();
                     WriteTab();
-                    movePlayer(player, enemyManager);*/
+                    movePlayer(player, enemyManager);
                 }
             }
         }

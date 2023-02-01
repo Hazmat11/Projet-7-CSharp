@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,6 +34,12 @@ namespace Projet_7.src
             AudioManager audioManager = new AudioManager();
             /*audioManager.PlayMusic("Explore.wav");*/
 
+            /*
+            player.SavePlayer(player);
+            player.LoadPlayer();*/
+
+            //mainMenu.MainMenu(player, manager);
+            //player.SavePlayer(player);
 
             PlayerInit.PlayerList["player1"].LVLUp();
             mainMenu.MainMenu(PlayerInit.PlayerList["player1"], manager);
