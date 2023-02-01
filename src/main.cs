@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Projet_7.Managers;
+
 namespace Projet_7.src
 {
     static class main
@@ -20,7 +21,7 @@ namespace Projet_7.src
 
 
 
-        static void Main(string[] args)
+        public static void Main()
         {
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             ShowWindow(ThisConsole, MAXIMIZE);
@@ -30,13 +31,21 @@ namespace Projet_7.src
 
             Player player = new Player(50, 100, 100, 30, 3, 8, 3);
             //player.SavePlayer(player);
+            while (true)
+            {
+                Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+                ShowWindow(ThisConsole, MAXIMIZE);
+                Console.Clear();
+                EnemyManager manager = new EnemyManager();
+                MenuManager mainMenu = new MenuManager();
+                Player player = new Player(50, 100, 100, 30, 3, 8, 3);
 
-            AudioManager audioManager = new AudioManager();
-            /*audioManager.PlayMusic("Explore.wav");*/
-            
+                AudioManager audioManager = new AudioManager();
+                /*audioManager.PlayMusic("Explore.wav");*/
 
-            player.LVLUp();
-            mainMenu.MainMenu(player, manager);
+                player.LVLUp();
+                mainMenu.MainMenu(player, manager);
+            }
         }
     }
 }

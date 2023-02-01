@@ -36,17 +36,14 @@ namespace Projet_7.src
             for (int i = 0; i < Options.Length; i++) 
             {
                 string Option = Options[i];
-                string Choice;
 
                 if (i == Index)
                 {
-                    Choice = "*";
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.BackgroundColor = ConsoleColor.White;
                 }
                 else
                 {
-                    Choice = " ";
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.BackgroundColor = ConsoleColor.Black;
                 }

@@ -1,0 +1,15 @@
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                                                                                                                                             |
+|     Welcome to our game !                                                                                                                                                                   |
+|                  You are a soldier on a mystery planet full of strange animals called "Pokemon"                                                                                             |
+|                                                                                                                                                                                             |
+|       Controls:                                                                                                                                                                             |
+|       Move either with ZQSD or the arrow's key                                                                                                                                              | 
+|                                                                                                                                                                                             |
+|       Indications:                                                                                                                                                                          |
+|       -p are PNJ                                                                                                                                                                            |
+|       -You can only walk on the land                                                                                                                                                        |
+|       -The forest is full of danger                                                                                                                                                         |
+|       -Talk to the humans for other indications                                                                                                                                             |
+|                                                                                                                                                          Good luck                          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

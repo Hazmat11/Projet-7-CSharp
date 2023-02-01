@@ -19,7 +19,8 @@ namespace Projet_7.Managers
             {
                 { "Punch", new Attacks("Punch","Basic", 5, 0, "Both", 5) },
                 { "Stad", new Attacks("Stab", "Basic", 5, 10, "Player", 6) },
-                { "FlameThrower", new Attacks("FlameThrower", "Fire", 10, 20, "Both", 10) }
+                { "Flame Thrower", new Attacks("FlameThrower", "Fire", 10, 20, "Both", 10) },
+                { "Tail Attack", new Attacks("TailAttack", "Basic", 5, 0, "Enemy", 2) },
             };
         }
     }

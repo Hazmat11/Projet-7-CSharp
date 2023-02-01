@@ -5,11 +5,9 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using Projet_7.Managers;
 using System.Xml.Linq;
 using Projet_7.src;
-using Windows.UI.Xaml.Controls.Maps;
-using Windows.UI.Xaml.Documents;
+using Projet_7.Managers;
 
 namespace Projet_7.src
 {
@@ -93,6 +91,7 @@ namespace Projet_7.src
                     keyValue= 5;
                     break;
                 default:
+                    keyValue = 6;
                     break;
             }
         }
