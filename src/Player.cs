@@ -94,6 +94,7 @@ namespace Projet_7.src
                     keyValue= 5;
                     break;
                 default:
+                    keyValue = 6;
                     break;
             }
         }

@@ -22,7 +22,7 @@ namespace Projet_7.src
 
 
 
-        static void Main(string[] args)
+        public static void Main()
         {
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             ShowWindow(ThisConsole, MAXIMIZE);
