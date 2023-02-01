@@ -110,12 +110,12 @@ namespace Projet_7.src
                 Console.WriteLine("Which save do you save? ( 1 , 2 , 3 )");
                 string input = Console.ReadLine();
 
-                int i = 1;
                 int data = 0;
 
                 if (int.Parse(input) == 0) 
                 { 
                     data = int.Parse(lines[saves[0]]);
+                    File.WriteAllLines("save.txt", lines);
                 }
                 else if (int.Parse(input) == 1)
                 {
@@ -126,13 +126,13 @@ namespace Projet_7.src
                     data = int.Parse(lines[saves[2]]);
                 }
 
-                sw.WriteLine(player._LVL);
+/*                sw.WriteLine(player._LVL);
                 sw.WriteLine(player._HP);
                 sw.WriteLine(player._MP);
                 sw.WriteLine(player._ATT);
                 sw.WriteLine(player._ACC);
                 sw.WriteLine(player._SPEED);
-                sw.WriteLine(player._DEF);
+                sw.WriteLine(player._DEF);*/
 
                 sw.Close();
             }
