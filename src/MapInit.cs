@@ -277,7 +277,13 @@ namespace Projet_7
             {
                 DialogText();
                 Console.SetCursorPosition(30, 54);
-                Console.Write("ta gueule");
+                Console.Write("Damn I really do hate those Pokemon, the only sh*t they can do is scream their names and only that !");
+                Console.ReadKey();
+                Console.SetCursorPosition(30, 55);
+                Console.Write("If only there was a way to capture them and put them in a small box to use their competence for our own good...");
+                Console.ReadKey();
+                Console.SetCursorPosition(30, 56);
+                Console.Write("Can you go kill like 5 Pokemon for my 'research' ?");
             }
             else if (playerY == pnjPos[2] && playerX == pnjPos[3])
             {
