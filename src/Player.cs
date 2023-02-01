@@ -100,7 +100,7 @@ namespace Projet_7.src
                     break;
             }
         }
-        public void SavePlayer(Player player)
+        public void SavePlayer()
         {
             try
             {
@@ -109,8 +109,8 @@ namespace Projet_7.src
 
                 List<int> saves = new List<int>();
                 saves.Add(0);
-                saves.Add(7);
-                saves.Add(14);
+                saves.Add(21);
+                saves.Add(42);
 
                 Console.WriteLine("Which save do you save? ( 1 , 2 , 3 )");
                 string input = Console.ReadLine();
@@ -118,7 +118,8 @@ namespace Projet_7.src
                 int data = 0;
 
                 if (int.Parse(input) == 0) 
-                { 
+                {
+                    data = PlayerInit.PlayerList["Player1"]._LVL;
                     data = int.Parse(lines[saves[0]]);
                     File.WriteAllLines("save.txt", lines);
                 }
@@ -131,13 +132,13 @@ namespace Projet_7.src
                     data = int.Parse(lines[saves[2]]);
                 }
 
-/*                sw.WriteLine(player._LVL);
-                sw.WriteLine(player._HP);
-                sw.WriteLine(player._MP);
-                sw.WriteLine(player._ATT);
-                sw.WriteLine(player._ACC);
-                sw.WriteLine(player._SPEED);
-                sw.WriteLine(player._DEF);*/
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._LVL);
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._HP);
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._MP);
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._ATT);
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._ACC);
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._SPEED);
+                sw.WriteLine(PlayerInit.PlayerList["Player1"]._DEF);
 
                 sw.Close();
             }
@@ -165,7 +166,7 @@ namespace Projet_7.src
                     i = i * int.Parse(input);
 
                 //int i = 7 * int.Parse(input);
-                string[] PlayerData = File.ReadAllLines("save.txt");
+                /*string[] PlayerData = File.ReadAllLines("save.txt");
                 Player player = new Player(
                     int.Parse(PlayerData[i]),
                     int.Parse(PlayerData[i++]),
@@ -179,7 +180,7 @@ namespace Projet_7.src
                     Console.WriteLine(PlayerData[j]);
                 }
                     int.Parse(PlayerData[i++]),
-                    "");
+                    "");*/
 
                 /*  if (info.Length != 0)
                   {
