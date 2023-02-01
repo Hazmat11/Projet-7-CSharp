@@ -50,16 +50,26 @@ namespace Projet_7.src
                 {
                     Console.Clear();
                     Console.WriteLine("=============== Stats ===============");
+                    Console.Write("Enemy = ");
+                    Console.Write(enemy._NAME);
+                    Console.SetCursorPosition(21, 1);
+                    Console.Write("Player = ");
+                    Console.WriteLine(player._HP);
                     Console.Write("Enemy LVL = ");
                     Console.Write(enemy._LVL);
-                    Console.SetCursorPosition(21, 1);
+                    Console.SetCursorPosition(21, 2);
                     Console.Write("Player LVL = ");
                     Console.WriteLine(player._LVL);
                     Console.Write("Enemy Hp = ");
                     Console.Write(enemy._HP);
-                    Console.SetCursorPosition(21, 2);
+                    Console.SetCursorPosition(21, 3);
                     Console.Write("Player HP = ");
                     Console.WriteLine(player._HP);
+                    Console.Write("Enemy Stamina = ");
+                    Console.Write(enemy._MP);
+                    Console.SetCursorPosition(21, 4);
+                    Console.Write("Player Stamina = ");
+                    Console.WriteLine(player._MP);
                     menu.FightMenu();
                     if (menu._ID == 0)
                     {

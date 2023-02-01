@@ -50,14 +50,14 @@ namespace Projet_7.Managers
         {
             for (int i = 0; i < 10; i++)
             {
-                Console.SetCursorPosition(0, 3+i);
+                Console.SetCursorPosition(0, 5+i);
                 Console.Write("                                     ");
             }
-            Console.SetCursorPosition(0, 3);
+            Console.SetCursorPosition(0, 5);
             string prompt = "=====================================";
             string[] Options = { "Fight", "Use Item", "Escape" };
             Menu menu = new Menu(prompt, Options);
-            int Index = menu.Run(0, 3);
+            int Index = menu.Run(0, 5);
 
             if (Index == 0) _ID = 0;
             else if (Index == 1) _ID = 1;
@@ -94,14 +94,14 @@ namespace Projet_7.Managers
         {
             for (int i = 0; i < 10; i++)
             {
-                Console.SetCursorPosition(0, 3 + i);
+                Console.SetCursorPosition(0, 5 + i);
                 Console.Write("                                     ");
             }
-            Console.SetCursorPosition(0, 3);
+            Console.SetCursorPosition(0, 5);
             string prompt = "=====================================";
             string[] Options = { "Fight", "Defend", "Change Character"};
             Menu menu = new Menu(prompt, Options);
-            int Index = menu.Run(0, 3);
+            int Index = menu.Run(0, 5);
 
             if (Index == 0) _ID = 0;
             else if (Index == 1) _ID = 1;
@@ -115,7 +115,7 @@ namespace Projet_7.Managers
                 Console.SetCursorPosition(0, 3 + i);
                 Console.Write("                                     ");
             }
-            Console.SetCursorPosition(0, 3);
+            Console.SetCursorPosition(0, 5);
 
             string prompt = "=====================================";
             List<string> OptionsList = new List<string>();
@@ -132,7 +132,7 @@ namespace Projet_7.Managers
 
             Menu menu = new Menu(prompt, Options);
 
-            int Index = menu.Run(0, 3);
+            int Index = menu.Run(0, 5);
             _ID = Index;
             return Options;
         }

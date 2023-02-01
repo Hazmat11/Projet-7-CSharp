@@ -9,6 +9,7 @@ namespace Projet_7.src
 {
     public class Enemy
     {
+        public string _NAME { get; set; }
         public int _LVL { get; set; }
         public int _HP { get; set; }
         public int _MP { get; set; }
@@ -19,8 +20,9 @@ namespace Projet_7.src
         public string _TYPE { get; set; }
         public Effects _EFCT { get; set; }
 
-        public Enemy(int lvlBase, int hpBase, int mpBase, int attBase, int accBase, int speedBase, int defBase, string type)
+        public Enemy(string name, int lvlBase, int hpBase, int mpBase, int attBase, int accBase, int speedBase, int defBase, string type)
         {
+            _NAME = name;
             _LVL = lvlBase;
             _HP = hpBase;
             _MP = mpBase;

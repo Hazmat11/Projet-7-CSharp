@@ -42,12 +42,15 @@ namespace Projet_7.src
                 int mult = 2;
                 if (_TYPE == "Plant" && target._TYPE == "Fire" || _TYPE == "Fire" && target._TYPE == "Water" || _TYPE == "Water" && target._TYPE == "Plant")
                 {
-                    value = ((user._ATT) - target._DEF + ardm) * mult;
+                    value = ((user._ATT + _ATT) - target._DEF + ardm) / mult;
+                    Console.WriteLine("Weak");
                 }
                 else if (_TYPE == "Plant" && target._TYPE == "Water" || _TYPE == "Fire" && target._TYPE == "Plant" || _TYPE == "Water" && target._TYPE == "Fire")
                 {
-                    value = ((user._ATT) - target._DEF + ardm) / mult;
+                    value = ((user._ATT + _ATT) - target._DEF + ardm) * mult;
+                    Console.WriteLine("Strong");
                 }
+                else value = ((user._ATT + _ATT) - target._DEF + ardm);
                 if (user._MP < _MPCOST)
                 {
                     Console.WriteLine("You don't have enought Stamina");
@@ -79,12 +82,13 @@ namespace Projet_7.src
                 int mult = 2;
                 if (_TYPE == "Plant" && target._TYPE == "Fire" || _TYPE == "Fire" && target._TYPE == "Water" || _TYPE == "Water" && target._TYPE == "Plant")
                 {
-                    value = ((user._ATT) - target._DEF + ardm) * mult;
+                    value = ((user._ATT + _ATT) - target._DEF + ardm) / mult;
                 }
                 else if (_TYPE == "Plant" && target._TYPE == "Water" || _TYPE == "Fire" && target._TYPE == "Plant" || _TYPE == "Water" && target._TYPE == "Fire")
                 {
-                    value = ((user._ATT) - target._DEF + ardm) / mult;
+                    value = ((user._ATT + _ATT) - target._DEF + ardm) * mult;
                 }
+                else value = ((user._ATT + _ATT) - target._DEF + ardm);
                 if (user._MP < _MPCOST)
                 {
                     Console.WriteLine("Enemy try to Attack but he is out of Stamina");
