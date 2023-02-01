@@ -13,13 +13,13 @@ namespace Projet_7.src
     {
         public Fight(Player player, Enemy enemy)
         {
-       
             AudioManager audioManager = new AudioManager();
             audioManager.PlayMusic("Fight.wav");
 
             /*Attacks test = new Attacks('p',5,2,'P');*/
             Waiter wait = new Waiter();
             MenuManager menu = new MenuManager();
+            Random rdm = new Random();
             int Turn = 0;
             bool PlayerTurn;
             bool doPlayerDefend = false;
@@ -80,6 +80,12 @@ namespace Projet_7.src
                                 Console.Write("-");
                                 Console.Write(AttacksInit.Dictionary[Skill[menu._ID]].usePlayerAttack(player, enemy));
                                 Console.WriteLine(" HP");
+
+                                int efctrdm = rdm.Next(0, 100);
+                                if (efctrdm <= AttacksInit.Dictionary[Skill[menu._ID]]._EFCT._HITCH)
+                                {
+                                    enemy._EFCT = AttacksInit.Dictionary[Skill[menu._ID]]._EFCT;
+                                }
                                 wait.Wait();
                             }
                             else
@@ -87,6 +93,12 @@ namespace Projet_7.src
                                 Console.WriteLine("You Missed");
                                 wait.Wait();
                             }
+                            if (player._EFCT != EffectInit.Dictionary["None"])
+                            {
+                                Console.WriteLine("");
+                                player._EFCT.GiveDamagetoPlayer(player);
+                            }
+                            wait.Wait();
                         }
                         else if (menu._ID == 1)
                         {
@@ -95,11 +107,16 @@ namespace Projet_7.src
                             player._DEF += 5;
                             Console.WriteLine("You defend Yourself");
                             wait.Wait();
+                            if (player._EFCT != EffectInit.Dictionary["None"])
+                            {
+                                Console.WriteLine("");
+                                player._EFCT.GiveDamagetoPlayer(player);
+                            }
+                            wait.Wait();
                         }
                     }
                     if (enemy._HP > 0)
                     {
-                        Random rdm = new Random();
                         int ardm = rdm.Next(0, EnemyAttacks.Length);
                         Console.WriteLine("");
                         Console.WriteLine("=== Enemy Turn ===");
@@ -120,6 +137,12 @@ namespace Projet_7.src
                             Console.Write("You Evade");
                             wait.Wait();
                         }
+                        if (enemy._EFCT != EffectInit.Dictionary["None"])
+                        {
+                            Console.WriteLine("");
+                            enemy._EFCT.GiveDamagetoEnemy(enemy);
+                            wait.Wait();
+                        }
                     }
                 }
                 else
@@ -137,6 +160,12 @@ namespace Projet_7.src
                         wait.Wait();
                     }
                     else Console.Write("You Evade");
+                    wait.Wait();
+                    if (enemy._EFCT != EffectInit.Dictionary["None"])
+                    {
+                        Console.WriteLine("");
+                        enemy._EFCT.GiveDamagetoEnemy(enemy);
+                    }
                     wait.Wait();
 
                     if (player._HP > 0)
@@ -188,6 +217,11 @@ namespace Projet_7.src
                                 player._DEF += 5;
                                 Console.WriteLine("You defend Yourself");
                                 wait.Wait();
+                                if (player._EFCT != EffectInit.Dictionary["None"])
+                                {
+                                    player._EFCT.GiveDamagetoPlayer(player);
+                                }
+                                wait.Wait();
                             }
                         }
                     }
@@ -220,6 +254,10 @@ namespace Projet_7.src
 
         public int GiveDamageToPlayer(Player player, Enemy enemy)
         {
+            int mult = 1;
+            if (player._TYPE == "Plant" && enemy._TYPE == "Fire") mult = 2;
+            if (player._TYPE == "Fire" && enemy._TYPE == "Water") mult = 2;
+            if (player._TYPE == "Water" && enemy._TYPE == "Plant") mult = 2;
             int value = (enemy._ATT) - player._DEF;
             if (value < 0)
             {
@@ -229,18 +267,6 @@ namespace Projet_7.src
             else player.TakeDamage(value);
             return value;
         }
-
-/*        public int GiveDamageToEnemy(Player player, Enemy enemy)
-        {
-            int value = (player._ATT) - enemy._DEF;
-            if (value < 0)
-            {
-                value = 0;
-                enemy.TakeDamage(value);
-            }
-            else enemy.TakeDamage(value);
-            return value;
-        }*/
 
         public bool doPlayerAttackHit(Player player, Enemy enemy)
         {

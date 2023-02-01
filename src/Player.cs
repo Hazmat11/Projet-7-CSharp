@@ -20,14 +20,16 @@ namespace Projet_7.src
         public int _ACC { get; set; }
         public int _SPEED { get; set; }
         public int _DEF { get; set; }
+        public Effects _EFCT { get; set; }
         public int _X { get; set; }
         public int _Y { get; set; }
+        public string _TYPE { get; set; }
 
         public int keyValue = 0;
 
         public bool ingame = true;
 
-        public Player(int lvlBase, int hpBase, int mpBase, int attBase, int accBase, int speedBase, int defBase)
+        public Player(int lvlBase, int hpBase, int mpBase, int attBase, int accBase, int speedBase, int defBase, string type)
         {
             _LVL = lvlBase;
             _HP = hpBase;
@@ -36,8 +38,11 @@ namespace Projet_7.src
             _ACC = accBase;
             _SPEED = speedBase;
             _DEF = defBase;
+            _TYPE = type;
+            _EFCT = EffectInit.Dictionary["None"];
             _X = 0;
             _Y = 0;
+
         }
 
         public void LVLUp()
@@ -173,6 +178,17 @@ namespace Projet_7.src
                 {
                     Console.WriteLine(PlayerData[j]);
                 }
+                    int.Parse(PlayerData[i++]),
+                    "");
+
+                /*  if (info.Length != 0)
+                  {
+
+                  }
+                  else
+                  {
+                      Console.WriteLine("Any game saved");
+                  }*/
             }
             else
             {
