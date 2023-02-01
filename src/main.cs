@@ -29,23 +29,17 @@ namespace Projet_7.src
             EnemyManager manager = new EnemyManager();
             MenuManager mainMenu= new MenuManager();
 
+            AudioManager audioManager = new AudioManager();
+            /*audioManager.PlayMusic("Explore.wav");*/
+
             Player player = new Player(50, 100, 100, 30, 3, 8, 3);
+            player.LVLUp();
+
+            player.SavePlayer(player);
+            player.LoadPlayer();
+
+            //mainMenu.MainMenu(player, manager);
             //player.SavePlayer(player);
-            while (true)
-            {
-                Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
-                ShowWindow(ThisConsole, MAXIMIZE);
-                Console.Clear();
-                EnemyManager manager = new EnemyManager();
-                MenuManager mainMenu = new MenuManager();
-                Player player = new Player(50, 100, 100, 30, 3, 8, 3);
-
-                AudioManager audioManager = new AudioManager();
-                /*audioManager.PlayMusic("Explore.wav");*/
-
-                player.LVLUp();
-                mainMenu.MainMenu(player, manager);
-            }
         }
     }
 }
