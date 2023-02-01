@@ -150,7 +150,7 @@ namespace Projet_7.src
             {
                 Console.SetCursorPosition(0, 0);
             }
-            StreamWriter sw = new StreamWriter("save.txt");
+           /* StreamWriter sw = new StreamWriter("save.txt");
             sw.WriteLine(_LVL);
             sw.WriteLine(_HP);
             sw.WriteLine(_MP);
@@ -159,7 +159,7 @@ namespace Projet_7.src
             sw.WriteLine(_SPEED);
             sw.WriteLine(_DEF);
             sw.WriteLine(Map.choosenFile);
-            sw.Close();
+            sw.Close();*/
         }
         public void LoadPlayer()
         {
