@@ -147,7 +147,7 @@ namespace Projet_7.Managers
         {
             for (int i = 0; i < 10; i++)
             {
-                Console.SetCursorPosition(0, 3 + i);
+                Console.SetCursorPosition(0, 5 + i);
                 Console.Write("                                     ");
             }
             Console.SetCursorPosition(0, 5);

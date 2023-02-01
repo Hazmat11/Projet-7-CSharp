@@ -35,7 +35,7 @@ namespace Projet_7.src
         public int usePlayerAttack(Player user, Enemy target)
         {
             Random rdm = new Random();
-            int ardm = rdm.Next(-_ACC, _ACC);
+            int ardm = rdm.Next(-_ACC, _ACC+1);
             int value = 0;
             if ( _FOR != "Enemy")
             {
@@ -75,7 +75,7 @@ namespace Projet_7.src
         public int useEnemyAttack(Enemy user, Player target)
         {
             Random rdm = new Random();
-            int ardm = rdm.Next(-_ACC, _ACC);
+            int ardm = rdm.Next(-_ACC, _ACC+1);
             int value = 0;
             if (_FOR != "Player")
             {

@@ -13,7 +13,8 @@ namespace Projet_7.Managers
         {
             Random random = new Random();
             Random lvlRandom = new Random();
-            int rnd = random.Next(0, 2);
+            int rnd = random.Next(0, 3);
+            Console.ReadKey(true);
             Enemy enemy = new Enemy("",0, 0, 0, 0, 0, 0, 0, "") ;
             switch (rnd)
             {

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
 using Projet_7.Managers;
+using Windows.UI.Xaml.Controls;
 
 namespace Projet_7.src
 {
@@ -48,28 +50,7 @@ namespace Projet_7.src
                 Console.WriteLine(Turn);
                 if (PlayerTurn)
                 {
-                    Console.Clear();
-                    Console.WriteLine("=============== Stats ===============");
-                    Console.Write("Enemy = ");
-                    Console.Write(enemy._NAME);
-                    Console.SetCursorPosition(21, 1);
-                    Console.Write("Player = ");
-                    Console.WriteLine(player._HP);
-                    Console.Write("Enemy LVL = ");
-                    Console.Write(enemy._LVL);
-                    Console.SetCursorPosition(21, 2);
-                    Console.Write("Player LVL = ");
-                    Console.WriteLine(player._LVL);
-                    Console.Write("Enemy Hp = ");
-                    Console.Write(enemy._HP);
-                    Console.SetCursorPosition(21, 3);
-                    Console.Write("Player HP = ");
-                    Console.WriteLine(player._HP);
-                    Console.Write("Enemy Stamina = ");
-                    Console.Write(enemy._MP);
-                    Console.SetCursorPosition(21, 4);
-                    Console.Write("Player Stamina = ");
-                    Console.WriteLine(player._MP);
+                    DisplayStats(player, enemy);
                     menu.FightMenu();
                     if (menu._ID == 0)
                     {
@@ -125,9 +106,30 @@ namespace Projet_7.src
                             wait.Wait();
                         }
                     }
+                    else if (menu._ID == 1)
+                    {
+                        //Faire le system de use item
+                    }
+                    else if (menu._ID == 2)
+                    {                     
+                        if (rdm.Next(0, 2)!= 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("You Escaped");
+                            wait.Wait();
+                            enemy._HP = -1;
+                        }
+                        else
+                        {
+                            Console.Clear() ;
+                            Console.WriteLine("You Fail your Escape");
+                            wait.Wait();
+                        }
+                    }
+
                     if (enemy._HP > 0)
                     {
-                        int ardm = rdm.Next(0, EnemyAttacks.Length);
+                        int ardm = rdm.Next(0, EnemyAttacks.Length+1);
                         Console.WriteLine("");
                         Console.WriteLine("=== Enemy Turn ===");
                         Console.WriteLine("");
@@ -157,15 +159,19 @@ namespace Projet_7.src
                 }
                 else
                 {
+                    int ardm = rdm.Next(0, EnemyAttacks.Length + 1);
                     Console.WriteLine("");
                     Console.WriteLine("=== Enemy Turn ===");
+                    Console.WriteLine("");
+                    Console.Write("Enemy use ");
+                    Console.WriteLine(EnemyAttacks[ardm]);
                     Console.WriteLine("");
                     if (doEnemyAttackHit(player, enemy))
                     {
                         Console.WriteLine("");
                         Console.WriteLine("You take Damage :");
                         Console.Write("-");
-                        Console.Write(GiveDamageToPlayer(player, enemy));
+                        Console.Write(AttacksInit.Dictionary[EnemyAttacks[ardm]].useEnemyAttack(enemy, player));
                         Console.WriteLine("HP");
                         wait.Wait();
                     }
@@ -180,18 +186,7 @@ namespace Projet_7.src
 
                     if (player._HP > 0)
                     {
-                        Console.Clear();
-                        Console.WriteLine("=============== Stats ===============");
-                        Console.Write("Enemy LVL = ");
-                        Console.Write(enemy._LVL);
-                        Console.SetCursorPosition(21, 1);
-                        Console.Write("Player LVL = ");
-                        Console.WriteLine(player._LVL);
-                        Console.Write("Enemy Hp = ");
-                        Console.Write(enemy._HP);
-                        Console.SetCursorPosition(21, 2);
-                        Console.Write("Player HP = ");
-                        Console.WriteLine(player._HP);
+                        DisplayStats(player, enemy);
                         menu.FightMenu();
                         if (menu._ID == 0)
                         {
@@ -234,11 +229,57 @@ namespace Projet_7.src
                                 wait.Wait();
                             }
                         }
+                        else if (menu._ID == 1)
+                        {
+                            //Faire le system de use item
+                        }
+                        else if (menu._ID == 2)
+                        {
+                            if (rdm.Next(0, 2) != 0)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("You Escaped");
+                                wait.Wait();
+                                enemy._HP = -1;
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("You Fail your Escape");
+                                wait.Wait();
+                            }
+                        }
                     }
                 }
                 if (doPlayerDefend) player._DEF -= 5;
                 Turn++;
             }
+        }
+
+        public void DisplayStats(Player player, Enemy enemy)
+        {
+            Console.Clear();
+            Console.WriteLine("=============== Stats ===============");
+            Console.Write("Enemy = ");
+            Console.Write(enemy._NAME);
+            Console.SetCursorPosition(21, 1);
+            Console.Write("Player = ");
+            Console.WriteLine(player._HP);
+            Console.Write("Enemy LVL = ");
+            Console.Write(enemy._LVL);
+            Console.SetCursorPosition(21, 2);
+            Console.Write("Player LVL = ");
+            Console.WriteLine(player._LVL);
+            Console.Write("Enemy Hp = ");
+            Console.Write(enemy._HP);
+            Console.SetCursorPosition(21, 3);
+            Console.Write("Player HP = ");
+            Console.WriteLine(player._HP);
+            Console.Write("Enemy Stamina = ");
+            Console.Write(enemy._MP);
+            Console.SetCursorPosition(21, 4);
+            Console.Write("Player Stamina = ");
+            Console.WriteLine(player._MP);
         }
 
         public bool isPlayerFaster(Player player, Enemy enemy){
@@ -284,7 +325,7 @@ namespace Projet_7.src
             if (player._ACC < enemy._SPEED)
             {
                 int HitChance = random.Next(0, 100);
-                if (HitChance > 40)
+                if (HitChance > 30)
                 {
                     return true;
                 }
