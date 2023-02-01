@@ -19,6 +19,7 @@ namespace Projet_7.Managers
         public int _ID { get; set; }
         String linetxt;
         public static bool optionMenu = false;
+        private bool inventoryLoop = true;
         public void MainMenu(Player player, EnemyManager manager)
         {
             string prompt = "Welcome to your menu";
@@ -62,31 +63,39 @@ namespace Projet_7.Managers
             if (Index == 0) _ID = 0;
             else if (Index == 1) _ID = 1;
             else _ID = 2;
-        }  
-        
+        }
+
         public void PauseMenu(MapInit map, Player player, EnemyManager enemyManager)
         {
-            string prompt = "\r\n  __  __                  \r\n |  \\/  |                 \r\n | \\  / | ___ _ __  _   _ \r\n | |\\/| |/ _ \\ '_ \\| | | |\r\n | |  | |  __/ | | | |_| |\r\n |_|  |_|\\___|_| |_|\\__,_|\r\n                          \r\n                          \r\n";
-            string[] Options = { "Inventaire", "Resume", "Save and Quit" };
-            Menu menu = new Menu(prompt, Options);
-            optionMenu = true;
-            int Index = menu.Run(0, 0);
+            while (inventoryLoop)
+            {
+                string prompt = "\r\n  __  __                  \r\n |  \\/  |                 \r\n | \\  / | ___ _ __  _   _ \r\n | |\\/| |/ _ \\ '_ \\| | | |\r\n | |  | |  __/ | | | |_| |\r\n |_|  |_|\\___|_| |_|\\__,_|\r\n                          \r\n                          \r\n";
+                string[] Options = { "Inventaire", "Team", "Resume", "Save and Quit" };
+                Menu menu = new Menu(prompt, Options);
+                optionMenu = true;
+                int Index = menu.Run(0, 0);
 
-            if (Index == 0)
-            {
-                //Inventory();
-            }
-            else if (Index == 2)
-            {
-                //map.Save(player);
-                Environment.Exit(0);
-            }
-            else if (Index == 1)
-            {               
-                map.ingame = true;
-                Console.Clear();
-                map.WriteTab();
-                map.movePlayer(player, enemyManager);
+                if (Index == 0)
+                {
+                    Inventory();
+                }
+                else if (Index == 2)
+                {
+                    inventoryLoop= false;
+                    map.ingame = true;
+                    Console.Clear();
+                    map.WriteTab();
+                    map.movePlayer(player, enemyManager);
+                }
+                else if (Index == 1)
+                {
+                    Equipment(player);
+                }
+                else if (Index == 3)
+                {
+                    //map.Save(player);
+                    Environment.Exit(0);
+                }
             }
         }
 
@@ -137,19 +146,73 @@ namespace Projet_7.Managers
             return Options;
         }
 
-        public void PauseMenu(Player player)
+        public void Inventory()
         {
-            Console.CursorVisible = true;
-            Console.SetCursorPosition(80, 3);
+            Console.CursorVisible = false;
+            Console.SetCursorPosition(90, 1);
             Console.WriteLine("  _____                      _                   ");
-            Console.SetCursorPosition(80,4); Console.WriteLine(" |_   _|                    | |                  ");
-            Console.SetCursorPosition(80,5); Console.WriteLine("   | |  _ ____   _____ _ __ | |_ ___  _ __ _   _ ");
-            Console.SetCursorPosition(80,6); Console.WriteLine("   | | | '_ \\ \\ / / _ \\ '_ \\| __/ _ \\| '__| | | |");
-            Console.SetCursorPosition(80,7); Console.WriteLine("  _| |_| | | \\ V /  __/ | | | || (_) | |  | |_| |");
-            Console.SetCursorPosition(80,8); Console.WriteLine(" |_____|_| |_|\\_/ \\___|_| |_|\\__\\___/|_|   \\__, |");
-            Console.SetCursorPosition(80,9); Console.WriteLine("                                            __/ |");
-            Console.SetCursorPosition(80,10); Console.WriteLine("                                           |___/ ");
-            Console.SetCursorPosition(80,11); Console.WriteLine("");
+            Console.SetCursorPosition(90,2); Console.WriteLine(" |_   _|                    | |                  ");
+            Console.SetCursorPosition(90,3); Console.WriteLine("   | |  _ ____   _____ _ __ | |_ ___  _ __ _   _ ");
+            Console.SetCursorPosition(90,4); Console.WriteLine("   | | | '_ \\ \\ / / _ \\ '_ \\| __/ _ \\| '__| | | |");
+            Console.SetCursorPosition(90,5); Console.WriteLine("  _| |_| | | \\ V /  __/ | | | || (_) | |  | |_| |");
+            Console.SetCursorPosition(90,6); Console.WriteLine(" |_____|_| |_|\\_/ \\___|_| |_|\\__\\___/|_|   \\__, |");
+            Console.SetCursorPosition(90,7); Console.WriteLine("                                            __/ |");
+            Console.SetCursorPosition(90,8); Console.WriteLine("                                           |___/ ");
+            Console.SetCursorPosition(90,9); Console.WriteLine("");
+        }
+
+        public void Equipment(Player player)
+        {
+            Console.CursorVisible = false;
+            Console.SetCursorPosition(90, 1);
+            Console.WriteLine("  ______            _                            _   ");
+            Console.SetCursorPosition(90, 2); Console.WriteLine(" |  ____|          (_)                          | |  ");
+            Console.SetCursorPosition(90, 3); Console.WriteLine(" | |__   __ _ _   _ _ _ __  _ __ ___   ___ _ __ | |_ ");
+            Console.SetCursorPosition(90, 4); Console.WriteLine(" |  __| / _` | | | | | '_ \\| '_ ` _ \\ / _ \\ '_ \\| __|");
+            Console.SetCursorPosition(90, 5); Console.WriteLine(" | |___| (_| | |_| | | |_) | | | | | |  __/ | | | |_ ");
+            Console.SetCursorPosition(90, 6); Console.WriteLine(" |______\\__, |\\__,_|_| .__/|_| |_| |_|\\___|_| |_|\\__|");
+            Console.SetCursorPosition(90, 7); Console.WriteLine("           | |       | |                             ");
+            Console.SetCursorPosition(90, 8); Console.WriteLine("           |_|       |_|                             ");
+            Console.SetCursorPosition(90, 9); Console.WriteLine("");
+            playerStats(player);
+        }
+
+        public void playerStats(Player player)
+        {
+            Console.SetCursorPosition(90, 15);
+            Console.Write("Level: ");
+            Console.SetCursorPosition(100, 15);
+            Console.WriteLine(player._LVL);
+
+            Console.SetCursorPosition(90, 16);
+            Console.Write("Health: ");
+            Console.SetCursorPosition(100,16);
+            Console.WriteLine(player._HP);
+
+            Console.SetCursorPosition(90, 17);
+            Console.Write("Stamina: ");
+            Console.SetCursorPosition(100,17);
+            Console.WriteLine(player._MP);
+
+            Console.SetCursorPosition(90, 18);
+            Console.Write("Attack: ");
+            Console.SetCursorPosition(100,18);
+            Console.WriteLine(player._ATT);
+
+            Console.SetCursorPosition(90, 19);
+            Console.Write("Accuracy: ");
+            Console.SetCursorPosition(100,19);
+            Console.WriteLine(player._ACC);
+
+            Console.SetCursorPosition(90, 20);
+            Console.Write("Speed: ");
+            Console.SetCursorPosition(100,20);
+            Console.WriteLine(player._SPEED);
+
+            Console.SetCursorPosition(90, 21);
+            Console.Write("Defense: ");
+            Console.SetCursorPosition(100,21);
+            Console.WriteLine(player._DEF);
         }
 
         public void Option()
