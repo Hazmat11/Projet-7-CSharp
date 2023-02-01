@@ -13,7 +13,6 @@ namespace Projet_7.src
     {
         public Fight(Player player, Enemy enemy)
         {
-       
             AudioManager audioManager = new AudioManager();
             audioManager.PlayMusic("Fight.wav");
 
@@ -220,6 +219,10 @@ namespace Projet_7.src
 
         public int GiveDamageToPlayer(Player player, Enemy enemy)
         {
+            int mult = 1;
+            if (player._TYPE == "Plant" && enemy._TYPE == "Fire") mult = 2;
+            if (player._TYPE == "Fire" && enemy._TYPE == "Water") mult = 2;
+            if (player._TYPE == "Water" && enemy._TYPE == "Plant") mult = 2;
             int value = (enemy._ATT) - player._DEF;
             if (value < 0)
             {

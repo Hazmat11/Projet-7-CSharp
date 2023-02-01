@@ -15,8 +15,10 @@ namespace Projet_7.src
         public int _ACC { get; set; }
         public int _SPEED { get; set; }
         public int _DEF { get; set; }
+        public string _TYPE { get; set; }
 
-        public Enemy(int lvlBase, int hpBase, int mpBase, int attBase, int accBase, int speedBase, int defBase)
+
+        public Enemy(int lvlBase, int hpBase, int mpBase, int attBase, int accBase, int speedBase, int defBase, string type)
         {
             _LVL = lvlBase;
             _HP = hpBase;
@@ -25,6 +27,7 @@ namespace Projet_7.src
             _ACC = accBase;
             _SPEED = speedBase;
             _DEF = defBase;
+            _TYPE = type;
         }
 
         ~Enemy()
