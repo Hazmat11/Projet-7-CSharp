@@ -13,11 +13,13 @@ namespace Projet_7.src
 {
     internal class Fight
     {
-        public Fight(Player player, Enemy enemy)
+        public Fight(Player fplayer, Enemy enemy)
         {
+            Player player = fplayer;
             AudioManager audioManager = new AudioManager();
             audioManager.PlayMusic("Fight.wav");
-
+            int MaxMPPlayer = player._MP;
+            int MaxMPEnemy = enemy._MP;
             /*Attacks test = new Attacks('p',5,2,'P');*/
             Waiter wait = new Waiter();
             MenuManager menu = new MenuManager();
@@ -50,82 +52,105 @@ namespace Projet_7.src
                 Console.WriteLine(Turn);
                 if (PlayerTurn)
                 {
-                    DisplayStats(player, enemy);
-                    menu.FightMenu();
-                    if (menu._ID == 0)
+                    if (player._MP > 0)
                     {
-                        menu.AttackMenu();
+                        DisplayStats(player, enemy);
+                        menu.FightMenu();
                         if (menu._ID == 0)
                         {
-                            Skill = menu.SkillMenu();
-                            Console.Clear();
-                            Console.WriteLine("");
-                            Console.WriteLine("=== Player Turn ===");
-                            Console.WriteLine("");
-                            Console.Write("You use ");
-                            Console.WriteLine(Skill[menu._ID]);
-                            Console.WriteLine("");
-                            if (doPlayerAttackHit(player, enemy))
+                            menu.AttackMenu();
+                            if (menu._ID == 0)
                             {
-                                Console.WriteLine("You give Damage :");
-                                Console.Write("-");
-                                Console.Write(AttacksInit.Dictionary[Skill[menu._ID]].usePlayerAttack(player, enemy));
-                                Console.WriteLine(" HP");
-
-                                int efctrdm = rdm.Next(0, 100);
-                                if (efctrdm <= AttacksInit.Dictionary[Skill[menu._ID]]._EFCT._HITCH)
+                                Skill = menu.SkillMenu();
+                                Console.Clear();
+                                Console.WriteLine("");
+                                Console.WriteLine("=== Player Turn ===");
+                                Console.WriteLine("");
+                                Console.Write("You use ");
+                                Console.WriteLine(Skill[menu._ID]);
+                                Console.WriteLine("");
+                                if (doPlayerAttackHit(player, enemy))
                                 {
-                                    enemy._EFCT = AttacksInit.Dictionary[Skill[menu._ID]]._EFCT;
+                                    Console.WriteLine("You give Damage :");
+                                    Console.Write("-");
+                                    Console.Write(AttacksInit.Dictionary[Skill[menu._ID]].usePlayerAttack(player, enemy));
+                                    Console.WriteLine(" HP");
+
+                                    int efctrdm = rdm.Next(0, 100);
+                                    if (efctrdm <= AttacksInit.Dictionary[Skill[menu._ID]]._EFCT._HITCH)
+                                    {
+                                        enemy._EFCT = AttacksInit.Dictionary[Skill[menu._ID]]._EFCT;
+                                    }
+                                    wait.Wait();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You Missed");
+                                    wait.Wait();
+                                }
+                                if (player._EFCT != EffectInit.Dictionary["None"])
+                                {
+                                    Console.WriteLine("");
+                                    player._EFCT.GiveDamagetoPlayer(player);
                                 }
                                 wait.Wait();
                             }
-                            else
+                            else if (menu._ID == 1)
                             {
-                                Console.WriteLine("You Missed");
+                                Console.Clear();
+                                doPlayerDefend = true;
+                                player._DEF += 5;
+                                Console.WriteLine("You defend Yourself");
+                                wait.Wait();
+                                if (player._EFCT != EffectInit.Dictionary["None"])
+                                {
+                                    Console.WriteLine("");
+                                    player._EFCT.GiveDamagetoPlayer(player);
+                                }
                                 wait.Wait();
                             }
-                            if (player._EFCT != EffectInit.Dictionary["None"])
+                            else if (menu._ID == 2)
                             {
-                                Console.WriteLine("");
-                                player._EFCT.GiveDamagetoPlayer(player);
+                                player = ChangePlayer(menu);
+                                DisplayStats(player, enemy);
+                                wait.Wait();
                             }
-                            wait.Wait();
                         }
                         else if (menu._ID == 1)
                         {
-                            Console.Clear();
-                            doPlayerDefend = true;
-                            player._DEF += 5;
-                            Console.WriteLine("You defend Yourself");
-                            wait.Wait();
-                            if (player._EFCT != EffectInit.Dictionary["None"])
-                            {
-                                Console.WriteLine("");
-                                player._EFCT.GiveDamagetoPlayer(player);
-                            }
-                            wait.Wait();
+                            //Faire le system de use item
                         }
-                    }
-                    else if (menu._ID == 1)
-                    {
-                        //Faire le system de use item
-                    }
-                    else if (menu._ID == 2)
-                    {                     
-                        if (rdm.Next(0, 2)!= 0)
+                        else if (menu._ID == 2)
                         {
-                            Console.Clear();
-                            Console.WriteLine("You Escaped");
+                            if (rdm.Next(0, 2) != 0)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("You Escaped");
+                                wait.Wait();
+                                enemy._HP = -1;
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("You Fail your Escape");
+                                wait.Wait();
+                            }
+                        }
+                    } 
+                    else
+                    {
+                        if (PlayerInit.PlayerList["player1"]._ALIVE == true || PlayerInit.PlayerList["player2"]._ALIVE == true || PlayerInit.PlayerList["player3"]._ALIVE == true)
+                        {
+                            player = ChangePlayer(menu);
+                            DisplayStats(player, enemy);
                             wait.Wait();
-                            enemy._HP = -1;
                         }
                         else
                         {
-                            Console.Clear() ;
-                            Console.WriteLine("You Fail your Escape");
-                            wait.Wait();
+                            //Dead
                         }
                     }
+                    
 
                     if (enemy._HP > 0)
                     {
@@ -228,6 +253,12 @@ namespace Projet_7.src
                                 }
                                 wait.Wait();
                             }
+                            else if (menu._ID == 2)
+                            {
+                                player = ChangePlayer(menu);
+                                DisplayStats(player, enemy);
+                                wait.Wait();
+                            }
                         }
                         else if (menu._ID == 1)
                         {
@@ -249,14 +280,77 @@ namespace Projet_7.src
                                 wait.Wait();
                             }
                         }
+                    }  
+                    else
+                    {
+                        if (PlayerInit.PlayerList["player1"]._ALIVE == true || PlayerInit.PlayerList["player2"]._ALIVE == true || PlayerInit.PlayerList["player3"]._ALIVE == true)
+                        {
+                            player = ChangePlayer(menu);
+                            DisplayStats(player, enemy);
+                            wait.Wait();
+                        }
+                        else
+                        {
+                            //Dead
+                        }
                     }
                 }
                 int mrdm = rdm.Next(5, 15);
-
+                if (player._MP < MaxMPPlayer)
+                {
+                    if (player._MP + mrdm < MaxMPPlayer)
+                    { 
+                        player._MP = MaxMPPlayer;
+                    }
+                    else player._MP += mrdm;
+                }
                 if (doPlayerDefend) player._DEF -= 5;
+
+                if (enemy._MP < MaxMPEnemy)
+                {
+                    if (enemy._MP + mrdm < MaxMPEnemy)
+                    {
+                        enemy._MP = MaxMPEnemy;
+                    }
+                    else enemy._MP += mrdm;
+                }
                 Turn++;
             }
+            player._MP = MaxMPPlayer;
             GiveItem();
+        }
+        public Player ChangePlayer(MenuManager menu)
+        {
+            Player player;
+            menu.ChangePlayerMenu();
+            player = PlayerInit.PlayerList["player1"];
+            switch (menu._ID)
+            {
+                case 0:
+                    if (PlayerInit.PlayerList["player1"]._ALIVE == true)
+                    {
+                        player = PlayerInit.PlayerList["player1"];
+                    }
+                    else ChangePlayer(menu);
+                    break;
+                case 1:
+                    if (PlayerInit.PlayerList["player2"]._ALIVE == true)
+                    {
+                        player = PlayerInit.PlayerList["player2"];
+                    }
+                    else ChangePlayer(menu);
+                    break;
+                case 2:
+                    if (PlayerInit.PlayerList["player3"]._ALIVE == true)
+                    {
+                        player = PlayerInit.PlayerList["player1"];
+                    }
+                    else ChangePlayer(menu);
+                    break;
+            }
+            Console.Write("Vous avez choisi ");
+            Console.Write(player._NAME);
+            return player;
         }
 
         public void DisplayStats(Player player, Enemy enemy)
@@ -267,7 +361,7 @@ namespace Projet_7.src
             Console.Write(enemy._NAME);
             Console.SetCursorPosition(21, 1);
             Console.Write("Player = ");
-            Console.WriteLine(player._HP);
+            Console.WriteLine(player._NAME);
             Console.Write("Enemy LVL = ");
             Console.Write(enemy._LVL);
             Console.SetCursorPosition(21, 2);
