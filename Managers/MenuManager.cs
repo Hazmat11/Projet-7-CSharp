@@ -23,6 +23,7 @@ namespace Projet_7.Managers
         private bool inventoryLoop = true;
         public void MainMenu(Player player, EnemyManager manager)
         {
+            Console.CursorVisible = false;
             string prompt = "Welcome to your menu";
             string[] Options = { "Jouer", "Options", "Exit" };
             Menu menu = new Menu(prompt, Options);
@@ -123,6 +124,7 @@ namespace Projet_7.Managers
             {
                 playerStats(PlayerInit.PlayerList["player3"]);
             }
+            ClearMenu(0, 54);
         }
 
         public void ChooseItem(Player player)
@@ -140,26 +142,30 @@ namespace Projet_7.Managers
                 if (ObjectInit.Dictionary["HealP"]._QUANTITY > 0)
                 {
                     ObjectInit.Dictionary["HealP"]._QUANTITY -= 1;
-                    player.Heal(ObjectInit.Dictionary["HealP"]._HEALTH);
-                    menuPos = false;
+                    player.Heal(ObjectInit.Dictionary["HealP"]._HEALTH);                   
                 }
+                menuPos = false;
             }
             else if (Index == 1)
             {
                 if (ObjectInit.Dictionary["MPP"]._QUANTITY > 0)
                 {
                     ObjectInit.Dictionary["MPP"]._QUANTITY -= 1;
-                    menuPos = false;
+                    ObjectInit.Dictionary["MPP"].RegenMana(player);
                 }
+                menuPos = false;
             }
             else if (Index == 2)
             {
                 if (ObjectInit.Dictionary["CureP"]._QUANTITY > 0)
                 {
                     ObjectInit.Dictionary["CureP"]._QUANTITY -= 1;
-                    menuPos = false;
+                    player.Heal(ObjectInit.Dictionary["CureP"]._HEALTH);
+                    ObjectInit.Dictionary["CureP"].Cure(player);
                 }
+                menuPos = false;               
             }
+            ClearMenu(0, 54);
         }
 
         public void AttackMenu()
@@ -211,6 +217,7 @@ namespace Projet_7.Managers
 
         public void Inventory(Player player)
         {
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.CursorVisible = false;
             Console.SetCursorPosition(90, 1);
             Console.WriteLine("  _____                      _                   ");
@@ -222,12 +229,14 @@ namespace Projet_7.Managers
             Console.SetCursorPosition(90,7); Console.WriteLine("                                            __/ |");
             Console.SetCursorPosition(90,8); Console.WriteLine("                                           |___/ ");
             Console.SetCursorPosition(90,9); Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Gray;
             ItemList();
             ChooseItem(player);
         }
 
         public void Equipment(Player player)
         {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.CursorVisible = false;
             Console.SetCursorPosition(90, 1);
             Console.WriteLine("  ______            _                            _   ");
@@ -239,13 +248,14 @@ namespace Projet_7.Managers
             Console.SetCursorPosition(90, 7); Console.WriteLine("           | |       | |                             ");
             Console.SetCursorPosition(90, 8); Console.WriteLine("           |_|       |_|                             ");
             Console.SetCursorPosition(90, 9); Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Gray;
             choosePlayer();
         }
 
         public void playerStats(Player player)
         {
             ClearMenu(8, 54);
-
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.SetCursorPosition(90, 15);
             Console.Write("Level: ");
             Console.SetCursorPosition(100, 15);
@@ -280,6 +290,7 @@ namespace Projet_7.Managers
             Console.Write("Defense: ");
             Console.SetCursorPosition(100,21);
             Console.WriteLine(player._DEF);
+            Console.ForegroundColor = ConsoleColor.Gray;
 
             Console.ReadKey();
             menuPos = false;
@@ -288,7 +299,7 @@ namespace Projet_7.Managers
 
         public void ItemList()
         {
-            ClearMenu(0, 54);
+            ClearMenu(8, 54);
 
             Console.SetCursorPosition(90, 15);
             Console.Write(ObjectInit.Dictionary["HealP"]._NAME);
@@ -309,8 +320,8 @@ namespace Projet_7.Managers
             Console.WriteLine(ObjectInit.Dictionary["CureP"]._QUANTITY);
 
             Console.ReadKey();
+            ClearMenu(8, 54);
             menuPos = false;
-            ClearMenu(0, 54);
         }
 
         public void ClearMenu(int j, int p)
@@ -324,6 +335,7 @@ namespace Projet_7.Managers
                     Console.Write(' ');
                 }
             }
+            Console.SetCursorPosition(0, 0);
         }
 
         public void Option()

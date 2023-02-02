@@ -342,7 +342,7 @@ namespace Projet_7
                     Console.WriteLine("By the way, can you go find the ultra secret confidential private classified restricted and sensitive documents that I lost on my way back to the camp ?");
                     talkedbefore = true;
                 }
-            }
+            }            
             if (playerY == documentPos[0] && playerX == documentPos[1])
             {
                 acquisition  = true;
