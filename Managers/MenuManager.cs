@@ -80,7 +80,7 @@ namespace Projet_7.Managers
 
                 if (Index == 0)
                 {
-                    Inventory();
+                    Inventory(player);
                 }
                 else if (Index == 2)
                 {
@@ -125,7 +125,7 @@ namespace Projet_7.Managers
             }
         }
 
-        public void ChooseItem()
+        public void ChooseItem(Player player)
         {
             string prompt = "";
             string[] Options = { ObjectInit.Dictionary["HealP"]._NAME, ObjectInit.Dictionary["MPP"]._NAME, ObjectInit.Dictionary["CureP"]._NAME };
@@ -140,6 +140,7 @@ namespace Projet_7.Managers
                 if (ObjectInit.Dictionary["HealP"]._QUANTITY > 0)
                 {
                     ObjectInit.Dictionary["HealP"]._QUANTITY -= 1;
+                    player.Heal(ObjectInit.Dictionary["HealP"]._HEALTH);
                     menuPos = false;
                 }
             }
@@ -208,7 +209,7 @@ namespace Projet_7.Managers
             return Options;
         }
 
-        public void Inventory()
+        public void Inventory(Player player)
         {
             Console.CursorVisible = false;
             Console.SetCursorPosition(90, 1);
@@ -222,7 +223,7 @@ namespace Projet_7.Managers
             Console.SetCursorPosition(90,8); Console.WriteLine("                                           |___/ ");
             Console.SetCursorPosition(90,9); Console.WriteLine("");
             ItemList();
-            ChooseItem();
+            ChooseItem(player);
         }
 
         public void Equipment(Player player)
