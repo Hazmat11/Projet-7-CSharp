@@ -130,87 +130,6 @@ namespace Projet_7.src
                     break;
             }
         }
-        public void SavePlayer()
-        {
-          /*  try
-            {
-                StreamWriter sw = new StreamWriter("save.txt");
-                string[] lines = File.ReadAllLines("save.txt");
-
-                List<int> saves = new List<int>();
-                saves.Add(0);
-                saves.Add(21);
-                saves.Add(42);
-
-                Console.WriteLine("Which save do you save? ( 1 , 2 , 3 )");
-                string input = Console.ReadLine();
-
-                int data = 0;
-
-                if (int.Parse(input) == 0) 
-                {
-                    List<string> list = new List<string>();
-
-                    list.Add("Player1");
-                    list.Add("Player2");
-                    list.Add("Player3");
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        data = PlayerInit.PlayerList[list[i]]._LVL;
-
-                        data = PlayerInit.PlayerList[list[i]]._HP;
-
-                        data = PlayerInit.PlayerList[list[i]]._MP;
-
-                        data = PlayerInit.PlayerList[list[i]]._ATT;
-
-                        data = PlayerInit.PlayerList[list[i]]._ACC;
-
-                        data = PlayerInit.PlayerList[list[i]]._SPEED;
-
-                        data = PlayerInit.PlayerList[list[i]]._DEF;
-                    }
-                    data = int.Parse(lines[saves[0]]);
-                    File.WriteAllLines("save.txt", lines);
-                }
-                else if (int.Parse(input) == 1)
-                {
-                    data = int.Parse(lines[saves[1]]);
-                }
-                else 
-                {
-                    data = int.Parse(lines[saves[2]]);
-                }
-
-*//*                sw.WriteLine(PlayerInit.PlayerList["Player1"]._LVL);
-                sw.WriteLine(PlayerInit.PlayerList["Player1"]._HP);
-                sw.WriteLine(PlayerInit.PlayerList["Player1"]._MP);
-                sw.WriteLine(PlayerInit.PlayerList["Player1"]._ATT);
-                sw.WriteLine(PlayerInit.PlayerList["Player1"]._ACC);
-                sw.WriteLine(PlayerInit.PlayerList["Player1"]._SPEED);
-                sw.WriteLine(PlayerInit.PlayerList["Player1"]._DEF);
-*//*
-                sw.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-            finally
-            {
-                Console.SetCursorPosition(0, 0);
-            }*/
-           /* StreamWriter sw = new StreamWriter("save.txt");
-            sw.WriteLine(_LVL);
-            sw.WriteLine(_HP);
-            sw.WriteLine(_MP);
-            sw.WriteLine(_ATT);
-            sw.WriteLine(_ACC);
-            sw.WriteLine(_SPEED);
-            sw.WriteLine(_DEF);
-            sw.WriteLine(Map.choosenFile);
-            sw.Close();*/
-        }
 
         public void Save(string key)
         {
@@ -228,7 +147,7 @@ namespace Projet_7.src
 
         }
 
-        public void Load(string)
+        public void Load(string key)
         {
             JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping, PropertyNameCaseInsensitive = true, IncludeFields = true };
             foreach (var p in Directory.GetFiles(Path.Combine(Environment.CurrentDirectory, "Save")))
@@ -237,6 +156,13 @@ namespace Projet_7.src
                 string jsonString = File.ReadAllText(fileName);
                 Player weatherForecast = JsonSerializer.Deserialize<Player>(jsonString, options)!;
             }
+        }
+
+        public void LoadMap()
+        {
+            StreamWriter sw = new StreamWriter("save.txt");
+            sw.WriteLine(Map.choosenFile);
+            sw.Close();
         }
     }
 }

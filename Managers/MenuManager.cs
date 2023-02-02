@@ -25,7 +25,7 @@ namespace Projet_7.Managers
         {
             Console.CursorVisible = false;
             string prompt = "Welcome to your menu";
-            string[] Options = { "Jouer", "Options", "Exit" };
+            string[] Options = { "New Game","Load Game", "Options", "Exit" };
             Menu menu = new Menu(prompt, Options);
             int Index = menu.Run(0, 0);
 
@@ -38,6 +38,17 @@ namespace Projet_7.Managers
             }
             else if (Index == 1)
             {
+                foreach (var p in PlayerInit.PlayerList)
+                {
+                    p.Value.Load(p.Key);
+                }
+                Console.Clear();
+                MapInit mi = new MapInit();
+                mi.InitTab();
+                mi.movePlayer(player, manager);
+            }
+            else if (Index == 2)
+            {
                 Console.Clear();
                 Option();
                 Console.ReadKey();
@@ -45,7 +56,7 @@ namespace Projet_7.Managers
                 Index = 0;
                 MainMenu(player, manager);
             }
-            else if (Index == 2)
+            else if (Index == 3)
             {
                 Environment.Exit(0);
             }
@@ -97,12 +108,11 @@ namespace Projet_7.Managers
                 }
                 else if (Index == 3)
                 {
-                    // player.SavePlayer();
-
                     foreach (var p in PlayerInit.PlayerList)
                     {
                         p.Value.Save(p.Key);
                     }
+                    player.LoadMap();                    
                     Environment.Exit(0);
                 }
             }
@@ -245,7 +255,7 @@ namespace Projet_7.Managers
             return Options;
         }
 
-        public void Inventory()
+        public void Inventory(Player player)
         {
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.CursorVisible = false;

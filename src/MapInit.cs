@@ -279,6 +279,7 @@ namespace Projet_7
                         }
                         break;
                     case 5:
+                        SaveMap();
                         PauseMenu(player, enemyManager);
                         ingame = false;
                         break;
@@ -411,18 +412,18 @@ namespace Projet_7
             }
         }
 
-        public void SaveMap(Player player)
+        public void SaveMap()
         {
             try
             {
                 path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
-                StreamWriter sw = new StreamWriter(path[RandomNumberGenerator.RandomNumber]);
+                StreamWriter sw = new StreamWriter(choosenFile);
                 for (y = 0; y < tab.GetLength(0); y++)
                 {
                     for (x = 0; x < tab.GetLength(1); x++)
                     {
                         letters = tab[y, x];
-                        sw.Write(tab[y, x]);                   
+                        sw.Write(tab[y, x]);
                     }
                     sw.WriteLine();
                 }
@@ -435,7 +436,6 @@ namespace Projet_7
             finally
             {
                 Console.SetCursorPosition(0, 0);
-                /*Console.WriteLine("Executing finally block.");*/
             }
         }
 
