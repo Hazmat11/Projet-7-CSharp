@@ -33,6 +33,9 @@ namespace Projet_7.Managers
             {
                 Console.Clear();
                 MapInit mi = new MapInit();
+                StreamWriter sw = new StreamWriter("save.txt");
+                sw.Write("        ");
+                sw.Close();
                 mi.InitTab();
                 mi.movePlayer(player, manager);
             }

@@ -343,28 +343,34 @@ namespace Projet_7.src
                     talkedbefore = true;
                 }
             }
-            if (playerY == documentPos[0] && playerX == documentPos[1])
+            if (documentPos.Count != 0)
             {
-                acquisition = true;
-            }
-            if (playerY == chestPos[0] && playerX == chestPos[1])
-            {
-                Random random = new Random();
-                for (int a = 0; a != 10; a++)
+                if (playerY == documentPos[0] && playerX == documentPos[1])
                 {
-                    int result2 = random.Next(0, ObjectInit.Dictionary.Count);
-                    switch (result2)
+                    acquisition = true;
+                }
+            }
+            if (chestPos.Count != 0)
+            {
+                if (playerY == chestPos[0] && playerX == chestPos[1])
+                {
+                    Random random = new Random();
+                    for (int a = 0; a != 10; a++)
                     {
-                        case 0:
-                            ObjectInit.Dictionary["HealP"]._QUANTITY += 1;
-                            break;
-                        case 1:
-                            ObjectInit.Dictionary["MPP"]._QUANTITY += 1;
-                            break;
-                        case 2:
-                            ObjectInit.Dictionary["CureP"]._QUANTITY += 1;
-                            break;
-                        default: break;
+                        int result2 = random.Next(0, ObjectInit.Dictionary.Count);
+                        switch (result2)
+                        {
+                            case 0:
+                                ObjectInit.Dictionary["HealP"]._QUANTITY += 1;
+                                break;
+                            case 1:
+                                ObjectInit.Dictionary["MPP"]._QUANTITY += 1;
+                                break;
+                            case 2:
+                                ObjectInit.Dictionary["CureP"]._QUANTITY += 1;
+                                break;
+                            default: break;
+                        }
                     }
                 }
             }
