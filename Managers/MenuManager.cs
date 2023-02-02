@@ -208,6 +208,31 @@ namespace Projet_7.Managers
             return Options;
         }
 
+        public string[] ChangePlayerMenu()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Console.SetCursorPosition(0, 5 + i);
+                Console.Write("                                     ");
+            }
+            Console.SetCursorPosition(0, 5);
+
+            string prompt = "Choose a Player";
+            List<string> OptionsList = new List<string>();
+            string[] Options = { };
+
+            foreach (KeyValuePair<string, Player> c in PlayerInit.PlayerList)
+            {
+                OptionsList.Add(c.Value._NAME);               
+            }
+            Options = OptionsList.ToArray();
+            Menu menu = new Menu(prompt, Options);
+
+            int Index = menu.Run(0, 5);
+            _ID = Index;
+            return Options;
+        }
+
         public void Inventory()
         {
             Console.CursorVisible = false;

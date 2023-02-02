@@ -13,6 +13,7 @@ namespace Projet_7.src
 {
     public class Player
     {
+        public string _NAME { get; set; }
         public int _LVL { get; set; }
         public int _HP { get; set; }
         public int _MP { get; set; }
@@ -24,13 +25,15 @@ namespace Projet_7.src
         public int _X { get; set; }
         public int _Y { get; set; }
         public string _TYPE { get; set; }
+        public bool _ALIVE { get; set; }
 
         public int keyValue = 0;
 
         public bool ingame = true;
 
-        public Player(int lvlBase, int hpBase, int mpBase, int attBase, int accBase, int speedBase, int defBase, string type)
+        public Player(string name, int lvlBase, int hpBase, int mpBase, int attBase, int accBase, int speedBase, int defBase, string type)
         {
+            _NAME = name;
             _LVL = lvlBase;
             _HP = hpBase;
             _MP = mpBase;
@@ -42,7 +45,7 @@ namespace Projet_7.src
             _EFCT = EffectInit.Dictionary["None"];
             _X = 0;
             _Y = 0;
-
+            _ALIVE = true;
         }
 
         public void LVLUp()
