@@ -92,7 +92,7 @@ namespace Projet_7.src
                 }
             }
             while (keyPressed != ConsoleKey.Enter);
-
+            Console.ResetColor();
             return Index;
         }
     }

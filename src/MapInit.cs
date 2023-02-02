@@ -330,14 +330,7 @@ namespace Projet_7
                         Console.ReadKey();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.BackgroundColor = ConsoleColor.Black;
-                        Dead();
-                        Thread.Sleep(2000);
-                        Console.SetCursorPosition(0, 10);
-                        for (int i = 0; i < 50; i++)
-                        {                           
-                            Console.WriteLine(new String(' ', Console.BufferWidth));
-                            Thread.Sleep(100);
-                        }
+                        Dead();                       
                         ingame = false;
                     }
                 }
@@ -349,7 +342,7 @@ namespace Projet_7
                     Console.WriteLine("By the way, can you go find the ultra secret confidential private classified restricted and sensitive documents that I lost on my way back to the camp ?");
                     talkedbefore = true;
                 }
-            }
+            }            
             if (playerY == documentPos[0] && playerX == documentPos[1])
             {
                 acquisition  = true;
@@ -506,6 +499,13 @@ namespace Projet_7
                 linetxt = srText.ReadLine();
             };
             Console.SetCursorPosition(0, 0);
+            Thread.Sleep(2000);
+            Console.SetCursorPosition(0, 10);
+            for (int i = 0; i < 50; i++)
+            {
+                Console.WriteLine(new String(' ', Console.BufferWidth));
+                Thread.Sleep(100);
+            }
         }
     }
 }
