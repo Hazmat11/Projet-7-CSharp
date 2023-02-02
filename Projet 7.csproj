@@ -10,8 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="TestProject\**" />
+    <EmbeddedResource Remove="TestProject\**" />
+    <None Remove="TestProject\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Windows.Extensions" Version="7.0.0" />
     <PackageReference Include="Uno.UI" Version="4.7.30" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="TestProject\TestProject.csproj" />
   </ItemGroup>
 
 </Project>

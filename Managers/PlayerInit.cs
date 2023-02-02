@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Projet_7.Managers
 {
-    internal class PlayerInit
+    public class PlayerInit
     {
         static Dictionary<string, Player> _playerlist;
         public static Dictionary<string, Player> PlayerList { get => _playerlist; }

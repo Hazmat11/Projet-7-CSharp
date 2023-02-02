@@ -1,9 +1,8 @@
 ﻿using System.IO;
-using Projet_7.src;
 using System;
 using System.Security.Cryptography;
 
-namespace Projet_7
+namespace Projet_7.src
 {
 
 
@@ -14,7 +13,7 @@ namespace Projet_7
 
         static RandomNumberGenerator()
         {
-            _randomNumber = _random.Next(0,5);
+            _randomNumber = _random.Next(0, 5);
         }
 
         public static int RandomNumber
@@ -26,8 +25,8 @@ namespace Projet_7
     public class Map
     {
         public char[,] tab = new char[49, 192];
-        String line;
-        String line2;
+        string line;
+        string line2;
         char letters;
         StreamReader sr;
         StreamReader sr2;
@@ -41,12 +40,12 @@ namespace Projet_7
         }
 
         public void Write()
-        {       
+        {
             path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
 
             Read();
 
-            if(choosenFile== null)
+            if (choosenFile == null)
             {
                 choosenFile = path[RandomNumberGenerator.RandomNumber];
             }
