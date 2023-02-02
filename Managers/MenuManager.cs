@@ -96,7 +96,12 @@ namespace Projet_7.Managers
                 }
                 else if (Index == 3)
                 {
-                    player.SavePlayer();
+                    // player.SavePlayer();
+
+                    foreach (var p in PlayerInit.PlayerList)
+                    {
+                        p.Value.Save(p.Key);
+                    }
                     Environment.Exit(0);
                 }
             }
