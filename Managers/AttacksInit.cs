@@ -18,7 +18,7 @@ namespace Projet_7.Managers
             _dictionary = new Dictionary<string, Attacks>()
             {
                 { "Punch", new Attacks("Punch","Basic", 5, 0, "Both", 5, EffectInit.Dictionary["None"]) },
-                { "Stad", new Attacks("Stab", "Basic", 5, 10, "Player", 6, EffectInit.Dictionary["None"]) },
+                { "Stab", new Attacks("Stab", "Basic", 5, 10, "Player", 6, EffectInit.Dictionary["None"]) },
                 { "Flame Thrower", new Attacks("FlameThrower", "Fire", 10, 20, "Both", 10, EffectInit.Dictionary["Burn"]) },
                 { "Tail Attack", new Attacks("TailAttack", "Basic", 5, 0, "Enemy", 2, EffectInit.Dictionary["None"]) },
             };

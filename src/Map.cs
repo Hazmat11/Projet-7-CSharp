@@ -44,7 +44,7 @@ namespace Projet_7
         {       
             path = new string[] { "1.txt", "2.txt", "3.txt", "4.txt", "5.txt" };
 
-            //Read();
+            Read();
 
             if(choosenFile== null)
             {
@@ -73,7 +73,7 @@ namespace Projet_7
             sr.Close();
         }
 
-        /*public void Read()
+        public void Read()
         {
             sr2 = new StreamReader("save.txt");
 
@@ -86,12 +86,12 @@ namespace Projet_7
                     if (line2.Equals(path[i]))
                     {
                         choosenFile = path[i];
-                        break;                        
+                        break;
                     };
                 };
                 line2 = sr2.ReadLine();
             }
             sr2.Close();
-        }*/
+        }
     }
 }

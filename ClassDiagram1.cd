@@ -1,126 +1,140 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Projet_7.src.Attacks" Collapsed="true">
-    <Position X="6" Y="1" Width="1.5" />
+    <Position X="6.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAEIAAAAAABACEAAAAAAAAAAAAAAgCA=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAEIAAAAIABACEAAAAAAAAAAAAAAgCA=</HashCode>
       <FileName>src\Attacks.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.src.Enemy" Collapsed="true">
-    <Position X="7.75" Y="2" Width="1.5" />
+    <Position X="8.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAADAAAAACAQACGAAAACBAAACiAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAADAAAAAKARACGAAAACBAAACiAAAACA=</HashCode>
       <FileName>src\Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.src.Fight" Collapsed="true">
-    <Position X="11.25" Y="2" Width="1.5" />
+    <Position X="11.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAQABAAAIAAAAAAAAAABAAgAAAAA=</HashCode>
+      <HashCode>AAAAAAAEAAAAAAAAAQABAAAIEAAAAAAAAABAAgAAAAA=</HashCode>
       <FileName>src\Fight.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.src.main" Collapsed="true">
-    <Position X="6" Y="3" Width="1.5" />
+    <Position X="8.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAABQBgAAA=</HashCode>
       <FileName>src\main.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.MapInit" Collapsed="true">
-    <Position X="3.5" Y="2.25" Width="1.5" />
+    <Position X="1" Y="2.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>gAkAECDAYQAAVAAMgCICAAGAIQEAEgAIAAhgCACAAQA=</HashCode>
+      <HashCode>gAkAECDQYQAAVAAMgCICAAGAIQEAEgAIAAhgCACAAQA=</HashCode>
       <FileName>src\MapInit.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.src.Menu" Collapsed="true">
-    <Position X="7.75" Y="3" Width="1.5" />
+    <Position X="4" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAASAAAAAAAAAAAAEAAABAAAI=</HashCode>
       <FileName>src\Menu.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.src.Player" Collapsed="true">
-    <Position X="11.25" Y="3" Width="1.5" />
+    <Position X="11.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAoIAAAAADAAgAIKARACGQAAACBAAgAiAAAAAA=</HashCode>
       <FileName>src\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.src.Waiter" Collapsed="true">
-    <Position X="9.5" Y="4" Width="1.5" />
+    <Position X="10" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\Waiter.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.Managers.EnemyManager" Collapsed="true">
-    <Position X="9.5" Y="2" Width="1.5" />
+    <Position X="10" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
       <FileName>Managers\EnemyManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.Managers.MenuManager" Collapsed="true">
-    <Position X="9.5" Y="3" Width="1.5" />
+    <Position X="4" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BABEABQAAQAAQAAAAAAgCCQQCQAAAAAAAAAAAgAEAAA=</HashCode>
+      <HashCode>BABEABYAAQAAQAAAAAAgiCQQCQAAAAAAAAAAAgAEAAA=</HashCode>
       <FileName>Managers\MenuManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.Map" Collapsed="true">
-    <Position X="3.5" Y="1" Width="1.5" />
+    <Position X="1" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAACAAAAAAEAAAgAACAAAgAAAAAgBAAAAAAAEAABA=</HashCode>
       <FileName>src\Map.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.RandomNumberGenerator" Collapsed="true">
-    <Position X="7.75" Y="4" Width="1.5" />
+    <Position X="8.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAU=</HashCode>
       <FileName>src\Map.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.Managers.AttacksInit" Collapsed="true">
-    <Position X="7.75" Y="1" Width="1.5" />
+    <Position X="8.25" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
       <FileName>Managers\AttacksInit.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.Managers.AudioManager" Collapsed="true">
-    <Position X="9.5" Y="1" Width="1.5" />
+    <Position X="10" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAACAAAAABAAAAAA=</HashCode>
       <FileName>Managers\AudioManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.src.Effects" Collapsed="true">
-    <Position X="6" Y="2" Width="1.5" />
+    <Position X="6.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAABBAgAAAAAAAACA=</HashCode>
       <FileName>src\Effects.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.Managers.EffectInit" Collapsed="true">
-    <Position X="11.25" Y="1" Width="1.5" />
+    <Position X="11.75" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
       <FileName>Managers\EffectInit.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_7.Managers.PlayerInit" Collapsed="true">
-    <Position X="6" Y="4" Width="1.5" />
+    <Position X="6.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Managers\PlayerInit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.src.Item" Collapsed="true">
+    <Position X="6.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAgAAAAAQAAACAAAAAAAAAIAAABAAAAAAAgACA=</HashCode>
+      <FileName>src\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projet_7.Managers.ObjectInit" Collapsed="true">
+    <Position X="10" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\ObjectInit.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
