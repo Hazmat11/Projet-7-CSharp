@@ -129,7 +129,7 @@ namespace Projet_7.src
 
                     if (enemy._HP > 0)
                     {
-                        int ardm = rdm.Next(0, EnemyAttacks.Length+1);
+                        int ardm = rdm.Next(0, EnemyAttacks.Length);
                         Console.WriteLine("");
                         Console.WriteLine("=== Enemy Turn ===");
                         Console.WriteLine("");
@@ -159,7 +159,7 @@ namespace Projet_7.src
                 }
                 else
                 {
-                    int ardm = rdm.Next(0, EnemyAttacks.Length + 1);
+                    int ardm = rdm.Next(0, EnemyAttacks.Length);
                     Console.WriteLine("");
                     Console.WriteLine("=== Enemy Turn ===");
                     Console.WriteLine("");
@@ -251,6 +251,8 @@ namespace Projet_7.src
                         }
                     }
                 }
+                int mrdm = rdm.Next(5, 15);
+
                 if (doPlayerDefend) player._DEF -= 5;
                 Turn++;
             }
