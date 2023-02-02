@@ -28,7 +28,7 @@
       <FileName>src\main.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Projet_7.MapInit" Collapsed="true">
+  <Class Name="Projet_7.src.MapInit" Collapsed="true">
     <Position X="1" Y="2.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -49,7 +49,7 @@
   <Class Name="Projet_7.src.Player" Collapsed="true">
     <Position X="11.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAoIAAAAADAAgAIKARACGQAAACBAAgAiAAAAAA=</HashCode>
+      <HashCode>AAAAgIAoIAAAAADAAgAIKAVACGQAAACBAAgAiAAAACA=</HashCode>
       <FileName>src\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -70,18 +70,18 @@
   <Class Name="Projet_7.Managers.MenuManager" Collapsed="true">
     <Position X="4" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BABEABYAAQAAQAAAAAAgiCQQCQAAAAAAAAAAAgAEAAA=</HashCode>
+      <HashCode>BABEABYAAQAAQAAAAAIgiCQQCQAAAAAAAAAAAgAEAAA=</HashCode>
       <FileName>Managers\MenuManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Projet_7.Map" Collapsed="true">
+  <Class Name="Projet_7.src.Map" Collapsed="true">
     <Position X="1" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAACAAAAAAEAAAgAACAAAgAAAAAgBAAAAAAAEAABA=</HashCode>
       <FileName>src\Map.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Projet_7.RandomNumberGenerator" Collapsed="true">
+  <Class Name="Projet_7.src.RandomNumberGenerator" Collapsed="true">
     <Position X="8.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAU=</HashCode>
