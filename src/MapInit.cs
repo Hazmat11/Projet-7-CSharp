@@ -1,6 +1,5 @@
 ﻿using System.Numerics;
 using System.IO;
-using Projet_7.src;
 using System;
 using System.Runtime.Intrinsics.Arm;
 using Projet_7.Managers;
@@ -10,13 +9,13 @@ using static System.Net.Mime.MediaTypeNames;
 using Windows.Foundation;
 using Windows.UI.Xaml.Documents;
 
-namespace Projet_7
+namespace Projet_7.src
 {
     internal class MapInit : Map
     {
         public char[,] tab = new char[49, 191];
-        public String linetxt;
-        public String line;
+        public string linetxt;
+        public string line;
         public char letters;
         public StreamReader sr;
         public string[] path;
@@ -42,7 +41,7 @@ namespace Projet_7
         Map map = new Map();
         private bool acquisition = false;
 
-        public String GameData;
+        public string GameData;
 
 
         public void Reset()
@@ -104,14 +103,14 @@ namespace Projet_7
                             pnjPos.Add(pnjPosY);
                             pnjPos.Add(pnjPosX);
                         }
-                        if (tab[y,x] == 'd')
+                        if (tab[y, x] == 'd')
                         {
                             int documentPosX = x;
                             int documentPosY = y;
                             documentPos.Add(documentPosY);
                             documentPos.Add(documentPosX);
                         }
-                        if (tab[y,x] == '¤')
+                        if (tab[y, x] == '¤')
                         {
                             int chestPosX = x;
                             int chestPosY = y;
@@ -296,7 +295,7 @@ namespace Projet_7
             Console.SetCursorPosition(0, 49);
             for (int i = 0; i < 13; i++)
             {
-                Console.WriteLine(new String(' ', Console.BufferWidth));
+                Console.WriteLine(new string(' ', Console.BufferWidth));
             }
             Console.SetCursorPosition(0, 49);
             if (playerY == pnjPos[0] && playerX == pnjPos[1])
@@ -315,7 +314,7 @@ namespace Projet_7
             {
                 DialogText();
                 Console.SetCursorPosition(30, 54);
-                if (acquisition)
+                if (acquisition && ingame)
                 {
                     if (talkedbefore)
                     {
@@ -330,7 +329,7 @@ namespace Projet_7
                         Console.ReadKey();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.BackgroundColor = ConsoleColor.Black;
-                        Dead();                       
+                        Dead();
                         ingame = false;
                     }
                 }
@@ -342,16 +341,16 @@ namespace Projet_7
                     Console.WriteLine("By the way, can you go find the ultra secret confidential private classified restricted and sensitive documents that I lost on my way back to the camp ?");
                     talkedbefore = true;
                 }
-            }            
+            }
             if (playerY == documentPos[0] && playerX == documentPos[1])
             {
-                acquisition  = true;
+                acquisition = true;
             }
             if (playerY == chestPos[0] && playerX == chestPos[1])
             {
                 Random random = new Random();
                 for (int a = 0; a != 10; a++)
-                {                   
+                {
                     int result2 = random.Next(0, ObjectInit.Dictionary.Count);
                     switch (result2)
                     {
@@ -385,7 +384,7 @@ namespace Projet_7
             }
         }
 
-        public void shortMap(Player player , EnemyManager enemyManager)
+        public void shortMap(Player player, EnemyManager enemyManager)
         {
             if (ingame == true)
             {
@@ -407,7 +406,8 @@ namespace Projet_7
                     Recolor();
                 }
             }
-            else if (ingame == false) {
+            else if (ingame == false)
+            {
             }
         }
 
@@ -422,7 +422,7 @@ namespace Projet_7
                     for (x = 0; x < tab.GetLength(1); x++)
                     {
                         letters = tab[y, x];
-                        sw.Write(tab[y, x]);                   
+                        sw.Write(tab[y, x]);
                     }
                     sw.WriteLine();
                 }
@@ -441,7 +441,7 @@ namespace Projet_7
 
         public void PauseMenu(Player player, EnemyManager enemyManager)
         {
-            Console.SetCursorPosition(0,0);
+            Console.SetCursorPosition(0, 0);
             MenuManager mi = new MenuManager();
             //Pass the file path and file name to the StreamReader constructor
             StreamReader srText = new StreamReader("menu.txt");
@@ -451,7 +451,7 @@ namespace Projet_7
             while (linetxt != null)
             {
                 //write the line to console window
-                Console.ForegroundColor= ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(linetxt);
 
                 //Read the next line
@@ -460,7 +460,7 @@ namespace Projet_7
 
             srText.Close();
             Reset();
-            mi.PauseMenu(this,player, enemyManager);
+            mi.PauseMenu(this, player, enemyManager);
         }
 
         public void SoldierPika()
@@ -503,7 +503,7 @@ namespace Projet_7
             Console.SetCursorPosition(0, 10);
             for (int i = 0; i < 50; i++)
             {
-                Console.WriteLine(new String(' ', Console.BufferWidth));
+                Console.WriteLine(new string(' ', Console.BufferWidth));
                 Thread.Sleep(100);
             }
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Projet_7.Managers
 {
-    internal class ObjectInit
+    public class ObjectInit
     {
         static Dictionary<string, Item> _dictionary;
         public static Dictionary<string, Item> Dictionary { get => _dictionary; }
