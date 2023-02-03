@@ -233,6 +233,32 @@ namespace Projet_7.Managers
             return Options;
         }
 
+        public string[] ItemFightMenu()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Console.SetCursorPosition(0, 5 + i);
+                Console.Write("                                     ");
+            }
+            Console.SetCursorPosition(0, 5);
+
+            string prompt = "=====================================";
+            List<string> OptionsList = new List<string>();
+            string[] Options = { };
+
+            foreach (KeyValuePair<string, Item> c in ObjectInit.Dictionary)
+            {
+                OptionsList.Add(c.Key);   
+            }
+            Options = OptionsList.ToArray();
+
+            Menu menu = new Menu(prompt, Options);
+
+            int Index = menu.Run(0, 5);
+            _ID = Index;
+            return Options;
+        }
+
         public string[] ChangePlayerMenu()
         {
             for (int i = 0; i < 10; i++)

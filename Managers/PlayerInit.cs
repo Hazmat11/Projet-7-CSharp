@@ -17,9 +17,9 @@ namespace Projet_7.Managers
         {
             _playerlist = new Dictionary<string, Player>()
             {
-                { "player1", new Player("Hazmat", 50, 100, 100, 30, 3, 8, 3, "Fire") },
-                { "player2", new Player("Mastrum", 50, 100, 100, 30, 3, 8, 3, "Fire") },
-                { "player3", new Player("Pandouille", 50, 100, 100, 30, 3, 8, 3, "Fire") },
+                { "player1", new Player("Hazmat", 5, 100, 100, 30, 3, 8, 3, "Fire") },
+                { "player2", new Player("Mastrum", 5, 100, 100, 30, 3, 8, 3, "Fire") },
+                { "player3", new Player("Pandouille", 5, 100, 100, 30, 3, 8, 3, "Fire") },
             };
         }
     }

@@ -28,6 +28,7 @@ namespace Projet_7.src
             bool PlayerTurn;
             bool doPlayerDefend = false;
             string[] Skill;
+            string[] Items;
 
             List<string> EnemyAttacksListing = new List<string>();
             string[] EnemyAttacks = { };
@@ -41,6 +42,15 @@ namespace Projet_7.src
                 EnemyAttacks = EnemyAttacksListing.ToArray();
             }
 
+            if (PlayerInit.PlayerList["player1"]._HP <= 0)
+            {
+                player = PlayerInit.PlayerList["player2"];
+            }
+            if (PlayerInit.PlayerList["player2"]._HP <= 0 && PlayerInit.PlayerList["player1"]._HP <= 0)
+            {
+                player = PlayerInit.PlayerList["player3"];
+            }
+
             if (isPlayerFaster(player, enemy))
             {
                 PlayerTurn = true;
@@ -52,7 +62,7 @@ namespace Projet_7.src
                 Console.WriteLine(Turn);
                 if (PlayerTurn)
                 {
-                    if (player._MP > 0)
+                    if (player._HP > 0)
                     {
                         DisplayStats(player, enemy);
                         menu.FightMenu();
@@ -118,7 +128,13 @@ namespace Projet_7.src
                         }
                         else if (menu._ID == 1)
                         {
-                            //Faire le system de use item
+                            Items = menu.ItemFightMenu();
+                            ObjectInit.Dictionary[Items[menu._ID]].Healing(player);
+                            ObjectInit.Dictionary[Items[menu._ID]].Cure(player);
+                            ObjectInit.Dictionary[Items[menu._ID]].RegenMana(player);
+                            ObjectInit.Dictionary[Items[menu._ID]]._QUANTITY -= 1;
+                            wait.Wait();
+                            Console.Clear();
                         }
                         else if (menu._ID == 2)
                         {
@@ -136,9 +152,9 @@ namespace Projet_7.src
                                 wait.Wait();
                             }
                         }
-                    } 
-                    else
+                    } else
                     {
+                        player._ALIVE = false;
                         if (PlayerInit.PlayerList["player1"]._ALIVE == true || PlayerInit.PlayerList["player2"]._ALIVE == true || PlayerInit.PlayerList["player3"]._ALIVE == true)
                         {
                             player = ChangePlayer(menu);
@@ -151,7 +167,6 @@ namespace Projet_7.src
                         }
                     }
                     
-
                     if (enemy._HP > 0)
                     {
                         int ardm = rdm.Next(0, EnemyAttacks.Length);
@@ -184,6 +199,7 @@ namespace Projet_7.src
                 }
                 else
                 {
+                    DisplayStats(player, enemy);
                     int ardm = rdm.Next(0, EnemyAttacks.Length);
                     Console.WriteLine("");
                     Console.WriteLine("=== Enemy Turn ===");
@@ -193,21 +209,23 @@ namespace Projet_7.src
                     Console.WriteLine("");
                     if (doEnemyAttackHit(player, enemy))
                     {
-                        Console.WriteLine("");
                         Console.WriteLine("You take Damage :");
                         Console.Write("-");
                         Console.Write(AttacksInit.Dictionary[EnemyAttacks[ardm]].useEnemyAttack(enemy, player));
-                        Console.WriteLine("HP");
+                        Console.WriteLine(" HP");
                         wait.Wait();
                     }
-                    else Console.Write("You Evade");
-                    wait.Wait();
+                    else
+                    {
+                        Console.Write("You Evade");
+                        wait.Wait();
+                    }
                     if (enemy._EFCT != EffectInit.Dictionary["None"])
                     {
                         Console.WriteLine("");
                         enemy._EFCT.GiveDamagetoEnemy(enemy);
+                        wait.Wait();
                     }
-                    wait.Wait();
 
                     if (player._HP > 0)
                     {
@@ -262,7 +280,13 @@ namespace Projet_7.src
                         }
                         else if (menu._ID == 1)
                         {
-                            //Faire le system de use item
+                            Items = menu.ItemFightMenu();
+                            ObjectInit.Dictionary[Items[menu._ID]].Healing(player);
+                            ObjectInit.Dictionary[Items[menu._ID]].Cure(player);
+                            ObjectInit.Dictionary[Items[menu._ID]].RegenMana(player);
+                            ObjectInit.Dictionary[Items[menu._ID]]._QUANTITY -= 1;
+                            wait.Wait();
+                            Console.Clear();
                         }
                         else if (menu._ID == 2)
                         {
@@ -281,19 +305,6 @@ namespace Projet_7.src
                             }
                         }
                     }  
-                    else
-                    {
-                        if (PlayerInit.PlayerList["player1"]._ALIVE == true || PlayerInit.PlayerList["player2"]._ALIVE == true || PlayerInit.PlayerList["player3"]._ALIVE == true)
-                        {
-                            player = ChangePlayer(menu);
-                            DisplayStats(player, enemy);
-                            wait.Wait();
-                        }
-                        else
-                        {
-                            //Dead
-                        }
-                    }
                 }
                 int mrdm = rdm.Next(5, 15);
                 if (player._MP < MaxMPPlayer)
@@ -315,9 +326,26 @@ namespace Projet_7.src
                     else enemy._MP += mrdm;
                 }
                 Turn++;
+                if (player._HP <= 0)
+                {
+                    player._ALIVE = false;
+                    if (PlayerInit.PlayerList["player1"]._ALIVE == true || PlayerInit.PlayerList["player2"]._ALIVE == true || PlayerInit.PlayerList["player3"]._ALIVE == true)
+                    {
+                        player = ChangePlayer(menu);
+                        DisplayStats(player, enemy);
+                        wait.Wait();
+                    }
+                    else
+                    {
+                        //Dead
+                    }
+                }
             }
             player._MP = MaxMPPlayer;
             GiveItem();
+            PlayerInit.PlayerList["player1"].LVLUp();
+            PlayerInit.PlayerList["player2"].LVLUp();
+            PlayerInit.PlayerList["player3"].LVLUp();
         }
         public Player ChangePlayer(MenuManager menu)
         {
@@ -343,7 +371,7 @@ namespace Projet_7.src
                 case 2:
                     if (PlayerInit.PlayerList["player3"]._ALIVE == true)
                     {
-                        player = PlayerInit.PlayerList["player1"];
+                        player = PlayerInit.PlayerList["player3"];
                     }
                     else ChangePlayer(menu);
                     break;
@@ -391,13 +419,8 @@ namespace Projet_7.src
 
         public bool isFightEnd(Player player, Enemy enemy)
         {
-            if (player._HP <= 0 || enemy._HP <= 0)
-            {
-                return true;
-            } else 
-            {
-                return false;
-            }
+            if (player._HP <= 0 || enemy._HP <= 0) return true;
+            else return false;
         }
 
         public void GiveItem()

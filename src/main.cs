@@ -47,6 +47,8 @@ namespace Projet_7.src
                 Console.BackgroundColor = ConsoleColor.Black;
 
                 PlayerInit.PlayerList["player1"].LVLUp();
+                PlayerInit.PlayerList["player2"].LVLUp();
+                PlayerInit.PlayerList["player3"].LVLUp();
                 mainMenu.MainMenu(PlayerInit.PlayerList["player1"], manager);
             }
         }

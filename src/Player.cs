@@ -19,6 +19,7 @@ namespace Projet_7.src
     {
         public string _NAME { get; set; }
         public int _LVL { get; set; }
+        public int _HPMAX { get; set; }
         public int _HP { get; set; }
         public int _MP { get; set; }
         public int _ATT { get; set; }
@@ -44,6 +45,7 @@ namespace Projet_7.src
         {
             _NAME = name;
             _LVL = lvlBase;
+            _HPMAX = hpBase;
             _HP = hpBase;
             _MP = mpBase;
             _ATT = attBase;
@@ -82,7 +84,7 @@ namespace Projet_7.src
             _ACC = _ACC + (_ACC * _LVL) / 100;
             _SPEED = _SPEED + (_SPEED * _LVL / 2) / 100;
             _DEF = _DEF + (_DEF * _LVL) / 100;
-            _HP = _HP + (_HP * _LVL) / 100;
+            _HPMAX = _HPMAX + (_HPMAX * _LVL) / 100;
         }
 
         public void TakeDamage(int value)
@@ -92,7 +94,10 @@ namespace Projet_7.src
 
         public void Heal(int value)
         {
-            _HP = _HP + value;
+            if (_HP + value > _HPMAX)
+            {
+                _HP = _HPMAX;
+            } else _HP = _HP + value;
         }
 
         public void UseMP(int value)

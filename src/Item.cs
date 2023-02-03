@@ -24,10 +24,23 @@ namespace Projet_7.src
             _PM = pm;
         }
 
-        public int Healing(Player player)
+        public void Healing(Player player)
         {
-            player._HP += _HEALTH;
-            return _HEALTH;
+            if (player._HP == player._HPMAX)
+            {
+                Console.Clear();
+                Console.WriteLine("You are Full Life");
+            } else
+            {
+                if (player._HP + _HEALTH > player._HPMAX)
+                {
+                    player._HP = player._HPMAX;
+                }
+                else
+                {
+                    player._HP += _HEALTH;
+                }
+            }
         }
 
         public int RegenMana(Player player)
