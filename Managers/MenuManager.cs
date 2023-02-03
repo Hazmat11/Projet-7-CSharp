@@ -21,8 +21,14 @@ namespace Projet_7.Managers
         public static bool optionMenu = false;
         public static bool menuPos = false;
         private bool inventoryLoop = true;
+
+
         public void MainMenu(Player player, EnemyManager manager)
         {
+
+            AudioManager music = new AudioManager();
+            music.PlayMusic("Menu.wav");
+
             Console.CursorVisible = false;
             string prompt = "Welcome to your menu";
             string[] Options = { "New Game","Load Game", "Options", "Exit" };
@@ -32,6 +38,8 @@ namespace Projet_7.Managers
             if (Index == 0)
             {
                 Console.Clear();
+                music.EndMusic("Menu.wav");
+                music.PlayMusic("Explore.wav");
                 MapInit mi = new MapInit();
                 StreamWriter sw = new StreamWriter("save.txt");
                 sw.Write("        ");
@@ -46,12 +54,15 @@ namespace Projet_7.Managers
                     p.Value.Load(p.Key);
                 }
                 Console.Clear();
+                music.EndMusic("Menu.wav");
+                music.PlayMusic("Explore.wav");
                 MapInit mi = new MapInit();
                 mi.InitTab();
                 mi.movePlayer(player, manager);
             }
             else if (Index == 2)
             {
+                music.EndMusic("Menu.wav");
                 Console.Clear();
                 Option();
                 Console.ReadKey();
@@ -61,6 +72,7 @@ namespace Projet_7.Managers
             }
             else if (Index == 3)
             {
+                music.EndMusic("Menu.wav");
                 Environment.Exit(0);
             }
         }

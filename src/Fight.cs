@@ -16,8 +16,10 @@ namespace Projet_7.src
         public Fight(Player fplayer, Enemy enemy)
         {
             Player player = fplayer;
-            AudioManager audioManager = new AudioManager();
-            audioManager.PlayMusic("Fight.wav");
+
+            AudioManager music = new AudioManager();
+            music.PlayMusic("Fight.wav");
+
             int MaxMPPlayer = player._MP;
             int MaxMPEnemy = enemy._MP;
             /*Attacks test = new Attacks('p',5,2,'P');*/
@@ -346,6 +348,8 @@ namespace Projet_7.src
             PlayerInit.PlayerList["player1"].LVLUp();
             PlayerInit.PlayerList["player2"].LVLUp();
             PlayerInit.PlayerList["player3"].LVLUp();
+            music.EndMusic("Fight.wav");
+            music.PlayMusic("Explore.wav");
         }
         public Player ChangePlayer(MenuManager menu)
         {
