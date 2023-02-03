@@ -39,12 +39,13 @@ namespace Projet_7.Managers
             {
                 Console.Clear();
                 music.EndMusic("Menu.wav");
-                music.PlayMusic("Explore.wav");
+                music.PlayMusic("Transi.wav");
                 MapInit mi = new MapInit();
                 StreamWriter sw = new StreamWriter("save.txt");
                 sw.Write("        ");
                 sw.Close();
                 mi.InitTab();
+                music.PlayMusic("Explore.wav");
                 mi.movePlayer(player, manager);
             }
             else if (Index == 1)
@@ -55,9 +56,10 @@ namespace Projet_7.Managers
                 }
                 Console.Clear();
                 music.EndMusic("Menu.wav");
-                music.PlayMusic("Explore.wav");
+                music.PlayMusic("Transi.wav");
                 MapInit mi = new MapInit();
                 mi.InitTab();
+                music.PlayMusic("Explore.wav");
                 mi.movePlayer(player, manager);
             }
             else if (Index == 2)
