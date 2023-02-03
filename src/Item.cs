@@ -28,31 +28,81 @@ namespace Projet_7.src
         {
             if (player._HP == player._HPMAX)
             {
-                Console.Clear();
                 Console.WriteLine("You are Full Life");
             } else
             {
-                if (player._HP + _HEALTH > player._HPMAX)
+                if (_QUANTITY > 0)
                 {
-                    player._HP = player._HPMAX;
+                    if (player._HP + _HEALTH > player._HPMAX)
+                    {
+                        Console.Write("You Get Heal +");
+                        Console.WriteLine(player._HPMAX - player._HP);
+                        player._HP = player._HPMAX;
+                        _QUANTITY--;
+                    }
+                    else
+                    {
+                        player._HP += _HEALTH;
+                        _QUANTITY--;
+                        Console.Write("You Get Heal +");
+                        Console.WriteLine(_HEALTH);
+                    }
                 }
                 else
                 {
-                    player._HP += _HEALTH;
+                    Console.Write("You Don't Have ");
+                    Console.WriteLine(_NAME);
                 }
+
             }
         }
 
         public int RegenMana(Player player)
         {
-            player._MP += _PM;
+            if (player._HP == player._HPMAX)
+            {
+                Console.WriteLine("You are Full of Stamina");
+            }
+            else
+            {
+                if (_QUANTITY > 0)
+                {
+                    player._MP += _PM;
+                    _QUANTITY--;
+                    Console.Write("You Get Stamina +");
+                    Console.WriteLine(_PM);
+                }
+                else
+                {
+                    Console.Write("You Don't Have ");
+                    Console.WriteLine(_NAME);
+                }
+            }
+
             return _PM;
         }
 
-        public string Cure(Player player)
+        public void Cure(Player player)
         {
-            player._EFCT = EffectInit.Dictionary["None"];
-            return EffectInit.Dictionary["None"]._NAME;
+            if (player._EFCT == EffectInit.Dictionary["None"])
+            {
+                Console.WriteLine("You are Good");
+            }
+            else
+            {
+                if (_QUANTITY > 0)
+                {
+                    player._EFCT = EffectInit.Dictionary["None"];
+                    _QUANTITY--;
+                    Console.Write("You Get Healed");
+                    Console.WriteLine(_PM);
+                }
+                else
+                {
+                    Console.Write("You Don't Have ");
+                    Console.WriteLine(_NAME);
+                }
+            }
         }
     }
 }

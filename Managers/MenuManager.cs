@@ -171,30 +171,17 @@ namespace Projet_7.Managers
 
             if (Index == 0)
             {
-                if (ObjectInit.Dictionary["HealP"]._QUANTITY > 0)
-                {
-                    ObjectInit.Dictionary["HealP"]._QUANTITY -= 1;
-                    player.Heal(ObjectInit.Dictionary["HealP"]._HEALTH);                   
-                }
+                ObjectInit.Dictionary["HealP"].Healing(player);
                 menuPos = false;
             }
             else if (Index == 1)
             {
-                if (ObjectInit.Dictionary["MPP"]._QUANTITY > 0)
-                {
-                    ObjectInit.Dictionary["MPP"]._QUANTITY -= 1;
-                    ObjectInit.Dictionary["MPP"].RegenMana(player);
-                }
+                ObjectInit.Dictionary["MPP"].RegenMana(player);
                 menuPos = false;
             }
             else if (Index == 2)
             {
-                if (ObjectInit.Dictionary["CureP"]._QUANTITY > 0)
-                {
-                    ObjectInit.Dictionary["CureP"]._QUANTITY -= 1;
-                    player.Heal(ObjectInit.Dictionary["CureP"]._HEALTH);
-                    ObjectInit.Dictionary["CureP"].Cure(player);
-                }
+                ObjectInit.Dictionary["CureP"].Cure(player);
                 menuPos = false;               
             }
             ClearMenu(0, 54);

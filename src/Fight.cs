@@ -131,10 +131,10 @@ namespace Projet_7.src
                         else if (menu._ID == 1)
                         {
                             Items = menu.ItemFightMenu();
-                            ObjectInit.Dictionary[Items[menu._ID]].Healing(player);
-                            ObjectInit.Dictionary[Items[menu._ID]].Cure(player);
-                            ObjectInit.Dictionary[Items[menu._ID]].RegenMana(player);
-                            ObjectInit.Dictionary[Items[menu._ID]]._QUANTITY -= 1;
+                            Console.Clear();
+                            if (ObjectInit.Dictionary[Items[menu._ID]]._HEALTH != 0) ObjectInit.Dictionary[Items[menu._ID]].Healing(player);
+                            if (ObjectInit.Dictionary[Items[menu._ID]]._CURE != false) ObjectInit.Dictionary[Items[menu._ID]].Cure(player);
+                            if (ObjectInit.Dictionary[Items[menu._ID]]._PM != 0) ObjectInit.Dictionary[Items[menu._ID]].RegenMana(player);
                             wait.Wait();
                             Console.Clear();
                         }
@@ -283,10 +283,10 @@ namespace Projet_7.src
                         else if (menu._ID == 1)
                         {
                             Items = menu.ItemFightMenu();
-                            ObjectInit.Dictionary[Items[menu._ID]].Healing(player);
-                            ObjectInit.Dictionary[Items[menu._ID]].Cure(player);
-                            ObjectInit.Dictionary[Items[menu._ID]].RegenMana(player);
-                            ObjectInit.Dictionary[Items[menu._ID]]._QUANTITY -= 1;
+                            Console.Clear();
+                            if (ObjectInit.Dictionary[Items[menu._ID]]._HEALTH != 0) ObjectInit.Dictionary[Items[menu._ID]].Healing(player);
+                            if (ObjectInit.Dictionary[Items[menu._ID]]._CURE != false) ObjectInit.Dictionary[Items[menu._ID]].Cure(player);
+                            if (ObjectInit.Dictionary[Items[menu._ID]]._PM != 0) ObjectInit.Dictionary[Items[menu._ID]].RegenMana(player);
                             wait.Wait();
                             Console.Clear();
                         }
