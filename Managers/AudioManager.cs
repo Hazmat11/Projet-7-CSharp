@@ -10,18 +10,15 @@ namespace Projet_7.Managers
 {
     internal class AudioManager
     {
-        private MediaPlayer media;
         public void PlayMusic(string filepath)
         {
-            /*media = new MediaPlayer();
-            media.(new Uri(filepath));
-            media.Play();*/
+            SoundPlayer music = new SoundPlayer(filepath);
+            music.Play();
         }
-        public void SetVolume(int volume) 
+        public void EndMusic(string filepath)
         {
-            media.Volume = volume/100.0f ;
-        
-        
+            SoundPlayer music = new SoundPlayer(filepath);
+            music.Stop();
         }
     }
 }
