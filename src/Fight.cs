@@ -64,7 +64,7 @@ namespace Projet_7.src
                 Console.WriteLine(Turn);
                 if (PlayerTurn)
                 {
-                    if (player._HP > 0)
+                    if (PlayerInit.PlayerList["player1"]._ALIVE == true || PlayerInit.PlayerList["player2"]._ALIVE == true || PlayerInit.PlayerList["player3"]._ALIVE == true)
                     {
                         DisplayStats(player, enemy);
                         menu.FightMenu();
@@ -165,7 +165,13 @@ namespace Projet_7.src
                         }
                         else
                         {
-                            //Dead
+                            menu.Dead();
+
+                            PlayerInit.PlayerList["player1"] = new Player("Hazmat", 5, 100, 100, 30, 3, 8, 3, "Fire");
+                            PlayerInit.PlayerList["player2"] = new Player("Mastrum", 5, 100, 100, 30, 3, 8, 3, "Fire");
+                            PlayerInit.PlayerList["player3"] = new Player("Pandouille", 5, 100, 100, 30, 3, 8, 3, "Fire");
+
+                            main.Main();
                         }
                     }
                     
@@ -229,7 +235,7 @@ namespace Projet_7.src
                         wait.Wait();
                     }
 
-                    if (player._HP > 0)
+                    if (PlayerInit.PlayerList["player1"]._ALIVE == true || PlayerInit.PlayerList["player2"]._ALIVE == true || PlayerInit.PlayerList["player3"]._ALIVE == true)
                     {
                         DisplayStats(player, enemy);
                         menu.FightMenu();
@@ -339,7 +345,13 @@ namespace Projet_7.src
                     }
                     else
                     {
-                        //Dead
+                        menu.Dead();
+
+                        PlayerInit.PlayerList["player1"] = new Player("Hazmat", 5, 100, 100, 30, 3, 8, 3, "Fire");
+                        PlayerInit.PlayerList["player2"] = new Player("Mastrum", 5, 100, 100, 30, 3, 8, 3, "Fire");
+                        PlayerInit.PlayerList["player3"] = new Player("Pandouille", 5, 100, 100, 30, 3, 8, 3, "Fire");
+
+                        main.Main();
                     }
                 }
             }

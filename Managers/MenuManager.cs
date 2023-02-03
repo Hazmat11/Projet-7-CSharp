@@ -406,6 +406,33 @@ namespace Projet_7.Managers
             Console.SetCursorPosition(0, 0);
         }
 
+        public void Dead()
+        {
+            Console.Clear();
+            Console.SetCursorPosition(0, 0);
+            //Pass the file path and file name to the StreamReader constructor
+            StreamReader srText = new StreamReader("dead.txt");
+            //Read the first line of text
+            linetxt = srText.ReadLine();
+            //Continue to read until you reach end of file
+            while (linetxt != null)
+            {
+                //write the line to console window
+                Console.WriteLine(linetxt);
+
+                //Read the next line
+                linetxt = srText.ReadLine();
+            };
+            Console.SetCursorPosition(0, 0);
+            Thread.Sleep(2000);
+            Console.SetCursorPosition(0, 10);
+            for (int i = 0; i < 50; i++)
+            {
+                Console.WriteLine(new string(' ', Console.BufferWidth));
+                Thread.Sleep(100);
+            }
+        }
+
         public void Option()
         {
             Console.CursorVisible = false;

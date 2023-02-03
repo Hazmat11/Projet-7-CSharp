@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Projet_7.Managers;
+using Windows.UI.Input.Preview.Injection;
 
 namespace Projet_7.src
 {
@@ -19,8 +20,6 @@ namespace Projet_7.src
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
         private const int MAXIMIZE = 3;
-
-
 
         public static void Main()
         {
